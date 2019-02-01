@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Event {
     
+	//text is displayed above the option choices, options are what happens when the player clicks a button, optionText is what the button says
 	public string text;
 	public LinkedList<TimedMethod> options1;
 	public LinkedList<TimedMethod> options2;
@@ -25,6 +26,7 @@ public class Event {
 	
 	public Event () {}
 	
+	//Is called when the event appears. In most cases adding the contents can be run here or in the constructor
 	public virtual void Enact () {
 		
 	}

@@ -3,30 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character {
+	
 	protected int health;
 	protected int maxHP;
+	//Global attack power
 	protected int strength;
+	//attack that lasts through 1 battle
 	protected int power;
+	//attack that lasts through 1 attack
 	protected int charge;
+	//defence that lasts through 1 battle
 	protected int defense;
+    //defence that lasts through 1 attack
 	protected int guard;
+	//Global accuracy
 	protected int baseAccuracy;
+	//Is reset to baseAccuracy post-battle
 	protected int accuracy;
+	//Evasion increases by this number when hit
 	protected int dexterity;
+	//Measure of dodging
 	protected int evasion;
 	protected string name;
+	//The class name, like CS Major
 	public string type;
+	//Class specific ability
 	protected Passive passive;
+	//Global random ability
 	protected Passive quirk;
+	//The special that can be used in the lead position
 	protected Special special;
+	//The special that can be used in any position
 	protected Special special2;
+	//Is the character a party member
 	protected bool player;
+	//Is the character the player or a boss (battle ends when they are defeated)
 	protected bool champion;
+	//Does the recruit option work
 	protected bool recruitable;
+	//Handles status conditions
 	public Status status;
+	//Is hp > 0
 	protected bool alive;
+	//Items gotten on victory
 	public Item[] drops;
 	
+	//This constructor is usually unused
 	public Character(int health, int maxHP, int strength, int accuracy,
 	int dexterity, string name, Quirk quirk, bool player, bool champion,
 	bool recruitable) {
@@ -37,7 +59,9 @@ public class Character {
 		this.champion = champion; this.recruitable = recruitable;
 	}
 	
-	public Character(Quirk quirkR) {}
+	//public Character(Quirk quirkR) {}
+	
+	//Initializes a new character. This will be called whenever creating an instance of a subclass as well
 	public Character () {alive = true; status = new Status(this); name = Names.Get();}
 	
 	public void SetHealth (int health) {if (health < this.health) {status.Awake();} this.health = health; if (health <= 0) {alive = false;}}
@@ -88,6 +112,7 @@ public class Character {
 	public bool GetPassing () {return status.passing;}
 	public bool GetApathy () {return status.apathetic > 0;}
 	
+	//The method called when pressing the attack button
 	public virtual TimedMethod[] BasicAttack() {
 		if (Party.BagContains(new Metronome())) {
 			return Attacks.Attack(this, Party.GetEnemy(), strength + 2, strength + 2, GetAccuracy(), true, true, false);
@@ -103,6 +128,7 @@ public class Character {
 		health = System.Math.Max(health - amount, 0); status.Awake();
 	}
 	
+	//Should be used over setters in most situations to account for external modifiers and conditions
 	public void GainStrength (int amount) {strength += amount;}
 	public void GainPower (int amount) {power += amount;}
 	public void GainCharge (int amount) {charge += amount;}
@@ -123,6 +149,8 @@ public class Character {
 		}
 	}
 	
+	
+	//Some characters give you an item when they are recruited, it is covered here
 	public virtual void OnRecruit() {}
 	
 	public string StatusText() {
@@ -154,10 +182,12 @@ public class Character {
 		return "";
 	}
 	
+	//What occurs when the character takes a turn as the enemy
 	public virtual TimedMethod[] AI () {
 		return new TimedMethod[0];
 	}
 	
+	//Handles checking for status effects at the start of the turn. Ususally not necessary to override
 	public virtual TimedMethod[] EnemyTurn () {
 		//TimedMethod[] extra = status.Check(this);
 		if (GetAsleep() || GetStunned() || GetPassing()) {
@@ -168,10 +198,12 @@ public class Character {
 		}
 	}
 	
+	//When the character is defeated, adds SP immediately and returns their itemDrops
 	public virtual Item[] Loot () {
 	    return new Item[0];	
 	}
 	
+	//Determines what the character will drop, usually through the ItemDrops class
 	public virtual void CreateDrops() {
 		drops = new Item[0];
 	}
@@ -180,6 +212,7 @@ public class Character {
 		power = 0; charge = 0; defense = 0; guard = 0; evasion = 0; accuracy = baseAccuracy; status.PostBattle();
 	}
 	
+	//What the CS Major sees on wikipedia about the class
 	public virtual string[] CSDescription() {
 		return new string[0];
 	}
