@@ -102,7 +102,7 @@ public class Shop : MonoBehaviour {
 	public void Scout() {
 		if (Party.GetSP() >= 5) {
 			Party.UseSP(5);
-			messageLog.GetComponent<Text>().text = "You scouted an area but it wasn't coded yet";
+			messageLog.GetComponent<Text>().text = inventory.scoutMessage;
 		} else {
 			messageLog.GetComponent<Text>().text = "You are broke!";
 		}

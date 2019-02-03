@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public static class Areas {
 	
@@ -22,6 +23,7 @@ public static class Areas {
 	public static Inventory currentShop;
 	public static Dictionary<string, bool> cleared;
 	public static Dictionary<string, Inventory> shops;
+	public static List<int> bossLocations;
 	
 	public static void Initialize () {
 		EventGetter.BeginGame();
@@ -32,6 +34,7 @@ public static class Areas {
 		art1 = EventGetter.CreateArts();
 		health1 = EventGetter.CreateHealth();
 		lecture1 = EventGetter.CreateLecture();
+		bossLocations = new List<int>();
 		EventGetter.PlaceBosses(tower1, dining1, research1, sports1, art1, health1, lecture1);
 		tower = new Queue<Event>(tower1);
 		dining = new Queue<Event>(dining1);
@@ -47,9 +50,17 @@ public static class Areas {
 		shops = new Dictionary<string, Inventory>(); shops.Add("tower", new Inventory("tower")); shops.Add("dining", new Inventory("dining"));
 		shops.Add("research", new Inventory("research")); shops.Add("sports", new Inventory("sports")); shops.Add("art", new Inventory("art"));
 		shops.Add("health", new Inventory("health")); shops.Add("lecture", new Inventory("lecture"));
+		shops[IndexToWord(bossLocations[0])].scoutMessage = "The trail of this areas boss leads back to " + IndexToWord(bossLocations[3]);
+		shops[IndexToWord(bossLocations[1])].scoutMessage = "The trail of this areas boss leads back to " + IndexToWord(bossLocations[3]);
+		shops[IndexToWord(bossLocations[2])].scoutMessage = "The trail of this areas boss leads back to " + IndexToWord(bossLocations[3]);
+		shops[IndexToWord(bossLocations[3])].scoutMessage = "HACKER! YOU SHOULDN'T SEE THIS!";
+		shops[IndexToWord(bossLocations[4])].scoutMessage = "It seems suspicious activity was seen in " + IndexToWord(bossLocations[0]);
+		shops[IndexToWord(bossLocations[5])].scoutMessage = "It seems suspicious activity was seen in " + IndexToWord(bossLocations[1]);
+		shops[IndexToWord(bossLocations[6])].scoutMessage = "It seems suspicious activity was seen in " + IndexToWord(bossLocations[2]);
+		
 		location = "overworld";
-		Map.selectedLocation = "lecture";
-		Map.currentPosition = "lecture";
+		//Map.selectedLocation = "lecture";
+		//Map.currentPosition = "lecture";
 	}
 	
 	public static Event Next() {
@@ -119,5 +130,40 @@ public static class Areas {
 			    break;				
 		}
 		return null;
+	}
+	
+	public static void SetLocation(int i) {
+		string loc = IndexToWord(i);
+		//Debug.Log(loc);
+		Map.selectedLocation = loc;
+		Map.currentPosition = loc;
+	}
+	
+	public static string IndexToWord(int i) {
+	string loc = "";
+		switch (i) {
+			case 0:
+			    return "tower";
+			    break;
+			case 1:
+			    return "dining";
+				break;
+			case 2:
+			    return "research";
+				break;
+			case 3:
+			    return "sports";
+				break;
+			case 4:
+			    return "art";
+				break;
+			case 5:
+			    return "health";
+				break;
+		    case 6:
+			    return "lecture";
+				break;
+		}
+        return "Wrong answer";		
 	}
 }

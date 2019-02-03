@@ -81,7 +81,7 @@ public class Character {
 	public void SetBaseAccuracy (int baseAccuracy) {this.baseAccuracy = baseAccuracy;}
 	public int GetBaseAccuracy () {return baseAccuracy;}
 	public void SetAccuracy (int accuracy) {this.accuracy = accuracy;}
-	public int GetAccuracy () {return accuracy - status.blinded;}
+	public int GetAccuracy () {return accuracy + status.CoffeeEffect() - status.blinded;}
 	public void SetDexterity (int dexterity) {this.dexterity = dexterity;}
 	public int GetDexterity () {return dexterity;}
 	public void SetEvasion (int evasion) {this.evasion = evasion;}
@@ -139,7 +139,7 @@ public class Character {
 	public void GainMaxHP (int amount) {maxHP += amount; health = System.Math.Min(health, maxHP);}
 	public void GainAccuracy (int amount) {accuracy += amount;}
 	
-	public void DexCheck () {if (!GetAsleep() && !GetStunned() && !GetGooped()) {evasion += dexterity;}}
+	public void DexCheck () {if (!GetAsleep() && !GetStunned() && !GetGooped()) {evasion += System.Math.Max(0, dexterity + status.CoffeeEffect());}}
 	
 	public override string ToString() {
 		if (player) {

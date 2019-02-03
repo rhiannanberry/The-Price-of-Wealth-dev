@@ -19,7 +19,7 @@ public class Map : MonoBehaviour {
 			spotlight.SetActive(true);
 			spotlight.GetComponent<AreaSpotlight>().SetLocation(Areas.location);
 		}
-		map.transform.Find("Current Location").gameObject.GetComponent<Text>().text = "Current location: " + Map.currentPosition;
+		map.transform.Find("Current Location").gameObject.GetComponent<Text>().text = "Current location: " + currentPosition;
 	}
 	
 	// Update is called once per frame
