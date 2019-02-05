@@ -10,20 +10,21 @@ public class Battle : MonoBehaviour {
 	
 	Character player;
 	Character enemy;
-	GameObject menu;
-	GameObject itemSpace;
-	GameObject specialMenu;
-	GameObject defenseMenu;
-	GameObject messageLog;
-	GameObject partyMenu;
-	GameObject winMenu;
-	GameObject recruitMember;
-	GameObject previousMessages;
-	GameObject useItemMenu;
-	GameObject audio;
-	GameObject sprites;
-	GameObject nameMenu;
-	GameObject statusBars;
+	public GameObject menu;
+	public GameObject itemSpace;
+	public GameObject specialMenu;
+	public GameObject defenseMenu;
+	public GameObject messageLog;
+	public GameObject partyMenu;
+	public GameObject winMenu;
+	public GameObject recruitMember;
+	public GameObject previousMessages;
+	public GameObject useItemMenu;
+	public GameObject audio;
+	public GameObject sprites;
+	public GameObject nameMenu;
+	public GameObject statusBars;
+	public GameObject largeMenuHides;
 	public int delay;
 	public Queue<TimedMethod> methodQueue;
 	Type t;
@@ -36,20 +37,20 @@ public class Battle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Debug.Log(Party.playerCount.ToString());
-		menu = gameObject.transform.Find("MenuSpace").gameObject;
-		itemSpace = gameObject.transform.Find("ItemSpace").gameObject;
-		specialMenu = gameObject.transform.Find("SpecialMenu").gameObject;
-		defenseMenu = gameObject.transform.Find("Defense Menu").gameObject;
-		messageLog = gameObject.transform.Find("Message Log").gameObject;
-		partyMenu = gameObject.transform.Find("Party Menu").gameObject;
-		winMenu = gameObject.transform.Find("Win Menu").gameObject;
-	    recruitMember = gameObject.transform.Find("Replace Member").gameObject;
-		previousMessages = gameObject.transform.Find("Previous Messages").gameObject;
-		useItemMenu = gameObject.transform.Find("Use Item Menu").gameObject;
-		audio = gameObject.transform.Find("Audio").gameObject;
-		sprites = gameObject.transform.Find("Character Sprites").gameObject;
-		nameMenu = gameObject.transform.Find("Name Menu").gameObject;
-		statusBars = gameObject.transform.Find("Status Bars").gameObject;
+		//menu = gameObject.transform.Find("MenuSpace").gameObject;
+		//itemSpace = gameObject.transform.Find("ItemSpace").gameObject;
+		//specialMenu = gameObject.transform.Find("SpecialMenu").gameObject;
+		//defenseMenu = gameObject.transform.Find("Defense Menu").gameObject;
+		//messageLog = gameObject.transform.Find("Message Log").gameObject;
+		//partyMenu = gameObject.transform.Find("Party Menu").gameObject;
+		//winMenu = gameObject.transform.Find("Win Menu").gameObject;
+	    //recruitMember = gameObject.transform.Find("Replace Member").gameObject;
+		//previousMessages = gameObject.transform.Find("Previous Messages").gameObject;
+		//useItemMenu = gameObject.transform.Find("Use Item Menu").gameObject;
+		//audio = gameObject.transform.Find("Audio").gameObject;
+		//sprites = gameObject.transform.Find("Character Sprites").gameObject;
+		//nameMenu = gameObject.transform.Find("Name Menu").gameObject;
+		//statusBars = gameObject.transform.Find("Status Bars").gameObject;
 		Party.latestRecruit = null;
 		delay = 0;
 		methodQueue = new Queue<TimedMethod>();
@@ -60,7 +61,7 @@ public class Battle : MonoBehaviour {
 		guardStrength = 5;
 		audio.GetComponent<GameAudio>().InitiateMusic();
 		//itemSpace.GetComponent<ItemSpace>().Check();
-		itemSpace.SetActive(false);
+		//itemSpace.SetActive(false);
 		if (Party.area == "Overworld") {
 		    defenseMenu.gameObject.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = true;	
 		} else {
@@ -218,6 +219,7 @@ public class Battle : MonoBehaviour {
 		if (special.selects) {
 		    useItemMenu.SetActive(true);
 			specialMenu.SetActive(false);
+			largeMenuHides.SetActive(false);
 		    useItemMenu.GetComponent<PartyMenu>().currentSpecial = special;
 			usingSpecial = true;
 		} else {
@@ -253,6 +255,7 @@ public class Battle : MonoBehaviour {
 		methodQueue.Enqueue(new TimedMethod(2, "EndTurn"));
 		useItemMenu.GetComponent<PartyMenu>().currentSpecial = null;
 		useItemMenu.SetActive(false);
+		largeMenuHides.SetActive(true);
 	}
 	
 	public void Defense () {
@@ -340,7 +343,7 @@ public class Battle : MonoBehaviour {
 			Party.fullRecruit = enemy;
 			recruitMember.SetActive(true);
 			menu.SetActive(false);
-			statusBars.SetActive(false);
+			largeMenuHides.SetActive(false);
 			methodQueue.Enqueue(new TimedMethod("DisableLeadReplace"));
 		}
 	}
@@ -357,6 +360,7 @@ public class Battle : MonoBehaviour {
 	public void UseItem (Item item) {
 		if (item.selects) {
 		    useItemMenu.SetActive(true);
+			largeMenuHides.SetActive(false);
 		    useItemMenu.GetComponent<PartyMenu>().item = item;
 		} else {
 			string message = player.GetName() + " used " + item.GetName();
@@ -382,6 +386,7 @@ public class Battle : MonoBehaviour {
 		    itemSpace.SetActive(true);
 		}
 		useItemMenu.SetActive(false);
+		largeMenuHides.SetActive(true);
 		useItemMenu.GetComponent<PartyMenu>().item = null;
 		useItemMenu.GetComponent<PartyMenu>().currentSpecial = null;
 	}
@@ -404,12 +409,13 @@ public class Battle : MonoBehaviour {
 		methodQueue.Enqueue(new TimedMethod(2, "EndTurn"));
 		useItemMenu.GetComponent<PartyMenu>().item = null;
 		useItemMenu.SetActive(false);
+		largeMenuHides.SetActive(true);
 	}
 	
 	public void Cancel (string menu) {
 	    this.menu.SetActive(true);
 		gameObject.transform.Find(menu).gameObject.SetActive(false);
-		statusBars.SetActive(true);
+		largeMenuHides.SetActive(true);
 		messageLog.SendMessage("SetMessage", "");
 	}
 	
@@ -448,7 +454,7 @@ public class Battle : MonoBehaviour {
 		//StorePlayer();
 		partyMenu.SetActive(true);
 		menu.SetActive(false);
-		statusBars.SetActive(false);
+		largeMenuHides.SetActive(false);
 		messageLog.SendMessage("SetMessage", "");
 	}
 	
@@ -532,12 +538,13 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void EndTurn () {
-		//menu.SetActive(false);
+		largeMenuHides.SetActive(true);
 		object[] args = new object[1];
 		args[0] = true;
 		methodQueue.Enqueue(new TimedMethod(0, "NextTurn", args));
 	}
 	
+	//Warning: Clears all methods from the queue
 	public void ContinueTurn () {
 		methodQueue.Clear();
 		menu.SetActive(true);
@@ -612,7 +619,7 @@ public class Battle : MonoBehaviour {
 					Debug.Log("Full");
 				    recruitMember.SetActive(true);
 			        menu.SetActive(false);
-					statusBars.SetActive(false);
+					largeMenuHides.SetActive(false);
 			        methodQueue.Enqueue(new TimedMethod("DisableLeadReplace"));
 				    return;
 				} else {
@@ -623,7 +630,7 @@ public class Battle : MonoBehaviour {
 			//Debug.Log("None");
 		    messageLog.SendMessage("SetMessage", "");
 		    menu.SetActive(false);
-			statusBars.SetActive(true);
+			largeMenuHides.SetActive(true);
 		    winMenu.SetActive(true);
 		//}
 	}

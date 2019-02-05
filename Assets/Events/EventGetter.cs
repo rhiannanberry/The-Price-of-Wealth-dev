@@ -446,6 +446,8 @@ public class EventGetter : MonoBehaviour {
 		foreach (int i in availableArray) {
 			Areas.bossLocations.Add(i);
 		}
-		Areas.SetLocation(availableArray[rng.Next(3)]);
+		int starting = availableArray[rng.Next(3)];
+		areas[starting][0] = new InitialRecruit();
+		Areas.SetLocation(starting);
 	}
 }

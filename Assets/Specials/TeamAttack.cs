@@ -4,7 +4,7 @@ public class TeamAttack : Special {
 	
 	public override TimedMethod[] UseSupport (int i) {
 		TimedMethod[] moves = new TimedMethod[Party.playerCount + 2];
-		moves[0] = new TimedMethod(60, "Log", new object[] {Party.GetPlayer().ToString() + " led a team attack"});
+		moves[0] = new TimedMethod(60, "Log", new object[] {Party.members[i].ToString() + " led a team attack"});
 		moves[1] = new TimedMethod(0, "Audio", new object[] {"Skill2"});
 		int index = 0;
 		int count = 1;

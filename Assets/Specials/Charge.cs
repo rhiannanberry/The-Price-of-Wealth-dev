@@ -13,8 +13,8 @@ public class Charge : Special {
 					moves[index] = new TimedMethod(0, "AttackAny", new object[] {Party.GetPlayer(), Party.enemies[i],
 			    	Party.GetPlayer().GetStrength()/2, (Party.GetPlayer().GetStrength() + 5)/2, Party.GetPlayer().GetAccuracy(), true, true, false});
 					//break;
-				}
 				index++;
+				}
 			}
 			moves[index] = new TimedMethod(60, "StagnantAttack", new object[] {
 		        true, Party.GetPlayer().GetStrength(), Party.GetPlayer().GetStrength() + 5, Party.GetPlayer().GetAccuracy(), true, false, false});

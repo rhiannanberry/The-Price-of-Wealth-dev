@@ -18,10 +18,10 @@ public class Shop : MonoBehaviour {
 	
 	
 	// Use this for initialization
-	int yPosition = 75;
-	GameObject current;
-	Vector3 pos;
 	void Start () {
+		int yPosition = 50;
+	    GameObject current;
+	    Vector3 pos;
 		inventory = Areas.currentShop;
 		foreach (Item item in inventory.products) {
 		    current = Instantiate(productPrefab, gameObject.transform.Find("StoreUI"));
@@ -30,7 +30,7 @@ public class Shop : MonoBehaviour {
 			yPosition -= 35;
 			current.GetComponent<Product>().SetItem(item);
 		}
-		yPosition = 75;
+		yPosition = 50;
 		foreach (Character hireling in inventory.hirelings) {
 			current = Instantiate(hirelingPrefab, gameObject.transform.Find("StoreUI"));
 			pos = new Vector3(50, yPosition, 0);
@@ -46,6 +46,9 @@ public class Shop : MonoBehaviour {
 			    Destroy(child.gameObject);
 		    }
 		}
+		int yPosition = 50;
+	    GameObject current;
+	    Vector3 pos;
 		foreach (Item item in inventory.products) {
 		    current = Instantiate(productPrefab, gameObject.transform.Find("StoreUI"));
 			pos = new Vector3(250, yPosition, 0);

@@ -208,7 +208,10 @@ public class Status {
 	}
 	
 	public TimedMethod[] CauseApathy (int amount) {
-		apathetic = System.Math.Max(amount, apathetic);
+		if (apathetic <= amount) {
+			return new TimedMethod[] {new TimedMethod(0, "Log", new object[] {""})};
+		}
+		apathetic = amount;
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {self.ToString() + " became apathetic"})};
 	}
 	
