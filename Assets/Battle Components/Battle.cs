@@ -432,16 +432,18 @@ public class Battle : MonoBehaviour {
 	public void SwitchTo (int index) {
 		//StorePlayer();
 		//Party.playerSlot = index;
-		sprites.GetComponent<CharSprites>().Switch(Party.playerSlot - 1, index - 1);
-		Party.Switch(index, true);
-		GetPlayer();
-		methodQueue.Enqueue(new TimedMethod(60, "Log", new object[] {"Switched to " + player.ToString()}));
-		partyMenu.SetActive(false);
+		if (index != Party.playerSlot) {
+		    sprites.GetComponent<CharSprites>().Switch(Party.playerSlot - 1, index - 1);
+		    Party.Switch(index, true);
+		    GetPlayer();
+		    methodQueue.Enqueue(new TimedMethod(60, "Log", new object[] {"Switched to " + player.ToString()}));
 		//methodQueue.Enqueue(new TimedMethod(60,"EndTurn"));
-		menu.transform.Find("Attack Button").gameObject.GetComponent<Button>().interactable = true;
+		    menu.transform.Find("Attack Button").gameObject.GetComponent<Button>().interactable = true;
 		//menu.transform.Find("Special Button").gameObject.GetComponent<Button>().interactable = true;
-		menu.transform.Find("Item Button").gameObject.GetComponent<Button>().interactable = true;
-		menu.transform.Find("Defense Button").gameObject.GetComponent<Button>().interactable = true;
+		    menu.transform.Find("Item Button").gameObject.GetComponent<Button>().interactable = true;
+		    menu.transform.Find("Defense Button").gameObject.GetComponent<Button>().interactable = true;
+		}
+		partyMenu.SetActive(false);
 	}
 	
 	public void EnemySwitch(int a, int b) {
@@ -484,7 +486,7 @@ public class Battle : MonoBehaviour {
 			methodQueue.Enqueue(new TimedMethod(0, "NextTurn", new object[] {false}));
 		} else {
 			if (running) {
-				if (player.GetGooped() || player.GetAsleep() || player.GetStunned()) {
+				if (Party.GetPlayer().GetGooped() || Party.GetPlayer().GetAsleep() || Party.GetPlayer().GetStunned()) {
 				    messageLog.SendMessage("SetMessage", "You can't escape in this condition!");
 					delay += 60;
 				} else {

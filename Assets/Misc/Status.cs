@@ -54,6 +54,12 @@ public class Status {
 				messages = temp;
 			}
 		}
+		if (possessed > 0) {
+			temp = new TimedMethod[messages.Length + 1];
+			messages.CopyTo(temp, 0);
+			temp[messages.Length] = new TimedMethod(60, "SwitchTo", new object[] {1});
+			messages = temp;
+		}
 		TimedMethod[] regular = Check();
 		temp = new TimedMethod[messages.Length + regular.Length];
 		messages.CopyTo(temp, 0);

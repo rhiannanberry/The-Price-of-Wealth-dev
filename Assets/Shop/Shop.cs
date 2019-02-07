@@ -102,6 +102,13 @@ public class Shop : MonoBehaviour {
 		}
 	}
 	
+	public void CancelHire() {
+		Party.UseSP(-10);
+		Party.fullRecruit = null;
+		replaceMember.SetActive(false);
+		storeUI.SetActive(true);
+	}
+	
 	public void Scout() {
 		if (Party.GetSP() >= 5) {
 			Party.UseSP(5);
