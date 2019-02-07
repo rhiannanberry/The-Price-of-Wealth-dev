@@ -10,6 +10,7 @@ public class Status {
 	public bool passing;
 	public int apathetic;
 	public int caffeine;
+	public int possessed;
 	public bool sleepImmune;
 	public bool poisonImmune;
 	public bool stunImmune;
@@ -21,7 +22,7 @@ public class Status {
 	
 	public Status (Character c) {
 		self = c; asleep = 0; poisoned = 0; stunned = 0; gooped = false; blinded = 0; caffeine = 0; waking = false; regeneration = 0; passing = false;
-		apathetic = 0; sleepImmune = false; poisonImmune = false; stunImmune = false; goopImmune = false; blindImmune = false;
+		apathetic = 0; possessed = 0; sleepImmune = false; poisonImmune = false; stunImmune = false; goopImmune = false; blindImmune = false;
 	}
 	
 	public TimedMethod[] CheckLead() {
@@ -104,6 +105,22 @@ public class Status {
 				temp = new TimedMethod[messages.Length + 1];
 				messages.CopyTo(temp, 0);
 				temp[messages.Length] = new TimedMethod(60, "Log", new object[] {self.ToString() + " is asleep"});
+				messages = temp;
+			}
+		}
+		if (possessed > 0) {
+	        possessed--;
+			if (possessed == 0) {
+				temp = new TimedMethod[messages.Length + 1];
+				messages.CopyTo(temp, 0);
+				temp[messages.Length] = new TimedMethod(60, "Log", new object[] {self.ToString() + " got a hold of themself"});
+				messages = temp;
+			} else {
+				temp = new TimedMethod[messages.Length + 2];
+				messages.CopyTo(temp, 0);
+				temp[messages.Length] = new TimedMethod(60, "Log", new object[] {self.ToString() + " attacked " + Party.GetPlayer().ToString()});
+				temp[messages.Length + 1] = new TimedMethod(0, "AttackAny", new object[] {
+					self, Party.GetPlayer(), self.GetStrength(), self.GetStrength(), self.GetAccuracy(), true, true, false});
 				messages = temp;
 			}
 		}
@@ -215,6 +232,17 @@ public class Status {
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {self.ToString() + " became apathetic"})};
 	}
 	
+	public TimedMethod[] Possess () {
+		if (!self.GetChampion() && possessed == 0) {
+			possessed = 5;
+			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {self.ToString() + " was possessed"})};
+		}
+		if (self.GetChampion()) {
+		    return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {self.ToString() + " can't be possessed"})};
+		}
+		return new TimedMethod[] {new TimedMethod(0, "Log", new object[] {""})};
+	}
+	
 	public void Coffee () {
 		caffeine = 5; //self.SetPower(self.GetPower() + 5); self.GainAccuracy(5);
 	}
@@ -250,7 +278,10 @@ public class Status {
 			s += "Apathy - Chance to skip turns\n";
 		}
 		if (regeneration > 0) {
-			s += "Regeneration - Recover " + regeneration.ToString() + " hp every turn";
+			s += "Regeneration - Recover " + regeneration.ToString() + " hp every turn\n";
+		}
+		if (possessed > 0) {
+			s += "Possessed - Unusable and attacks you each turn";
 		}
 		return s;
 	}
@@ -273,16 +304,20 @@ public class Status {
 			s += "Blinded ";
 		}
 		if (apathetic > 0) {
-			s += "Apathy";
+			s += "Apathy ";
 		}
 		if (regeneration > 0) {
 			s += "Regeneration ";
+		}
+		if (possessed > 0) {
+			s += "Possessed ";
 		}
 		return s;
 	}
 	
 	public void PostBattle() {
 		asleep = 0; poisoned = 0; stunned = 0; gooped = false; blinded = 0; waking = false; catalyst = 0; regeneration = 0; passing = false;
-		apathetic = 0; sleepImmune = false; poisonImmune = false; stunImmune = false; goopImmune = false; blindImmune = false; firewall = false;
+		possessed = 0; apathetic = 0; sleepImmune = false; poisonImmune = false; stunImmune = false; goopImmune = false; blindImmune = false;
+		firewall = false;
 	}
 }
