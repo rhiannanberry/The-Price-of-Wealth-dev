@@ -86,6 +86,7 @@ public class Shop : MonoBehaviour {
 		tradeItems.SetActive(false);
 		replaceMember.SetActive(false);
 		storeUI.SetActive(true);
+		messageLog.GetComponent<Text>().text = "";
 	}
 	
 	public void Hire(Character hireling) {
