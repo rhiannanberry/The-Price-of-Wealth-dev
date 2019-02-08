@@ -22,7 +22,8 @@ public class HelpMenu : MonoBehaviour {
 		
 		"Stats\n\nStrength: Permanent attack power\nPower: Attack power that lasts for the battle\nCharge: Attack power that lasts for 1 attack\n" +
 		"Defense: Defense power that lasts for the battle\nGuard: Defense power that lasts for 1 attack\n" +
-		"Accuracy: Character's attack will miss if it isn't higher than the target's Evasion\n" + 
+		"Accuracy: Character's attack will miss if it isn't higher than the target's Evasion\n" +
+		"Evasion: Decreases by the attacker's accuracy when the character dodges\n" + 
 		"Dexterity: Evasion increases by this number when the character fails to dodge a move\n",
 		
 		"Status Conditions\n\nAsleep: Character can not take actions until awoken (randomly or through damage)\n" +

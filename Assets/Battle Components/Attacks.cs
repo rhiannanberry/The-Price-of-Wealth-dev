@@ -25,7 +25,7 @@ public static class Attacks {
 			}
 			int defense = targ.GetGuard() + targ.GetDefense();
 			if (piercing) {defense = System.Math.Min(0, defense);}
-			int damage = System.Math.Max(power + rnd.Next(lower, upper) - defense, 0);
+			int damage = System.Math.Max(power + rnd.Next(lower, upper + 1) - defense, 0);
 			//targ.SetHealth(targ.GetHealth() - damage);
 		    targ.Damage(damage);
 			text = targ.ToString() + " takes " + damage.ToString() + " damage";
