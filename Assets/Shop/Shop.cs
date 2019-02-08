@@ -11,6 +11,7 @@ public class Shop : MonoBehaviour {
 	public GameObject replaceMember;
 	public GameObject productPrefab;
 	public GameObject hirelingPrefab;
+	public Text SPAmount;
 	bool resting;
 	public Item purchase;
 	Character hireling;
@@ -38,6 +39,7 @@ public class Shop : MonoBehaviour {
 			yPosition -= 35;
 			current.GetComponent<Hireling>().SetCharacter(hireling);
 		}
+		SPAmount.text = "SP: " + Party.GetSP().ToString();
 	}
 	
 	public void UpdateUI () {
@@ -64,6 +66,7 @@ public class Shop : MonoBehaviour {
 			yPosition -= 35;
 			current.GetComponent<Hireling>().SetCharacter(hireling);
 		}
+		SPAmount.text = "SP: " + Party.GetSP().ToString();
 	}
 	
 	// Update is called once per frame
@@ -130,6 +133,7 @@ public class Shop : MonoBehaviour {
 				if (c != null) {
 				    c.Heal(10);
 				}
+				messageLog.GetComponent<Text>().text = "Party healed 10 hp";
 			}
 		} else {
 			inventory.RemoveP(purchase);

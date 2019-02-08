@@ -24,6 +24,9 @@ public static class Areas {
 	public static Dictionary<string, bool> cleared;
 	public static Dictionary<string, Inventory> shops;
 	public static List<int> bossLocations;
+	public static bool defeatedP;
+	public static bool defeatedC;
+	public static bool defeatedG;
 	
 	public static void Initialize () {
 		EventGetter.BeginGame();
@@ -57,7 +60,9 @@ public static class Areas {
 		shops[IndexToWord(bossLocations[4])].scoutMessage = "It seems suspicious activity was seen in " + IndexToWord(bossLocations[0]);
 		shops[IndexToWord(bossLocations[5])].scoutMessage = "It seems suspicious activity was seen in " + IndexToWord(bossLocations[1]);
 		shops[IndexToWord(bossLocations[6])].scoutMessage = "It seems suspicious activity was seen in " + IndexToWord(bossLocations[2]);
-		
+		defeatedP = false;
+		defeatedC = false;
+		defeatedG = false;
 		location = "overworld";
 		//Map.selectedLocation = "lecture";
 		//Map.currentPosition = "lecture";

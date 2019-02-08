@@ -235,7 +235,20 @@ public static class Party {
 			playerCount--;
 			dead.GetPassive().Deactivate(true);
 			if (dead.GetChampion()) {
-				return new TimedMethod[] {new TimedMethod(60, "Lose")};
+				if (BagContains(new Defibrilator()) && playerCount > 0) {
+				    for (int i = 0; i < 10; i++) {
+						if (items[i] != null && items[i].GetType().Equals(new Defibrilator().GetType())) {
+				            items[i] = null;
+							break;
+		               	}
+					}
+					dead.SetAlive(true);
+					dead.Heal(1);
+					playerCount++;
+					return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"Your teammates used the defibrilator"})};
+				} else {
+    				return new TimedMethod[] {new TimedMethod(60, "Lose")};
+				}
 			} else {
 				//members[playerSlot - 1] = null;
 				//members[playerSlot - 1].SetAlive(false);

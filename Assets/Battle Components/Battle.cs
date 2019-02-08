@@ -60,6 +60,7 @@ public class Battle : MonoBehaviour {
 		lastGuard = -1;
 		guardStrength = 5;
 		audio.GetComponent<GameAudio>().InitiateMusic();
+		ItemButton.inBattle = true;
 		//itemSpace.GetComponent<ItemSpace>().Check();
 		//itemSpace.SetActive(false);
 		if (Party.area == "Overworld") {
@@ -652,6 +653,7 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void BattleEnd () {
+		ItemButton.inBattle = false;
 		Party.PostBattle();
 		SceneManager.LoadScene(Party.area);
 	}

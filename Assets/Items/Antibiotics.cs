@@ -1,6 +1,7 @@
 public class Antibiotics : Item {
 	
-	public Antibiotics () {name = "Antibiotics"; description = "Cures poison and makes you immune for the rest of the fight"; price = 3;}
+	public Antibiotics () {name = "Antibiotics"; description = "Cures poison and makes you immune for the rest of the fight";
+	    price = 3; usableOut = true;}
 	
 	public override TimedMethod[] Use () {
 		Party.GetPlayer().status.poisoned = 0;
