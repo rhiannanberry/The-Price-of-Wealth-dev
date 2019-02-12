@@ -1,5 +1,7 @@
 public class PoliticianE : Politician {
 	
+	public PoliticianE () {champion = false;}
+	
 	public override TimedMethod[] AI () {
 		if (broken) {
 			if (cycle < 2) {

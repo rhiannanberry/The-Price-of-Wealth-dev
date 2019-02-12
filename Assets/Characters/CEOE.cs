@@ -1,5 +1,10 @@
 public class CEOE : CEO {
     
+	public CEOE () {
+		champion = false;
+	}
+	
+	
 	public override TimedMethod[] AI () {
 		System.Random rng = new System.Random();
 		if (cycle == 0) {

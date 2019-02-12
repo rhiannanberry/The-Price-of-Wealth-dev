@@ -30,7 +30,7 @@ public static class Attacks {
 		    targ.Damage(damage);
 			text = targ.ToString() + " takes " + damage.ToString() + " damage";
 			if (targ.GetHealth() <= 0) {
-				targ.SetHealth(0);
+				//targ.SetHealth(0);
 				text = targ.ToString() + " takes " + damage.ToString() + " critical damage";
 			}
 			targ.SetGuard(0);

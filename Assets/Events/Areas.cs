@@ -29,23 +29,24 @@ public static class Areas {
 	public static bool defeatedG;
 	
 	public static void Initialize () {
-		EventGetter.BeginGame();
-		tower1 = EventGetter.CreateTower();
-		dining1 = EventGetter.CreateDining();
-		research1 = EventGetter.CreateResearch();
-	    sports1 = EventGetter.CreateSports();
-		art1 = EventGetter.CreateArts();
-		health1 = EventGetter.CreateHealth();
-		lecture1 = EventGetter.CreateLecture();
+		//EventGetter.BeginGame();
+		//tower1 = EventGetter.CreateTower();
+		//dining1 = EventGetter.CreateDining();
+		//research1 = EventGetter.CreateResearch();
+	    //sports1 = EventGetter.CreateSports();
+		//art1 = EventGetter.CreateArts();
+		//health1 = EventGetter.CreateHealth();
+		//lecture1 = EventGetter.CreateLecture();
 		bossLocations = new List<int>();
-		EventGetter.PlaceBosses(tower1, dining1, research1, sports1, art1, health1, lecture1);
-		tower = new Queue<Event>(tower1);
-		dining = new Queue<Event>(dining1);
-		research = new Queue<Event>(research1);
-		sports = new Queue<Event>(sports1);
-		art = new Queue<Event>(art1);
-		health = new Queue<Event>(health1);
-		lecture = new Queue<Event>(lecture1);
+		//EventGetter.PlaceBosses(tower1, dining1, research1, sports1, art1, health1, lecture1);
+		//tower = new Queue<Event>(tower1);
+		//dining = new Queue<Event>(dining1);
+		//research = new Queue<Event>(research1);
+		//sports = new Queue<Event>(sports1);
+		//art = new Queue<Event>(art1);
+		//health = new Queue<Event>(health1);
+		//lecture = new Queue<Event>(lecture1);
+		DungeonMapData.Initialize();
 		followUp = null;
 		Time.timeUnit = 0;
 		cleared = new Dictionary<string, bool>(); cleared.Add("tower", false); cleared.Add("dining", false); cleared.Add("research", false);
@@ -63,9 +64,9 @@ public static class Areas {
 		defeatedP = false;
 		defeatedC = false;
 		defeatedG = false;
+		ItemButton.inBattle = false;
+		Dungeon.fled = false;
 		location = "overworld";
-		//Map.selectedLocation = "lecture";
-		//Map.currentPosition = "lecture";
 	}
 	
 	public static Event Next() {

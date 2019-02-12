@@ -63,11 +63,11 @@ public class Battle : MonoBehaviour {
 		ItemButton.inBattle = true;
 		//itemSpace.GetComponent<ItemSpace>().Check();
 		//itemSpace.SetActive(false);
-		if (Party.area == "Overworld") {
-		    defenseMenu.gameObject.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = true;	
-		} else {
-			defenseMenu.gameObject.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = false;	
-		}
+		//if (Party.area == "Overworld") {
+		//    defenseMenu.gameObject.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = true;	
+		//} else {
+		//	defenseMenu.gameObject.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = false;	
+		//}
 		Queue<TimedMethod> moves = Party.InitializePassives();
 		foreach (TimedMethod t in moves) {
 			methodQueue.Enqueue(t);
@@ -463,8 +463,7 @@ public class Battle : MonoBehaviour {
 	
 	public void NextTurn (bool isEnemy) {
 		if (isEnemy) {
-			//bool passing = Party.GetEnemy().status.passing;
-			TimedMethod[] statuses;
+		   	TimedMethod[] statuses;
 			for (int i = 0; i < 4; i++) {
 				if (i == Party.enemySlot - 1) {
 					statuses = Party.enemies[i].status.CheckLead();
@@ -490,6 +489,7 @@ public class Battle : MonoBehaviour {
 				if (Party.GetPlayer().GetGooped() || Party.GetPlayer().GetAsleep() || Party.GetPlayer().GetStunned()) {
 				    messageLog.SendMessage("SetMessage", "You can't escape in this condition!");
 					delay += 60;
+					running = false;
 				} else {
 				    Flee();
 				    return;
@@ -579,9 +579,9 @@ public class Battle : MonoBehaviour {
 	public void Freed () {
 		partyMenu.transform.Find("Switch").gameObject.GetComponent<Button>().interactable = true;
 		defenseMenu.transform.Find("Dodge Button").gameObject.GetComponent<Button>().interactable = true;
-		if (Party.area == "Overworld") {
-		    defenseMenu.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = true;
-		}
+		//if (Party.area == "Overworld") {
+		defenseMenu.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = true;
+		//}
 	}
 	
 	public void Skip () {
@@ -619,7 +619,6 @@ public class Battle : MonoBehaviour {
 		    methodQueue.Clear();
 			if (Party.fullRecruit != null) {
 				if (Party.playerCount == 4) {
-					Debug.Log("Full");
 				    recruitMember.SetActive(true);
 			        menu.SetActive(false);
 					largeMenuHides.SetActive(false);
@@ -654,6 +653,7 @@ public class Battle : MonoBehaviour {
 	
 	public void BattleEnd () {
 		ItemButton.inBattle = false;
+		Dungeon.fled = false;
 		Party.PostBattle();
 		SceneManager.LoadScene(Party.area);
 	}
@@ -663,6 +663,14 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void Flee () {
+		if (Party.area != "Overworld") {
+		    Dungeon.fled = true;
+			Dungeon.leftEnemies = new Character[4];
+			for (int i = 0; i < 4; i++) {
+				Dungeon.leftEnemies[i] = Party.enemies[i];
+			}
+		}
+		ItemButton.inBattle = false;
 		Party.PostBattle();
 		SceneManager.LoadScene(Party.area);
 	}

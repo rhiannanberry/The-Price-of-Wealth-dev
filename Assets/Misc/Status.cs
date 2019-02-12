@@ -231,7 +231,7 @@ public class Status {
 	}
 	
 	public TimedMethod[] CauseApathy (int amount) {
-		if (apathetic <= amount) {
+		if (apathetic >= amount) {
 			return new TimedMethod[] {new TimedMethod(0, "Log", new object[] {""})};
 		}
 		apathetic = amount;

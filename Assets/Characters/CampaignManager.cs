@@ -40,6 +40,6 @@ public class CampaignManager : Character {
 		Status.NullifyAttack(pol);
 		Status.NullifyDefense(pol);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " Caused the politician's grand return"}),
-		    new TimedMethod(0, "EnemySwitch", new object[] {0, 1})};
+		    new TimedMethod(0, "EnemySwitch", new object[] {1, 2})};
 	}
 }

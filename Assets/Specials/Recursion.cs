@@ -9,7 +9,6 @@ public class Recursion : Special {
 	public override TimedMethod[] Use () {
 		CSMajor self = (CSMajor) Party.GetPlayer();
 		int attacks = self.attacks;
-		Debug.Log(attacks.ToString());
 	    TimedMethod[] moves = new TimedMethod[attacks + 1];
 		moves[0] = new TimedMethod(0, "Audio", new object[] {"Skill1"});
 		for (int i = 1; i < attacks; i++) {

@@ -1,6 +1,6 @@
 public class GeneralE : General {
 	
-	public GeneralE () {passive = new Passive();}
+	public GeneralE () {passive = new Passive(); champion = false;}
 	
 	public override TimedMethod[] AI () {
 		System.Random rng = new System.Random();

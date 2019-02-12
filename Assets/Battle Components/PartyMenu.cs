@@ -176,6 +176,10 @@ public class PartyMenu : MonoBehaviour {
 		CloseParty();
 	}
 	
+	public void RejectNewcomer() {
+		Party.fullRecruit = null;
+	}
+	
 	public void CloseParty() {
 		gameObject.transform.parent.gameObject.GetComponent<Dungeon>().CloseParty();
 	}

@@ -125,13 +125,13 @@ public class Politician : Character {
 		Party.AddEnemy(new CampaignManager());
 		Switch();
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The Politician called upon the campaign manager"}),
-		    new TimedMethod(0, "EnemySwitch", new object[] {0, 1})};
+		    new TimedMethod(0, "EnemySwitch", new object[] {1, 2})};
 	}
 	
 	public TimedMethod[] Switch() {
 		Party.enemySlot = 2;
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The Politician is waiting for the campaign manager"}),
-		    new TimedMethod(0, "EnemySwitch", new object[] {0, 1})};
+		    new TimedMethod(0, "EnemySwitch", new object[] {1, 2})};
 	}
 	
 	public override void CreateDrops () {
