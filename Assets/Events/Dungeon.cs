@@ -397,6 +397,10 @@ public class Dungeon : MonoBehaviour {
 		Resolve();
 	}
 	
+	public void SpendTime (int amount) {
+		Time.Increment(amount);
+	}
+	
 	public void Shortcut (int number) {
 		for (int i = 1; i <= number; i++) {
 			Areas.Next();

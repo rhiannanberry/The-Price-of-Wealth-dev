@@ -65,13 +65,22 @@ public static class Party {
 		return false;
 	}
 	
-	public static bool PartyContains (Character type) {
+	public static int PartyContains (Character type) {
 	    for (int i = 0; i < 4; i++) {
 			if (members[i] != null && members[i].GetType().Equals(type.GetType())) {
-				return true;
+				return i;
 			}
 		}
-		return false;
+		return -1;
+	}
+	
+	public static int ContainsQuirk (Passive type) {
+		for (int i = 0; i < 4; i++) {
+			if (members[i] != null && members[i].GetQuirk().GetType().Equals(type.GetType())) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	public static TimedMethod[] StealItem () {

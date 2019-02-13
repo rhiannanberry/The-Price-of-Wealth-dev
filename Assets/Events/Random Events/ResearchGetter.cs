@@ -39,8 +39,8 @@ public static class ResearchGetter {
 		    new TimedMethod(0, "CauseEvent", new object[] {new TextEvent("Strengh + 1, maxHP - 1")})})})}), new LinkedList<TimedMethod>(
 			new TimedMethod[] {new TimedMethod("Resolve")}), null, null, "Send someone to the machine", "No unethical science", null, null));
 		cut.Add(new ResearchHardBattle());
-		cut.Add(new Event("You find a shortcut guarded by 2 Lab Robots", new LinkedList<TimedMethod>(new TimedMethod[] {new TimedMethod(
-		    0, "Shortcut", new object[] {3}), new TimedMethod(0, "Battle", new object[] {new Character[] {new LabRobot(), new LabRobot()}})}),
+		cut.Add(new Event("You find a shortcut guarded by 2 Lab Robots", new LinkedList<TimedMethod>(new TimedMethod[] {
+			new TimedMethod(0, "Battle", new object[] {new Character[] {new LabRobot(), new LabRobot()}})}),
 		    new LinkedList<TimedMethod>(new TimedMethod[] {new TimedMethod("Escape")}),
 		    null, null, "Go through the shortcut", "Go the normal way", null, null));
 		lab.Add(new ItemEvent(new Item[] {new Flask(), new Flask(), new Flask()}, "Some chemistry supplies are left untouched"));

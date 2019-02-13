@@ -241,6 +241,7 @@ public static class DungeonMapData {
 		helEvents.Add("HelRoom3", HealthGetter.Room());
 		helEvents.Add("HelRoom4", HealthGetter.Room());
 		helEvents.Add("HelRoom5", HealthGetter.Room());
+		helEvents.Add("HelRoom6", HealthGetter.Room());
 		helEvents.Add("HelRoom7", HealthGetter.Room());
 		helEvents.Add("HelRoom8", HealthGetter.Room());
 		helEvents.Add("HelRoom9", HealthGetter.Room());
@@ -258,7 +259,7 @@ public static class DungeonMapData {
 		lecContents.Add("LecStart", new AdjacencyList("LecStart", new string[] {"LecHall1"}));
 		lecContents.Add("LecHall1", new AdjacencyList("LecHall1", new string[] {"LecStart", "LecHall2", "LecLH1"}));
 		lecContents.Add("LecHall2", new AdjacencyList("LecHall2", new string[] {"LecHall1", "LecRoom1"}));
-		lecContents.Add("LecHall3", new AdjacencyList("LecHall3", new string[] {"LecRoom11", "LecRoom2", "LecRoom3"}));
+		lecContents.Add("LecHall3", new AdjacencyList("LecHall3", new string[] {"LecRoom1", "LecRoom2", "LecRoom3"}));
 		lecContents.Add("LecHall4", new AdjacencyList("LecHall4", new string[] {"LecRoom3", "LecRoom4", "LecRoom5"}));
 		lecContents.Add("LecHall5", new AdjacencyList("LecHall5", new string[] {"LecLH1", "LecLH2"}));
 		lecContents.Add("LecRoom1", new AdjacencyList("LecRoom1", new string[] {"LecHall2", "LecHall3", "LecOff1"}));

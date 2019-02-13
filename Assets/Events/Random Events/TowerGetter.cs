@@ -19,6 +19,7 @@ public static class TowerGetter {
 		easy.Add(new TowerEasyBattleP());
 		easy.Add(new TowerEasyBattleP());
 		easy.Add(new TowerEasyBattleP());
+		easy.Add(new AngryAdmin());
 		easy.Add(new Event("2 Instructors are attacking a student", new LinkedList<TimedMethod>(
 	        new TimedMethod[] {new TimedMethod(0, "Ally", new object[] {new Character[] {new HistoryMajor()}}),
 			new TimedMethod(0, "Battle", new object[] { new Character[] {new Instructor(), new Instructor()}})}),
@@ -31,8 +32,12 @@ public static class TowerGetter {
 		med.Add(new Event("You find a fully cooked pizza", new LinkedList<TimedMethod>(new TimedMethod[] {
 		    new TimedMethod(0, "Heal", new object[] {5}), new TimedMethod("Resolve")}), new LinkedList<TimedMethod>(new TimedMethod[] {
 			new TimedMethod(0, "Item", new object[] {new Item[] {new Pizza()}})}), null, null, "Feast (5 hp to party)", "Take with you", null, null));
+		med.Add(new Loudspeaker());
+		med.Add(new CampusTour());
+		med.Add(new Demonstration());
 		hard.Add(new TowerHardBattle());
 		hard.Add(new TowerHardBattle());
+		hard.Add(new BuzzBot());
 	}
 	
 	public static Event Easy() {
