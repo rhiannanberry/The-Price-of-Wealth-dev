@@ -4,20 +4,20 @@ using UnityEngine;
 
 public static class Areas {
 	
-	public static Queue<Event> tower;
-	public static Queue<Event> dining;
-	public static Queue<Event> research;
-	public static Queue<Event> lecture;
-	public static Queue<Event> sports;
-	public static Queue<Event> art;
-	public static Queue<Event> health;
-	public static Event[] tower1;
-	public static Event[] dining1;
-	public static Event[] research1;
-	public static Event[] lecture1;
-	public static Event[] sports1;
-	public static Event[] art1;
-	public static Event[] health1;
+	//public static Queue<Event> tower;
+	//public static Queue<Event> dining;
+	//public static Queue<Event> research;
+	//public static Queue<Event> lecture;
+	//public static Queue<Event> sports;
+	//public static Queue<Event> art;
+	//public static Queue<Event> health;
+	//public static Event[] tower1;
+	//public static Event[] dining1;
+	//public static Event[] research1;
+	//public static Event[] lecture1;
+	//public static Event[] sports1;
+	//public static Event[] art1;
+	//public static Event[] health1;
 	public static string location;
 	public static Event followUp;
 	public static Inventory currentShop;
@@ -27,6 +27,7 @@ public static class Areas {
 	public static bool defeatedP;
 	public static bool defeatedC;
 	public static bool defeatedG;
+	public static bool tutorialPlayed;
 	
 	public static void Initialize () {
 		//EventGetter.BeginGame();
@@ -66,9 +67,11 @@ public static class Areas {
 		defeatedG = false;
 		ItemButton.inBattle = false;
 		Dungeon.fled = false;
-		location = "overworld";
+		tutorialPlayed = false;
+		location = Map.currentPosition;
 	}
 	
+	/**
 	public static Event Next() {
 		switch (location) {
 			case "tower": 
@@ -137,6 +140,7 @@ public static class Areas {
 		}
 		return null;
 	}
+	*/
 	
 	public static void SetLocation(int i) {
 		string loc = IndexToWord(i);

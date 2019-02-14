@@ -120,6 +120,7 @@ public class Shop : MonoBehaviour {
 		} else {
 			messageLog.GetComponent<Text>().text = "You are broke!";
 		}
+		UpdateUI();
 	}
 	
 	public void Rest() {

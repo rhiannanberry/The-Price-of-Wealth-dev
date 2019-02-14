@@ -75,8 +75,7 @@ public class Dungeon : MonoBehaviour {
 			//return;
 		//}
 		if (consequence == null) {
-		    current = Areas.Next();
-			if (current == null) {return;}
+		    return;
 		} else {
 			current = consequence;
 			consequence = null;
@@ -393,9 +392,9 @@ public class Dungeon : MonoBehaviour {
 	public void StatusChange (string method, int degree) {
 		MethodInfo m = Party.members[partyIndex].status.GetType().GetMethod(method);
 		if (degree == null) {
-			m.Invoke(Party.members[partyIndex], new object[] {null});
+			m.Invoke(Party.members[partyIndex].status, new object[] {null});
 		} else {
-		    m.Invoke(Party.members[partyIndex], new object[] {degree});
+		    m.Invoke(Party.members[partyIndex].status, new object[] {degree});
 		}
 	}
 	
@@ -410,11 +409,11 @@ public class Dungeon : MonoBehaviour {
 		Time.Increment(amount);
 	}
 	
-	public void Shortcut (int number) {
-		for (int i = 1; i <= number; i++) {
-			Areas.Next();
-		}
-	}
+	//public void Shortcut (int number) {
+		//for (int i = 1; i <= number; i++) {
+			//Areas.Next();
+		//}
+	//}
 	
 	public void Exit () {
 		SceneManager.LoadScene("Overworld");

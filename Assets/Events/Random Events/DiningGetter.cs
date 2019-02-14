@@ -27,6 +27,8 @@ public static class DiningGetter {
 		hall.Add(new DiningEasyBattleP());
 		line.Add(new DiningEasyBattleP());
 		line.Add(new DiningEasyBattleP());
+		line.Add(new MysteryMeat());
+		line.Add(new DiningEasyBattleR());
 		eat.Add(new DiningEasyBattleP());
 		eat.Add(new DiningEasyBattleR());
 		eat.Add(new DiningEasyBattleP());
@@ -41,9 +43,17 @@ public static class DiningGetter {
 			new TimedMethod(0, "Battle", new object[] { new Character[] {new TeachingAssistant(), new TeachingAssistant(),
 			new TeachingAssistant(), new TeachingAssistant()}})}), new LinkedList<TimedMethod>(new TimedMethod[] {
 			new TimedMethod("Resolve")}), null, null, "It's for the donuts", "Don't bother", null, null));
+		eat.Add(new PoisonCoffee());
+		kitchen.Add(new DiningMediumBattle());
+		kitchen.Add(new DiningMediumBattle());
+		kitchen.Add(new ExplodingKitchen());
+		kitchen.Add(new CultHideout());
 		kitchen.Add(new DiningMediumBattle());
 		kitchen.Add(new DiningMediumBattle());
 		clean.Add(new BattleEvent(new Character[] {new Janitor(), new Janitor()}, "No dishes are being washed anymore"));
+		clean.Add(new DiningMediumBattle());
+		clean.Add(new DiningHardBattle());
+		clean.Add(new KitchenSlime());
 		cut.Add(new DiningHardBattle());
 		hard.Add(new DiningHardBattle());
 		hard.Add(new DiningHardBattle());

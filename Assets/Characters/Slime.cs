@@ -44,7 +44,12 @@ public class Slime : Character {
 		if (health > 0) {
 			Character splitted = new Slime();
 			Party.AddEnemy(splitted);
+			splitted.SetMaxHP(maxHP);
 			splitted.SetHealth(health);
+			splitted.SetPower(power);
+			splitted.SetDefense(defense);
+			splitted.SetGuard(guard);
+			splitted.SetCharge(charge);
 			splitted.SetQuirk(quirk.Clone());
 			Splitter castPassive = (Splitter) passive;
 			castPassive.split = true;

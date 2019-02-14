@@ -5453,6 +5453,7 @@ RectTransform:
   m_Children:
   - {fileID: 459214575}
   - {fileID: 1329663972}
+  - {fileID: 1383999022}
   m_Father: {fileID: 1566071329}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6930,7 +6931,6 @@ RectTransform:
   - {fileID: 1486249349}
   - {fileID: 1860802485}
   - {fileID: 884271170}
-  - {fileID: 1383999022}
   - {fileID: 1396875961}
   m_Father: {fileID: 1108125837}
   m_RootOrder: 1
@@ -6953,6 +6953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 1329663971}
   spotlight: {fileID: 459214574}
+  help: {fileID: 1025604465}
 --- !u!1 &1383999021
 GameObject:
   m_ObjectHideFlags: 0
@@ -6982,8 +6983,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1324270974}
-  m_Father: {fileID: 1329663972}
-  m_RootOrder: 9
+  m_Father: {fileID: 1108125837}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7272,7 +7273,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1329663972}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
