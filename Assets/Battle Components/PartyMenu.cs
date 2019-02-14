@@ -119,6 +119,8 @@ public class PartyMenu : MonoBehaviour {
     				swap.interactable = false;
 			    }
 		    }
+		} else if (currentSpecial != null && !currentSpecial.useDead && !Party.members[i-1].GetAlive()) {
+			swap.interactable = false;
 		} else {
 			swap.interactable = true;
 		}

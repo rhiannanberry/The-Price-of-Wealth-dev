@@ -9,6 +9,8 @@ public class MapViewer : MonoBehaviour {
 	//public Dictionary<string, Event> eventMap;
 	public string location;
 	public Event current;
+	public GameObject edgeLine;
+	public Transform edgeSpace;
 	
 	void Start () {
 		UpdateMap();
@@ -28,6 +30,27 @@ public class MapViewer : MonoBehaviour {
 		//eventMap = DungeonMapData.lectureEvents;
 		//eventCatcher = gameObject.transform.parent.parent.GetComponent<Dungeon>();
 		graph.unityView = this;
+		
+		foreach (Transform child in gameObject.transform) {
+			AdjacencyList edges = graph.edges[child.gameObject.GetComponent<RoomNode>().ID];
+			string fromKey = edges.self;
+			Vector3 fromPos = gameObject.transform.Find(fromKey).position;
+			foreach (string toKey in edges.destinations) {
+				Vector3 toPos = gameObject.transform.Find(toKey).position;
+				GameObject line = Instantiate(edgeLine, edgeSpace);
+				line.transform.position = new Vector3((fromPos.x + toPos.x) / 2, (fromPos.y + toPos.y) / 2, 0);
+				line.transform.localScale = new Vector3(1, (float) System.Math.Sqrt(System.Math.Pow(fromPos.x - toPos.x, 2) 
+				+ System.Math.Pow(fromPos.y - toPos.y, 2) + System.Math.Pow(fromPos.x - toPos.z, 2)) / 1200, 1);
+			    //Debug.Log(line.transform.localScale.ToString());
+				if (toPos.x - fromPos.x != 0 && toPos.y - fromPos.y != 0) {
+                    line.transform.Rotate(new Vector3(0, 0, (float) (-1 * (90 - System.Math.Atan((toPos.y - fromPos.y) / (toPos.x - fromPos.x)) * 180 / 3.14))));
+					//Debug.Log(System.Math.Acos((toPos.x - fromPos.x) / (toPos.y - fromPos.y)).ToString());
+				} else if (toPos.y - fromPos.y == 0) {
+					line.transform.Rotate(new Vector3(0, 0, 90));
+				}
+				//line.transform.SetAsFirstSibling();
+			}
+		}
 	}
 	
 	public bool IsCleared(string node) {

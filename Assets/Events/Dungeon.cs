@@ -50,7 +50,7 @@ public class Dungeon : MonoBehaviour {
 		}
 		string loc = Areas.location;
 		foreach (Transform current in dungeonMaps.gameObject.transform) {
-			if (current.gameObject.name == loc) {
+			if (current.gameObject.name == loc || current.gameObject.name == "EdgeSpace") {
 				current.gameObject.SetActive(true);
 			} else {
 				current.gameObject.SetActive(false);
@@ -388,6 +388,15 @@ public class Dungeon : MonoBehaviour {
 	public void StatChange (string stat, int amount) {
 		MethodInfo m = Party.members[partyIndex].GetType().GetMethod(stat);
 		m.Invoke(Party.members[partyIndex], new object[] {amount});
+	}
+	
+	public void StatusChange (string method, int degree) {
+		MethodInfo m = Party.members[partyIndex].status.GetType().GetMethod(method);
+		if (degree == null) {
+			m.Invoke(Party.members[partyIndex], new object[] {null});
+		} else {
+		    m.Invoke(Party.members[partyIndex], new object[] {degree});
+		}
 	}
 	
 	public void Ally (Character[] recruits) {

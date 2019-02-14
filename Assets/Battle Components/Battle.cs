@@ -236,14 +236,22 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void SupportSpecial (Special special, int index) {
-		TimedMethod[] specialMethods = special.UseSupport(index);
-		foreach (TimedMethod m in specialMethods) {
-		    methodQueue.Enqueue(m);
+	    if (special.selects) {
+		    useItemMenu.SetActive(true);
+			specialMenu.SetActive(false);
+			largeMenuHides.SetActive(false);
+		    useItemMenu.GetComponent<PartyMenu>().currentSpecial = special;
+			usingSpecial = true;
+		} else {
+	    	TimedMethod[] specialMethods = special.UseSupport(index);
+    		foreach (TimedMethod m in specialMethods) {
+		        methodQueue.Enqueue(m);
+		    }
+	    	menu.SetActive(false);
+    		methodQueue.Enqueue(new TimedMethod(2, "EndTurn"));
+		    Party.UseSP(special.GetCost());
+		    specialMenu.SetActive(false);
 		}
-		menu.SetActive(false);
-		methodQueue.Enqueue(new TimedMethod(2, "EndTurn"));
-		Party.UseSP(special.GetCost());
-		specialMenu.SetActive(false);
 	}
 	
 	public void SpecialSelects () {
