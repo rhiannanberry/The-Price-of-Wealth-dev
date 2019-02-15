@@ -338,6 +338,15 @@ public class Dungeon : MonoBehaviour {
 		}
 	}
 	
+	public void Apathize (int amount) {
+		for (int i = 0; i < 4; i++) {
+			Character current = Party.GetCharacter(i);
+			if (current != null) {
+				current.status.CauseApathy(amount);
+			}
+		}
+	}
+	
 	public void DamageAll (int amount) {
 		for (int i = 0; i < 4; i++) {
 			Character current = Party.GetCharacter(i);
@@ -396,6 +405,11 @@ public class Dungeon : MonoBehaviour {
 		} else {
 		    m.Invoke(Party.members[partyIndex].status, new object[] {degree});
 		}
+	}
+	
+	public void ChangeQuirk (Passive quirk) {
+		Party.members[partyIndex].SetQuirk(quirk);
+		quirk.SetSelf(Party.members[partyIndex]);
 	}
 	
 	public void Ally (Character[] recruits) {

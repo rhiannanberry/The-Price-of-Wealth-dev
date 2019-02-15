@@ -12,9 +12,11 @@ public class Recursion : Special {
 	    TimedMethod[] moves = new TimedMethod[attacks + 1];
 		moves[0] = new TimedMethod(0, "Audio", new object[] {"Skill1"});
 		for (int i = 1; i < attacks; i++) {
-			moves[i] = new TimedMethod(0, "StagnantAttack", new object[] {true, 2, 3, Party.GetPlayer().GetAccuracy(), true, false, false});
+			moves[i] = new TimedMethod(0, "StagnantAttack", new object[] {true, Party.GetPlayer().GetStrength(), Party.GetPlayer().GetStrength() + 1,
+    			Party.GetPlayer().GetAccuracy(), true, false, false});
 		}
-		moves[attacks] = new TimedMethod(0, "StagnantAttack", new object[] {true, 2, 3, Party.GetPlayer().GetAccuracy(), true, true, false});
+		moves[attacks] = new TimedMethod(0, "StagnantAttack", new object[] {true, Party.GetPlayer().GetStrength(), Party.GetPlayer().GetStrength() + 1,
+    		Party.GetPlayer().GetAccuracy(), true, true, false});
 		return moves;
 	}
 }

@@ -52,6 +52,9 @@ public class Conductor : Character {
 	}
 	
 	public TimedMethod[] Finale() {
+		if (Party.turn < 8) {
+			return Forte();
+		}
 		int dmg = 5;
 		for (int i = 0; i < 4; i++) {
 			if (i != Party.enemySlot - 1 && Party.enemies[i] != null && Party.enemies[i].GetAlive()) {
@@ -59,7 +62,7 @@ public class Conductor : Character {
 				dmg += 5;
 			}
 		}
-		if (dmg > 0) {
+		if (Party.enemyCount > 1) {
 			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " did the finale. All team members deleted"}),
 		    new TimedMethod(0, "StagnantAttack",new object[] {false, dmg, dmg, GetAccuracy(), true, true, false})};
 		} else {
