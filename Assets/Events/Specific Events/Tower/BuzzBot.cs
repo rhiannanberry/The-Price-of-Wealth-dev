@@ -5,8 +5,8 @@ public class BuzzBot : Event {
 	public BuzzBot () {}
 	
 	public override void Enact () {
-		text = "The heating of circuits is heard at the far corner of this dark room as you see a robotic version of your school's mascot.\n"
-		    + "ID cards are strewn about the place. The bot powers up its LASER GUN";
+		text = "The heating of circuits is heard at the far corner of this dark room as you see a robotic version of your school's mascot."
+		    + " ID cards are strewn about the place. The bot powers up its LASER GUN";
 		ItemEvent reward = new ItemEvent(new Item[] {new AccuracyPotion(), new Antibiotics(), new Sword(), new Pizza()}, "It seems " 
 		    + "the robot was guarding something important");
 		options1 = new LinkedList<TimedMethod>();

@@ -80,6 +80,7 @@ public class MapViewer : MonoBehaviour {
 		if (current != null) {
 			if (id.Contains("Boss")) {
 				Areas.cleared[location] = true;
+				Time.Increment(5);
 			}
 		    eventCatcher.RunEvent(current);
 		    //Temporary solution
@@ -94,6 +95,7 @@ public class MapViewer : MonoBehaviour {
 		graph.cleared[graph.position] = false;
 		if (graph.position.Contains("Boss")) {
 			Areas.cleared[location] = false;
+			Time.Increment(-5);
 		}
 		graph.position = graph.previousPosition;
 		UpdateMap();

@@ -671,6 +671,7 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void Flee () {
+		Time.Increment(1);
 		if (Party.area != "Overworld") {
 		    Dungeon.fled = true;
 			Dungeon.leftEnemies = new Character[4];

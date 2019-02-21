@@ -398,12 +398,34 @@ public class Dungeon : MonoBehaviour {
 		m.Invoke(Party.members[partyIndex], new object[] {amount});
 	}
 	
+	public void AllStatChange(string stat, int amount) {
+		foreach (Character c in Party.members) {
+			if (c != null && c.GetAlive()) {
+        		MethodInfo m = c.GetType().GetMethod(stat);
+		        m.Invoke(c, new object[] {amount});
+			}
+		}
+	}
+	
 	public void StatusChange (string method, int degree) {
 		MethodInfo m = Party.members[partyIndex].status.GetType().GetMethod(method);
 		if (degree == null) {
 			m.Invoke(Party.members[partyIndex].status, new object[] {null});
 		} else {
 		    m.Invoke(Party.members[partyIndex].status, new object[] {degree});
+		}
+	}
+	
+	public void AllStatusChange (string method, int degree) {
+		foreach (Character c in Party.members) {
+			if (c != null && c.GetAlive()) {
+        		MethodInfo m = c.status.GetType().GetMethod(method);
+		        if (degree == null) {
+		        	m.Invoke(c.status, new object[] {null});
+        		} else {
+		            m.Invoke(c.status, new object[] {degree});
+        		}
+			}
 		}
 	}
 	
