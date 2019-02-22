@@ -4,7 +4,7 @@ public class MusicMajor : Character {
 		health = 16; maxHP = 16; strength = 3; power = 0; charge = 0; defense = 0; guard = 0; 
 		baseAccuracy = 14; accuracy = 14; dexterity = 3; evasion = 0; type = "Music Major"; passive = new Performance(this);
 		quirk = Quirk.GetQuirk(this); special = new Trumpet(); special2 = new Warsong(); 
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "enemy loses 1 charge";
 	}	
 	
 	public override TimedMethod[] AI() {

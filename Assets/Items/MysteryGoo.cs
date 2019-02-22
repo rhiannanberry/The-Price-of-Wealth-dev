@@ -12,21 +12,21 @@ public class MysteryGoo : Item {
 		}
 		
 		if (seed == 0) {
-			targ.SetPower(targ.GetPower() - magnitude / 2);
-			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo disrupted power by " + (magnitude/2).ToString() 
+			targ.GainPower(-1* magnitude / 2 - 1);
+			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo disrupted power by " + (magnitude/2 + 1).ToString() 
 			    + " points"})};
 		} else if (seed == 1) {
-			targ.SetDefense(targ.GetDefense() - magnitude / 2);
-			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo drained defense by " + (magnitude/2).ToString()})};
+			targ.GainDefense(-1 * magnitude / 2 - 1);
+			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo drained defense by " + (magnitude/2 + 1).ToString()})};
 		} else if (seed == 2) {
-			targ.GainAccuracy(magnitude / 2 * -1);
-			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo reduced accuracy by " + (magnitude/2).ToString()})};
+			targ.GainAccuracy(-1 * magnitude / 2 - 1);
+			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo reduced accuracy by " + (magnitude/2 + 1).ToString()})};
 		} else if (seed == 3) {
-			targ.SetCharge(targ.GetCharge() - magnitude);
+			targ.GainCharge(-1 * magnitude);
 			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo stuck to the target's hands. Charge -" 
 			    + magnitude.ToString()})};
 		} else if (seed == 4) {
-			targ.SetGuard(targ.GetGuard() - magnitude);
+			targ.GainGuard(-1 * magnitude);
 			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The goo broke the target's guard by " + magnitude.ToString()})};
 		} else if (seed == 5) {
 			targ.status.Goop();

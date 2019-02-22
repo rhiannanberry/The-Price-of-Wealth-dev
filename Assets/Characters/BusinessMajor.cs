@@ -7,7 +7,7 @@ public class BusinessMajor : Character {
 		health = 18; maxHP = 18; strength = 3; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 15; accuracy = 15; dexterity = 3; evasion = 0; type = "Business Major"; passive = new Profit(this);
 		quirk = Quirk.GetQuirk(this); special = new Bargain(); special2 = new ShadyDeal(); player = false; champion = false; recruitable = true;
-		summoned = false; stolen = false; CreateDrops();
+		summoned = false; stolen = false; CreateDrops(); attackEffect = "chance to blind";
 	}
 	
 	public override TimedMethod[] AI () {

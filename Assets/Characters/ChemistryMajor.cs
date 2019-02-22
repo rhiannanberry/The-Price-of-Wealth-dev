@@ -6,7 +6,7 @@ public class ChemistryMajor : Character {
 		health = 17; maxHP = 17; strength = 4; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 11; accuracy = 11; dexterity = 2; evasion = 0; type = "Chemistry Major"; passive = new Catalyst(this);
 		quirk = Quirk.GetQuirk(this); special = new Brew(); special2 = new UnstableLiquid(); player = false; champion = false; recruitable = true;
-		flasks = 5; CreateDrops();
+		flasks = 5; CreateDrops(); attackEffect = "chance to poison";
 	}
 	
 	public override TimedMethod[] AI () {

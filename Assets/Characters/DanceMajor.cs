@@ -4,7 +4,7 @@ public class DanceMajor : Character {
 		health = 16; maxHP = 16; strength = 2; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 14; accuracy = 14; dexterity = 5; evasion = 0; type = "Dance Major"; passive = new Footwork(this);
 		quirk = Quirk.GetQuirk(this); special = new Tumble(); special2 = new Lunge();
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "gain 3 evasion";
 	}
 	
 	public override TimedMethod[] AI () {
@@ -34,14 +34,14 @@ public class DanceMajor : Character {
 	}
 	
 	public TimedMethod[] Attack() {
-		evasion += 5;
+		GainEvasion(5);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " made a darting attack"}),
 		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 3, 3, GetAccuracy(), true, true, false})};
 	}
 	
 	public TimedMethod[] Dodge() {
-		evasion += 10;
+		GainEvasion(10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " is dodging"})};
 	}
 	

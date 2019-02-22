@@ -7,7 +7,7 @@ public class MathMajor : Character {
         health = 14; maxHP = 14; strength = 2; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 20; accuracy = 20; dexterity = 3; evasion = 0; type = "Math Major"; passive = new Observant(this);
 		quirk = Quirk.GetQuirk(this); special = new Factorial(); special2 = new Pi(); player = false; champion = false; recruitable = true;
-		factorial = 0; answer = 1; CreateDrops();
+		factorial = 0; answer = 1; CreateDrops(); attackEffect = "gain 1 accuracy";
 	}
 	
 	public override TimedMethod[] AI () {

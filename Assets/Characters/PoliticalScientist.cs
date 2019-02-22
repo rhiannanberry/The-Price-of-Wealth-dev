@@ -4,7 +4,7 @@ public class PoliticalScientist : Character {
 		health = 21; maxHP = 21; strength = 3; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 13; accuracy = 13; dexterity = 4; evasion = 0; type = "Political Science Major"; passive = new Democracy(this);
 		quirk = Quirk.GetQuirk(this); special = new Campaign(); special2 = new Filibuster();
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "chance to stun";
 	}
 	
 	public override TimedMethod[] AI () {

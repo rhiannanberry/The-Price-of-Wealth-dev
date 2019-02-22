@@ -21,7 +21,7 @@ public static class SportsGetter {
 	    hall.Add(new SportsEasyBattleR());
 		hall.Add(new SportsEasyBattleP());
 		hall.Add(new SportsEasyBattleR());
-		hall.Add(new SportsEasyBattleR());
+		hall.Add(new SportsEasyBattleP());
 		room.Add(new SportsMediumBattle());
 		room.Add(new SportsMediumBattle());
 		room.Add(new SportsMediumBattle());

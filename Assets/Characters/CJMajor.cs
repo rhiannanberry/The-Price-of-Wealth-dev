@@ -4,7 +4,7 @@ public class CJMajor : Character {
 		health = 19; maxHP = 19; strength = 4; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 12; accuracy = 12; dexterity = 3; evasion = 0; type = "Criminal Justice Major"; passive = new Outgun(this);
 		quirk = Quirk.GetQuirk(this); special = new Taze(); special2 = new Handcuffs(); 
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "heal 2 HP";
 	}
 	
 	public override TimedMethod[] AI () {

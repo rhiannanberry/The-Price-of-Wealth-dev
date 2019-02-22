@@ -4,7 +4,7 @@ public class FootballPlayer : Character {
         health = 20; maxHP = 20; strength = 5; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 10; accuracy = 10; dexterity = 2; evasion = 0; type = "Football Player"; passive = new PepTalk(this);
 		quirk = Quirk.GetQuirk(this); special2 = new Rally(); special = new Charge();
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "deal 2 more damage";
 	}
 
 	

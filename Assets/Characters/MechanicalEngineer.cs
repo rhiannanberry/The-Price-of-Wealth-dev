@@ -4,7 +4,7 @@ public class MechanicalEngineer : Character {
 		health = 18; maxHP = 18; strength = 3; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 16; accuracy = 16; dexterity = 3; evasion = 0; type = "Mechanical Engineering Major"; passive = new Car(this);
 		quirk = Quirk.GetQuirk(this); special2 = new TeamAttack(); special = new OilDump();
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "enemy loses 1 guard";
 	}
 	
 	public override TimedMethod[] AI () {

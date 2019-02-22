@@ -4,7 +4,7 @@ public class EnglishMajor : Character {
 		health = 15; maxHP = 15; strength = 2; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 14; accuracy = 14; dexterity = 4; evasion = 0; type = "English Major"; passive = new Reading(this);
 		quirk = Quirk.GetQuirk(this); special = new Quote(); special2 = new Read(); 
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "switch out";
 	}
 	
 	public override TimedMethod[] AI () {

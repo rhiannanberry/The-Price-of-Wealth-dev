@@ -4,7 +4,7 @@ public class HistoryMajor : Character {
 		health = 22; maxHP = 22; strength = 4; power = 0; charge = 0; defense = 0; guard = 0; 
 		baseAccuracy = 12; accuracy = 12; dexterity = 1; evasion = 0; type = "History Major"; passive = new Armored(this);
 		quirk = Quirk.GetQuirk(this); special = new Joust(); special2 = new Tactics(); 
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "gain 1 guard";
 	}	
 	
 	public override TimedMethod[] AI () {

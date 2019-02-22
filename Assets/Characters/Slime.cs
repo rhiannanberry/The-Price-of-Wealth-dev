@@ -41,7 +41,7 @@ public class Slime : Character {
 	public override void Damage (int amount) {
 		health = System.Math.Max(health - amount, 0);
 		Party.GetPlayer().status.Goop();
-		if (health > 0) {
+		if (health > 0 && Party.enemyCount < 4) {
 			Character splitted = new Slime();
 			Party.AddEnemy(splitted);
 			splitted.SetMaxHP(maxHP);

@@ -4,7 +4,7 @@ public class PreMed : Character {
 		health = 16; maxHP = 16; strength = 4; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 16; accuracy = 16; dexterity = 2; evasion = 0; type = "Pre-Med Student"; passive = new Precision(this);
 		quirk = Quirk.GetQuirk(this); special = new Triage(); special2 = new Prescribe(); 
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "pierce defense";
 	}
 	
 	public override TimedMethod[] AI () {

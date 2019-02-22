@@ -4,7 +4,7 @@ public class PsychMajor : Character {
 		health = 16; maxHP = 16; strength = 3; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 16; accuracy = 16; dexterity = 4; evasion = 0; type = "Psychology Major"; passive = new Persuasive(this);
 		quirk = Quirk.GetQuirk(this); special = new Hypnotize(); special2 = new Encouragement();
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "cause apathy";
 	}
 	
 	public override TimedMethod[] AI () {

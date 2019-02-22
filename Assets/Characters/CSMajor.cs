@@ -6,7 +6,7 @@ public class CSMajor : Character {
         health = 16; maxHP = 16; strength = 2; power = 0; charge = 0; defense = 0; guard = 0; 
 		baseAccuracy = 18; accuracy = 18; dexterity = 4; evasion = 0; type = "CS Major"; passive = new WikiHPedia(this);
 		quirk = Quirk.GetQuirk(this); special = new Recursion(); special2 = new Internet(); player = false; champion = false; recruitable = true;
-		attacks = 0; CreateDrops();
+		attacks = 0; CreateDrops(); attackEffect = "no bonus effect";
 	}
 
 	

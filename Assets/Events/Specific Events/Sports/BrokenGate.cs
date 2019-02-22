@@ -13,7 +13,7 @@ public class BrokenGate : Event {
 		options2 = new LinkedList<TimedMethod>();
 		options2.AddLast(new TimedMethod(0, "SpendTime", new object[] {4}));
 		options2.AddLast(new TimedMethod(0, "Apathize", new object[] {3}));
-		options2.AddLast(new TimedMethod(0, "AllStatChange", new object[] {"GainPower", new object[] {-2}}));
+		options2.AddLast(new TimedMethod(0, "AllStatChange", new object[] {"GainPower", -2}));
 		options2.AddLast(new TimedMethod(0, "CauseEvent", new object[] {new TextEvent("It goes very slowly, and everyone feels more apathetic "
 		   + " and powered down. But, the path is clear")}));
 		optionText2 = "Hit the gate until it breaks";

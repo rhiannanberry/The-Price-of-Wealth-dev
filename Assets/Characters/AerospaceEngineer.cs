@@ -4,7 +4,7 @@ public class AerospaceEngineer : Character {
 		health = 14; maxHP = 14; strength = 4; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 16; accuracy = 16; dexterity = 3; evasion = 0; type = "Aerospace Engineering Major"; passive = new Airstrike(this);
 		quirk = Quirk.GetQuirk(this); special = new Drone(); special2 = new Rocket();
-		player = false; champion = false; recruitable = true; CreateDrops();
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "gain 1 charge";
 	}
 	
 	public override TimedMethod[] AI () {
