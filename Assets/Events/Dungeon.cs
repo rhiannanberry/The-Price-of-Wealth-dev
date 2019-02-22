@@ -409,7 +409,7 @@ public class Dungeon : MonoBehaviour {
 	
 	public void StatusChange (string method, int degree) {
 		MethodInfo m = Party.members[partyIndex].status.GetType().GetMethod(method);
-		Debug.Log(degree.toString());
+		Debug.Log(degree.ToString());
 		if (degree == null) {
 			m.Invoke(Party.members[partyIndex].status, new object[] {null});
 		} else {
