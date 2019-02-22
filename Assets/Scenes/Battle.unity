@@ -2335,7 +2335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: 275
+  defaultX: 325
   defaultY: 100
 --- !u!222 &244247417
 CanvasRenderer:
@@ -2359,7 +2359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: 100}
+  m_AnchoredPosition: {x: 325, y: 100}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &244337910
@@ -3369,6 +3369,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1607116617}
+  - {fileID: 838400572}
   m_Father: {fileID: 1521845884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4382,7 +4383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: -350
+  defaultX: -425
   defaultY: 100
 --- !u!222 &470839350
 CanvasRenderer:
@@ -4406,7 +4407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 100}
+  m_AnchoredPosition: {x: -425, y: 100}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &478044012
@@ -5433,7 +5434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -255, y: 60}
+  m_AnchoredPosition: {x: -350, y: 60}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &595703784
@@ -5482,7 +5483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: -250
+  defaultX: -350
   defaultY: 60
 --- !u!1 &599313975
 GameObject:
@@ -7726,7 +7727,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838400571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7738,8 +7739,8 @@ RectTransform:
   - {fileID: 244247418}
   - {fileID: 1508631923}
   - {fileID: 1382708253}
-  m_Father: {fileID: 1521845884}
-  m_RootOrder: 13
+  m_Father: {fileID: 353210675}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7766,8 +7767,8 @@ MonoBehaviour:
   enemy3: {fileID: 1508631919}
   enemy4: {fileID: 1382708249}
   sprites: []
-  leadPositionP: {x: -250, y: 60, z: 0}
-  leadPositionE: {x: 175, y: 60, z: 0}
+  leadPositionP: {x: -350, y: 60, z: 0}
+  leadPositionE: {x: 250, y: 60, z: 0}
 --- !u!222 &838400574
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12061,7 +12062,7 @@ Transform:
   - {fileID: 1932155449}
   - {fileID: 937117021}
   m_Father: {fileID: 1521845884}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1330824830
 MonoBehaviour:
@@ -12988,7 +12989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: 375
+  defaultX: 400
   defaultY: 60
 --- !u!222 &1382708252
 CanvasRenderer:
@@ -13012,7 +13013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 375, y: 60}
+  m_AnchoredPosition: {x: 400, y: 60}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1424588720
@@ -14514,7 +14515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: 275
+  defaultX: 325
   defaultY: 20
 --- !u!222 &1508631922
 CanvasRenderer:
@@ -14538,7 +14539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: 20}
+  m_AnchoredPosition: {x: 325, y: 20}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1521845880
@@ -14640,7 +14641,6 @@ RectTransform:
   - {fileID: 724478100}
   - {fileID: 1500252829}
   - {fileID: 1674108319}
-  - {fileID: 838400572}
   - {fileID: 1330824829}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -15510,7 +15510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: 175
+  defaultX: 250
   defaultY: 60
 --- !u!222 &1647434202
 CanvasRenderer:
@@ -15534,7 +15534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: 60}
+  m_AnchoredPosition: {x: 250, y: 60}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1669520612
@@ -15721,7 +15721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: -450
+  defaultX: -500
   defaultY: 60
 --- !u!222 &1677370167
 CanvasRenderer:
@@ -15745,7 +15745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -450, y: 60}
+  m_AnchoredPosition: {x: -500, y: 60}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1685916073
@@ -15880,7 +15880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: {x: 0, y: 0, z: 0}
-  defaultX: -350
+  defaultX: -425
   defaultY: 20
 --- !u!222 &1698493116
 CanvasRenderer:
@@ -15904,7 +15904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 20}
+  m_AnchoredPosition: {x: -425, y: 20}
   m_SizeDelta: {x: 48, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1737346381
