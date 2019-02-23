@@ -1,6 +1,6 @@
 public class SlimeGoo : Item {
 	
-	public SlimeGoo () {name = "Slime Goo"; description = "Goops the enemy";}
+	public SlimeGoo () {name = "Slime Goo"; description = "Goops the enemy"; price = 2;}
 	
 	public override TimedMethod[] Use() {
 		if (Attacks.EvasionCycle(Party.GetPlayer(), Party.GetEnemy())) {

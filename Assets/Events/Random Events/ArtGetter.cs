@@ -44,8 +44,8 @@ public static class ArtGetter {
 		stage.Add(new PossessedOrchestra());
 	    stage.Add(new Event("Students are attempting to put together a show to take mind off the times", new LinkedList<TimedMethod>(new TimedMethod[] {
 		    new TimedMethod(0, "GainSP", new object[] {3}), new TimedMethod("Resolve")}), new LinkedList<TimedMethod>(new TimedMethod[] {
-			new TimedMethod(0, "GainSP", new object[] {-5}), new TimedMethod(0, "Item", new object[] {new Item[] {new VotedBadge(), new Donut()}}),
-			new TimedMethod("Resolve")}), new LinkedList<TimedMethod>(new TimedMethod[] {new TimedMethod(0, "Battle", new object[] {
+			new TimedMethod(0, "GainSP", new object[] {-5}), new TimedMethod(0, "Item", new object[] {new Item[] {new VotedBadge(), new Donut()}})}),
+			new LinkedList<TimedMethod>(new TimedMethod[] {new TimedMethod(0, "Battle", new object[] {
 			new Character[] {new DanceMajor(), new MusicMajor(), new HistoryMajor(), new EnglishMajor()}}),
 			new TimedMethod(0, "Item", new object[] {new Item[] {new Tuba(), new Heels(), new Donut(), new Textbook()}})}),
 			null, "Watch the show. Gain 3 SP", "Assist the group. Lose 5 SP and gain 2 items", "Mug them for all the items", null));

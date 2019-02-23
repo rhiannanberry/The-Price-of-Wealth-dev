@@ -4,7 +4,7 @@ public class CulinaryMajor : Character {
 		health = 22; maxHP = 22; strength = 3; power = 0; charge = 0; defense = 0; guard = 0;
 		baseAccuracy = 12; accuracy = 12; dexterity = 2; evasion = 0; type = "Culinary Major"; passive = new Cooking(this);
 		quirk = Quirk.GetQuirk(this); special2 = new Feast(); special = new SpicyEscape();
-		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "no bonus effect";
+		player = false; champion = false; recruitable = true; CreateDrops(); attackEffect = "recover from poison and goop";
 	}
 	
 	public override TimedMethod[] AI () {

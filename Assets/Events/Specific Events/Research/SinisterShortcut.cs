@@ -6,7 +6,7 @@ public class SinisterShortcut : Event {
 	
 	public override void Enact () {
 		text = "You wander into a long, dark corridor that looks like it hasn't been kept in years. Papers of unintelligeble scrawl "
-		    + " are on the walls. You get a glimpse of a more legible one that has the names of people, listed as test subjectss";
+		    + " are on the walls. You get a glimpse of a more legible one that has the names of people, listed as test subjects";
 		ItemEvent reward = new ItemEvent(new Item[] {new AccuracyPotion(), new Antibiotics(), new Sword(), new Pizza()}, "It seems " 
 		    + "the robot was guarding something important");
 		options1 = new LinkedList<TimedMethod>();

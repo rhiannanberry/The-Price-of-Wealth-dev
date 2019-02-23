@@ -7,6 +7,6 @@ public class Pi : Special {
 			Party.GetEnemy().status.CauseApathy(3);
 		}
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {
-			Party.members[i].ToString() + "Recited so much Pi it could lower self-esteem"})};
+			Party.members[i].ToString() + " recited so much Pi it could lower self-esteem"})};
 	}
 }

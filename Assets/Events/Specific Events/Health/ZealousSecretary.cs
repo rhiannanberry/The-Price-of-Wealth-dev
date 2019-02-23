@@ -15,6 +15,7 @@ public class ZealousSecretary : Event {
 		options2 = new LinkedList<TimedMethod>();
 		options2.AddLast(new TimedMethod(0, "DamageAll", new object[] {2}));
 		options2.AddLast(new TimedMethod(0, "AllStatusChange", new object[] {"Blind", 6}));
+		options2.AddLast(new TimedMethod("Resolve"));
 		optionText2 = "Weather the storm of paper (2 damage and blind to party)";
 		if (Party.BagContains(new PaperPlane())) {
 			options3 = new LinkedList<TimedMethod>();

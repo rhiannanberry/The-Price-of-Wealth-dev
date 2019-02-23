@@ -236,7 +236,9 @@ public class Dungeon : MonoBehaviour {
 	
 	public void Battle (Character [] enemies) {
 		foreach (Character c in enemies) {
-			Party.AddEnemy(c);
+			if (c != null) {
+			    Party.AddEnemy(c);
+			}
 	    }
 		Party.area = "Dungeon";
 		isEvent = false;

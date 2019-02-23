@@ -25,10 +25,10 @@ public class Expirimentor : Researcher {
 	public TimedMethod[] Trap() {
 		cycle++;
 		if (Attacks.EvasionCycle(this, Party.GetPlayer())) {
-			return new TimedMethod[] {new TimedMethod(60, "Audio", new object[] {"ExpirimentorTrap"}), new TimedMethod(60, "Log", new object[] {
+			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"ExpirimentorTrap"}), new TimedMethod(60, "Log", new object[] {
 				ToString() + " used an overly complex mouse trap"}), Party.GetPlayer().status.Goop()[0]};
 		} else {
-			return new TimedMethod[] {new TimedMethod(60, "Audio", new object[] {"ExpirimentorTrap"}), new TimedMethod(60, "Log", new object[] {
+			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"ExpirimentorTrap"}), new TimedMethod(60, "Log", new object[] {
 				ToString() + " used such an overly complex mouse trap it was easy to avoid"})};
 		}
 	}
@@ -89,7 +89,7 @@ public class Expirimentor : Researcher {
 				}
 			}
 		}
-		return new TimedMethod[] {new TimedMethod(60, "Audio", new object[] {"ExpirimentorObserve"}), 
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"ExpirimentorObserve"}), 
 		    new TimedMethod(60, "Log", new object[] {ToString() + " sprayed a gas around his \"team\""})};
 	}
 	
