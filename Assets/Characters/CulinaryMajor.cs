@@ -10,13 +10,13 @@ public class CulinaryMajor : Character {
 	public override TimedMethod[] AI () {
 		System.Random rng = new System.Random();
 		int num = rng.Next(10);
-		if (num < 3) {
+		if (num < 4) {
 			return Attack();
-		} else if (num == 3) {
-			return Eat("steak");
 		} else if (num == 4) {
-			return Eat("fish");
+			return Eat("steak");
 		} else if (num == 5) {
+			return Eat("fish");
+		} else if (num == 6) {
 			return Eat("bread");
 		} else {
 			return Feast();
@@ -34,15 +34,18 @@ public class CulinaryMajor : Character {
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
+		Attacks.SetAudio("Knife", 20);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
 		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4});
-		attackPart.CopyTo(moves, 1);
+		moves[1] = new TimedMethod(0, "Audio", new object[] {"Knife Throw"});
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
 	public TimedMethod[] Attack () {
+		Attacks.SetAudio("Knife", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a cooking knife"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}),
+		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Knife Throw"}),
 		    new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	
@@ -57,7 +60,8 @@ public class CulinaryMajor : Character {
 			    break;
 		}
 		Heal(5);
-		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {message})};
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Eat"}), new TimedMethod(0, "AudioAfter", new object[] {"Heal", 30}),
+		    new TimedMethod(60, "Log", new object[] {message})};
 	}
 	
 	public TimedMethod[] Feast () {
@@ -66,7 +70,8 @@ public class CulinaryMajor : Character {
 				c.Heal(3);
 			}
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}), 
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}), new TimedMethod(0, "AudioAfter", new object[] {"Eat", 10}),
+		    new TimedMethod(0, "AudioAfter", new object[] {"Heal", 30}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " distributed snacks. Party health up"})};
 	}
 	

@@ -27,29 +27,34 @@ public class DanceMajor : Character {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
 		GainEvasion(3);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
+		Attacks.SetAudio("Knife", 10);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
 		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2});
-		attackPart.CopyTo(moves, 1);
+		moves[1] = new TimedMethod(0, "Audio", new object[] {"Small Swing"});
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
 	public TimedMethod[] Attack() {
 		GainEvasion(5);
+		Attacks.SetAudio("Knife", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " made a darting attack"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}),
+		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 3, 3, GetAccuracy(), true, true, false})};
 	}
 	
 	public TimedMethod[] Dodge() {
 		GainEvasion(10);
-		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " is dodging"})};
+		return new TimedMethod[] {new TimedMethod(0, "AudioAfter", new object[] {"Big Swing", 30}),
+		    new TimedMethod(60, "Log", new object[] {ToString() + " is dodging"})};
 	}
 	
 	public TimedMethod[] Finish() {
 		int atk = evasion;
 		evasion = 0;
+		Attacks.SetAudio("Blunt Hit", 30);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " used their positioning for a big attack"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}),
+		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "AudioAfter", new object[] {"Big Swing", 20}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, atk, atk, GetAccuracy(), true, true, false})};
 	}
 	
