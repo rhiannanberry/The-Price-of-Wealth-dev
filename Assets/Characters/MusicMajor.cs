@@ -29,9 +29,11 @@ public class MusicMajor : Character {
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
+		Attacks.SetAudio("Piano Hit", 20);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
 		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6});
-		attackPart.CopyTo(moves, 1);
+		moves[1] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
@@ -51,15 +53,18 @@ public class MusicMajor : Character {
 			    	}
     			}
      		}
-	    	return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " played a trumpet. Attack reset"})};
+	    	return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " played a trumpet. Attack reset"}),
+			    new TimedMethod(0, "Audio", new object[] {"Trumpet"}), new TimedMethod(0, "AudioAfter", new object[] {"Nullify", 15})};
 		} else {
-			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " played a trumpet. Ineffective"})};
+			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " played a trumpet. Ineffective"}),
+			    new TimedMethod(0, "Audio", new object[] {"Trumpet"})};
 		}
 	}
 	
 	public TimedMethod[] Keyboard() {
+		Attacks.SetAudio("Piano Hit", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " swung a keyboard"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}),
+		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}), new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 6, 6, GetAccuracy(), true, true, false})};
 	}
 	
@@ -68,9 +73,10 @@ public class MusicMajor : Character {
 		if (Attacks.EvasionCycle(this, Party.GetPlayer())) {
 		    sleepPart = Party.GetPlayer().status.Sleep();
 		} else {
-			sleepPart = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"Ineffective"})};
+			sleepPart = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"Ineffective"}), new TimedMethod("Null")};
 		}
-		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " played a slow violin piece"}), sleepPart[0]};
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Violin"}),
+		    new TimedMethod(60, "Log", new object[] {ToString() + " played a slow violin piece"}), sleepPart[0], sleepPart[1]};
 	}
 	
 	public override void CreateDrops() {

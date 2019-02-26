@@ -26,9 +26,11 @@ public class MathMajor : Character {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
 		accuracy += 1;
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
+		Attacks.SetAudio("Fire Hit", 6);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
 		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6});
-		attackPart.CopyTo(moves, 1);
+		moves[1] = new TimedMethod(0, "AudioAfter", new object[] {"Laser Shot", 30});
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
@@ -46,14 +48,16 @@ public class MathMajor : Character {
 	public TimedMethod[] Prepare () {
 		factorial = 1;
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill3"}),
-		    new TimedMethod(60, "Log", new object[] {ToString() + " initiated the factorial function"})};
+		    new TimedMethod(0, "Audio", new object[] {"Recrusion"}), 
+			new TimedMethod(60, "Log", new object[] {ToString() + " initiated the factorial function"})};
 	}
 	
 	public TimedMethod[] Attack () {
+		Attacks.SetAudio("Fire Hit", 6);
 		answer = answer * factorial;
 		factorial++;
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}),
+		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}), new TimedMethod(0, "AudioAfter", new object[] {"Laser Shot", 30}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, answer, answer, GetAccuracy(), true, true, false})};
 	}
 	

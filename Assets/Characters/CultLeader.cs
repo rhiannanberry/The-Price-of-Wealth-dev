@@ -85,8 +85,8 @@ public class CultLeader : PizzaCultist {
 			move = new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 2, accuracy, true, true, false});
 		}
 		return new TimedMethod[] {new TimedMethod(0, "AudioAmount", new object[] {"CultLeaderSpell", 2}),
-		    new TimedMethod(60, "Log", new object[] {ToString() + " cast PEPPERONI SPELL!"}), new TimedMethod(0, "Audio", new object[] {"Pepperoni"}),
-  			move};
+		    new TimedMethod(60, "Log", new object[] {ToString() + " cast PEPPERONI SPELL!"}),
+			new TimedMethod(0, "Audio", new object[] {"Pepperoni Spell"}), move};
 	}
 	
 	public override TimedMethod[] Slicer () {

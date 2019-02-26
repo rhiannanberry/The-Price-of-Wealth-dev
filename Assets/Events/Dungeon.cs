@@ -230,7 +230,7 @@ public class Dungeon : MonoBehaviour {
 	
 	public void NextEvent (Event e) {
 		Areas.followUp = e;
-		Resolve();
+		//Resolve();
 	}
 	
 	

@@ -34,7 +34,8 @@ public class GameAudio : MonoBehaviour {
 	}
 	
 	public void PlayAfter(string name, int frames) {
-		
+		names.Enqueue(name);
+		delays.Enqueue(frames);
 	}
 	
 	public void PlayRandom(string[] names) {

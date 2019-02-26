@@ -285,6 +285,7 @@ public class Battle : MonoBehaviour {
 		menu.SetActive(false);
 	    methodQueue.Enqueue(new TimedMethod(30, "EndTurn"));
 		defenseMenu.SetActive(false);
+		Audio("Metal Hit");
 	}
 	
 	public void Dodge () {

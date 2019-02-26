@@ -4,9 +4,11 @@ public class Charge : Special {
     	baseCost = 3; modifier = 0;}
 	
 	public override TimedMethod[] Use () {
+		Attacks.SetAudio("Blunt Hit", 20);
 		if (Attacks.EvasionCheck(Party.GetEnemy(), Party.GetPlayer().GetAccuracy()) && Party.enemyCount > 1) {
 			//Character second = Party.enemies[0];
-			TimedMethod[] moves = new TimedMethod[Party.enemyCount];
+			TimedMethod[] moves = new TimedMethod[Party.enemyCount + 1];
+			moves[0] = new TimedMethod(0, "Audio", new object[] {"Running"});
 			int index = 0;
 			for (int i = 0; i < 4; i++) {
 				if (i != Party.enemySlot - 1 && Party.enemies[i] != null && Party.enemies[i].GetAlive()) {
@@ -20,7 +22,7 @@ public class Charge : Special {
 		        true, Party.GetPlayer().GetStrength(), Party.GetPlayer().GetStrength() + 5, Party.GetPlayer().GetAccuracy(), true, true, false});
 		    return moves;
 		} else {
-			return new TimedMethod[] {new TimedMethod(0, "StagnantAttack", new object[] {
+			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Running"}), new TimedMethod(0, "StagnantAttack", new object[] {
 		        true, Party.GetPlayer().GetStrength(), Party.GetPlayer().GetStrength() + 5, Party.GetPlayer().GetAccuracy(), true, true, false})};
 		}
 	}

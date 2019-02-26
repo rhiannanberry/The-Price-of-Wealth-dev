@@ -21,7 +21,7 @@ public class PinkSlip : Item {
 			}
 		}
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {fled.ToString() + " has fled"}),
-			 new TimedMethod(0, "EnemySwitch", new object[] {Party.enemySlot, former})};
+			new TimedMethod(0, "EnemySwitch", new object[] {Party.enemySlot, former})};
 	}
 	
 }
