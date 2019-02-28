@@ -2678,7 +2678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1118c08c63a6646aaf7141a348a42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 154132214}
+  start: {fileID: 277150492}
   selectCharacter: {fileID: 806364718}
   enterName: {fileID: 1801623969}
 --- !u!114 &1145347818
@@ -2711,7 +2711,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 200
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1120, y: 630}
+  m_ReferenceResolution: {x: 1024, y: 768}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

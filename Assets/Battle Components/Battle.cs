@@ -630,6 +630,7 @@ public class Battle : MonoBehaviour {
 	
 	public void Win () {
 		    methodQueue.Clear();
+			Score.victories++;
 			if (Party.fullRecruit != null) {
 				if (Party.playerCount == 4) {
 				    recruitMember.SetActive(true);

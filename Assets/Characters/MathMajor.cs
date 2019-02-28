@@ -48,7 +48,7 @@ public class MathMajor : Character {
 	public TimedMethod[] Prepare () {
 		factorial = 1;
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill3"}),
-		    new TimedMethod(0, "Audio", new object[] {"Recrusion"}), 
+		    new TimedMethod(0, "Audio", new object[] {"Recursion"}), 
 			new TimedMethod(60, "Log", new object[] {ToString() + " initiated the factorial function"})};
 	}
 	

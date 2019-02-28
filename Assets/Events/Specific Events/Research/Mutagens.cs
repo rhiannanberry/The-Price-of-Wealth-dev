@@ -19,7 +19,6 @@ public class Mutagens : Event {
 		optionText2 = "Refuse!";
 		if (Party.PartyContains(new PsychMajor()) >= 0) {
 			options3 = new LinkedList<TimedMethod>();
-			options3.AddLast(new TimedMethod(0, "SpendTime", new object[] {2}));
 			options3.AddLast(new TimedMethod(0, "CauseEvent", new object[] {new TextEvent(Party.members[
 			Party.PartyContains(new PsychMajor())].ToString() 
 			    + " cites some book of inhumane activities. The researcher shouts to their peers \"IT'S THE FUZZ! RUN!\"",

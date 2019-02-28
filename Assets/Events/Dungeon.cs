@@ -25,6 +25,8 @@ public class Dungeon : MonoBehaviour {
 	public int partyIndex;
 	public static bool fled;
 	public static Character[] leftEnemies;
+	public static Event investigated;
+	public static bool toOverworld;
 	Type t;
 	MethodInfo method;
 	public Queue<TimedMethod> effects1;
@@ -55,6 +57,15 @@ public class Dungeon : MonoBehaviour {
 			} else {
 				current.gameObject.SetActive(false);
 			}
+		}
+		if (toOverworld) {
+			toOverworld = false;
+			SceneManager.LoadScene("Overworld");
+		}
+		if (investigated != null) {
+			RunEvent(investigated);
+			investigated = null;
+			toOverworld = true;
 		}
 	}
 	
@@ -127,8 +138,10 @@ public class Dungeon : MonoBehaviour {
 		}
 		
 		//nextMenu.SetActive(false);
+		try {
 		nextMenu.transform.Find("Next").gameObject.GetComponent<Button>().interactable = false;
 		nextMenu.transform.Find("Exit").gameObject.GetComponent<Button>().interactable = false;
+		} catch {};
 		dungeonMaps.SetActive(false);
 		isEvent = true;
 		eventSpace.SetActive(true);
@@ -141,6 +154,10 @@ public class Dungeon : MonoBehaviour {
 		dungeonMaps.SetActive(true);
 		isEvent = false;
 		eventSpace.SetActive(false);
+		if (toOverworld) {
+			toOverworld = false;
+			SceneManager.LoadScene("Overworld");
+		}
 	}
 	
 	public void Escape () {
@@ -149,6 +166,11 @@ public class Dungeon : MonoBehaviour {
 		dungeonMaps.SetActive(true);
 		isEvent = false;
 		eventSpace.SetActive(false);
+		if (toOverworld) {
+			toOverworld = false;
+			SceneManager.LoadScene("Overworld");
+			return;
+		}
 		dungeonMaps.transform.Find(Areas.location).GetComponent<MapViewer>().Escape();
 	}
 	
@@ -158,6 +180,11 @@ public class Dungeon : MonoBehaviour {
 		dungeonMaps.SetActive(true);
 		isEvent = false;
 		eventSpace.SetActive(false);
+		if (toOverworld) {
+			toOverworld = false;
+			SceneManager.LoadScene("Overworld");
+			return;
+		}
 		dungeonMaps.transform.Find(Areas.location).GetComponent<MapViewer>().EscapeEnemies(leftEnemies);
 		//leftEnemies = null;
 	}
@@ -265,10 +292,7 @@ public class Dungeon : MonoBehaviour {
 	public void CloseItem () {
 		itemMenu.SetActive(false);
 		nextMenu.SetActive(true);
-		nextMenu.transform.Find("Next").gameObject.GetComponent<Button>().interactable = true;
-		nextMenu.transform.Find("Exit").gameObject.GetComponent<Button>().interactable = true;
-		dungeonMaps.SetActive(true);
-		isEvent = false;
+		Resolve();
 	}
 	
 	public void OpenBag () {

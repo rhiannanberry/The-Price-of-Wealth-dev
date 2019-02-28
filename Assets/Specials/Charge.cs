@@ -9,7 +9,7 @@ public class Charge : Special {
 			//Character second = Party.enemies[0];
 			TimedMethod[] moves = new TimedMethod[Party.enemyCount + 1];
 			moves[0] = new TimedMethod(0, "Audio", new object[] {"Running"});
-			int index = 0;
+			int index = 1;
 			for (int i = 0; i < 4; i++) {
 				if (i != Party.enemySlot - 1 && Party.enemies[i] != null && Party.enemies[i].GetAlive()) {
 					moves[index] = new TimedMethod(0, "AttackAny", new object[] {Party.GetPlayer(), Party.enemies[i],
