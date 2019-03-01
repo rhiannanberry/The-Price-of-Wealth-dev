@@ -10,7 +10,7 @@ public class Leader : Passive {
 			lead = Party.GetEnemy();
 		}
 		lead.SetPower(lead.GetPower() + 1);
-		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " is strengthening " + lead.ToString()})};
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {self.ToString() + " is strengthening " + lead.ToString()})};
 	}
 	
 }
