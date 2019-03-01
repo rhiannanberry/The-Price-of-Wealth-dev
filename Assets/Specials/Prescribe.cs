@@ -1,6 +1,6 @@
 public class Prescribe : Special {
 	
-	public Prescribe () {name = "Prescribe"; description = "A heal that cures poison"; baseCost = 3; modifier = 0; selects = true;}
+	public Prescribe () {name = "Prescribe"; description = "A heal that cures poison"; baseCost = 3; modifier = 0; selects = true; usableOut = true;}
 	
 	public override TimedMethod[] UseSelects(int i) {
 		System.Random rng = new System.Random();
@@ -10,4 +10,5 @@ public class Prescribe : Special {
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Heal"}),
 		    new TimedMethod(60, "Log", new object[] {Party.members[i].ToString() + " was healed for " + amount.ToString() + " hp"})};
 	}
+	
 }

@@ -20,6 +20,7 @@ public class Dungeon : MonoBehaviour {
 	public GameObject useItemMenu;
 	public GameObject nameMenu;
 	public GameObject dungeonMaps;
+	public GameObject replaceMember;
 	public bool isEvent;
     public int y;
 	public int partyIndex;
@@ -462,9 +463,23 @@ public class Dungeon : MonoBehaviour {
 	
 	public void Ally (Character[] recruits) {
 		foreach (Character c in recruits) {
-			Party.AddPlayer(c);
+			if (Party.playerCount < 4) {
+	    		Party.AddPlayer(c);
+			} else {
+				Party.AddPlayer(c);
+			    replaceMember.SetActive(true);
+				eventSpace.SetActive(false);
+		        //menu.SetActive(false);
+	    		//largeMenuHides.SetActive(false);
+			    replaceMember.transform.Find("Member 1").gameObject.GetComponent<Button>().interactable = false;
+				return;
+			}
 		}
 		Resolve();
+	}
+	
+	public void CloseRecruit () {
+		replaceMember.SetActive(false);
 	}
 	
 	public void SpendTime (int amount) {

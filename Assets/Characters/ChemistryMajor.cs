@@ -78,8 +78,8 @@ public class ChemistryMajor : Character {
 			goopPart = Party.GetPlayer().status.Goop();
 			blindPart = Party.GetPlayer().status.Blind(3);
 		} else {
-			goopPart = new TimedMethod[] {new TimedMethod(0, "Log", new object[] {""})};
-			blindPart = new TimedMethod[] {new TimedMethod(0, "Log", new object[] {""})};
+			goopPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
+			blindPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		}
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a slime solution"}),
 		    new TimedMethod(0, "Audio", new object[] {"Skill3"}), new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 30}), 

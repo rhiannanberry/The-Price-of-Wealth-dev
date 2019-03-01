@@ -2893,6 +2893,7 @@ MonoBehaviour:
   StandardS: {fileID: 0}
   SupportS: {fileID: 0}
   active: 0
+  replacing: 0
 --- !u!1 &195020250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,6 +4241,7 @@ MonoBehaviour:
   StandardS: {fileID: 0}
   SupportS: {fileID: 0}
   active: 0
+  replacing: 1
 --- !u!1 &296325287
 GameObject:
   m_ObjectHideFlags: 0
@@ -9564,6 +9566,7 @@ MonoBehaviour:
   StandardS: {fileID: 0}
   SupportS: {fileID: 0}
   active: 0
+  replacing: 0
 --- !u!1 &744755208
 GameObject:
   m_ObjectHideFlags: 0
