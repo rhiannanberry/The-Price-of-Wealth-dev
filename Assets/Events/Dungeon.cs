@@ -486,11 +486,9 @@ public class Dungeon : MonoBehaviour {
 		Time.Increment(amount);
 	}
 	
-	//public void Shortcut (int number) {
-		//for (int i = 1; i <= number; i++) {
-			//Areas.Next();
-		//}
-	//}
+	public void Win () {
+	    SceneManager.LoadScene("Win");	
+	}
 	
 	public void Exit () {
 		SceneManager.LoadScene("Overworld");
