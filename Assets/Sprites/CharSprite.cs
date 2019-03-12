@@ -21,26 +21,28 @@ public class CharSprite : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		if (player && slot == Party.playerSlot - 1) {
+		gameObject.transform.localPosition = new Vector3(defaultX, defaultY, 1);
+		if (player && (slot == Party.playerSlot - 1)) {
 			gameObject.transform.localPosition = new Vector3(-350, 60, 1);
 			if (displaced != null) {
+				//Debug.Log(displaced.ToString());
 				displaced.gameObject.transform.localPosition = new Vector3(defaultX, defaultY, 1);
 				displaced.moveTo = displaced.gameObject.transform.localPosition;
 				displaced = null;
-			} else {
+			} else if (slot != 0) {
 				leadFirst = true;
 				storedX = defaultX;
 				storedY = defaultY;
 			}
-		} else if (slot == 0) {
+		} else if (player && slot == 0) {
 			if (leadFirst) {
 				gameObject.transform.localPosition = new Vector3(storedX, storedY, 1);
+				//Debug.Log(storedX.ToString() + " " + storedY.ToString());
 				leadFirst = false;
 			} else {
 			    displaced = this;
 			}
 		}
-		gameObject.transform.localPosition = new Vector3(defaultX, defaultY, 1);
 		moveTo = gameObject.transform.localPosition;
 		backlog = new Queue<string>();
 		delay = 0;
@@ -76,5 +78,12 @@ public class CharSprite : MonoBehaviour {
 	
 	public void Log (string s) {
 		backlog.Enqueue(s);
+	}
+	
+	public static void Reset () {
+		leadFirst = false;
+		displaced = null;
+		storedX = 0;
+		storedY = 0;
 	}
 }

@@ -1945,6 +1945,7 @@ MonoBehaviour:
   SupportS: {fileID: 0}
   active: 0
   replacing: 1
+  dungeon: {fileID: 0}
 --- !u!1 &124962568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,17 +2005,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1629624316}
-        m_MethodName: UseItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1780999134}
         m_MethodName: ConfirmItemUse
         m_Mode: 1
@@ -22242,6 +22232,7 @@ MonoBehaviour:
   SupportS: {fileID: 0}
   active: 0
   replacing: 0
+  dungeon: {fileID: 0}
 --- !u!224 &1629624317
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23567,6 +23558,7 @@ MonoBehaviour:
   dungeonMaps: {fileID: 962458490}
   replaceMember: {fileID: 109518996}
   isEvent: 0
+  usingSpecial: 0
   y: 0
   partyIndex: 0
 --- !u!1001 &1799754107
@@ -25900,6 +25892,7 @@ MonoBehaviour:
   SupportS: {fileID: 2039978665}
   active: 0
   replacing: 0
+  dungeon: {fileID: 1780999134}
 --- !u!224 &1939087283
 RectTransform:
   m_ObjectHideFlags: 0

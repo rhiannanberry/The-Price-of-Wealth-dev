@@ -449,7 +449,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 321673278}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1130,8 +1130,8 @@ RectTransform:
   m_Children:
   - {fileID: 187381581}
   - {fileID: 807975728}
-  - {fileID: 1345062818}
   - {fileID: 65903945}
+  - {fileID: 1345062818}
   - {fileID: 639609159}
   - {fileID: 563835146}
   - {fileID: 1177169182}
@@ -3821,7 +3821,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 321673278}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4097,6 +4097,7 @@ MonoBehaviour:
   SupportS: {fileID: 0}
   active: 0
   replacing: 1
+  dungeon: {fileID: 0}
 --- !u!1 &1476580645
 GameObject:
   m_ObjectHideFlags: 0
