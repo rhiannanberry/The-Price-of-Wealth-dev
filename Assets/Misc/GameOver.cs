@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOver : MonoBehaviour {
     
 	public GameObject start;
 	public GameObject selectCharacter;
 	public GameObject enterName;
-	public InputField nameDisplay;
+	public TMP_InputField nameDisplay;
 	
 	// Use this for initialization
 	void Start () {
@@ -97,7 +98,7 @@ public class GameOver : MonoBehaviour {
 	}
 	
 	public void Name () {
-		Party.GetPlayer().SetName(enterName.transform.Find("Text").gameObject.GetComponent<Text>().text);
+		Party.GetPlayer().SetName(nameDisplay.text);
 	}
 	
 	public void CreateGame () {
