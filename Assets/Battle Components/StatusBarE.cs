@@ -26,14 +26,15 @@ public class StatusBarE : MonoBehaviour {
 		bonusText = "\n";
 		specificText = "";
 		informed = false;
+		Check();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Check();
+		//sCheck();
 	}
 	
-	void Check () {
+	public void Check () {
 		try { 
 		    enemy = Party.GetEnemy();
 		    charName = enemy.type;

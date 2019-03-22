@@ -43,7 +43,7 @@ public class Chef : Character {
 	
 	public TimedMethod[] Cook() {
 		GainGuard(5);
-	    return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill1"}), new TimedMethod(0, "Audio", new object[] {"Firewall"}),
+	    return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Firewall"}),
 		    new TimedMethod(60, "Log", new object[] {
 			ToString() + " cooked all the food behind the stove"})};
     }
@@ -52,7 +52,7 @@ public class Chef : Character {
 	public TimedMethod[] Attack () {
 		Attacks.SetAudio("Metal Hit", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " swung a frying pan"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 			new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	
@@ -87,8 +87,7 @@ public class Chef : Character {
 				audioPart = new TimedMethod(0, "Audio", new object[] {"Powder"});
 				break;
 		}
-		return new TimedMethod[] {new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), audioPart,
-		    new TimedMethod(60, "Log", new object[] {message}), statusPart[0], statusPart[1]};
+		return new TimedMethod[] {audioPart, new TimedMethod(60, "Log", new object[] {message}), statusPart[0], statusPart[1]};
 	}
 	
 	public override void CreateDrops() {

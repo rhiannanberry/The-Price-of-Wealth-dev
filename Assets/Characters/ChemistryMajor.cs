@@ -41,10 +41,9 @@ public class ChemistryMajor : Character {
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 4];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6});
-		moves[1] = new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20});
-		attackPart.CopyTo(moves, 2);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
+		moves[0] = new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20});
+		attackPart.CopyTo(moves, 1);
 		moves[moves.Length - 2] = poisonPart[0];
 		moves[moves.Length - 1] = poisonPart[1];
 		return moves;
@@ -53,7 +52,7 @@ public class ChemistryMajor : Character {
 	public TimedMethod[] Acid () {
 		Attacks.SetAudio("Acid", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw an acid solution"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skill3"}), new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20}),
+		    new TimedMethod(0, "Audio", new object[] {"Missile"}), new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20}),
 	    	new TimedMethod(0, "StagnantAttack", new object[] {false, 6, 6, GetAccuracy(), true, true, false})};
 	}
 	
@@ -66,7 +65,7 @@ public class ChemistryMajor : Character {
 			poisonPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		}
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a toxic solution"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skill3"}), new TimedMethod(0, "AudioAfter", new object[] {"Oil", 10}),
+		    new TimedMethod(0, "Audio", new object[] {"Oil"}),
 	    	new TimedMethod(0, "StagnantAttack", new object[] {false, 1, 1, GetAccuracy(), true, true, false}), poisonPart[0], poisonPart[1]};
     }
 	
@@ -82,15 +81,15 @@ public class ChemistryMajor : Character {
 			blindPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		}
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a slime solution"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skill3"}), new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20}), 
+		    new TimedMethod(0, "Audio", new object[] {"Missile"}), new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20}), 
 	    	new TimedMethod(0, "StagnantAttack", new object[] {false, 1, 1, GetAccuracy(), true, true, false}),
 			goopPart[0], goopPart[1], blindPart[0], blindPart[1]};
 	}
 	
 	public TimedMethod[] Attack () {
-		Attacks.SetAudio("Blunt Hit", 10);
+		Attacks.SetAudio("Blunt Hit", 6);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked normally"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 	    	new TimedMethod(0, "StagnantAttack", new object[] {false, 1, 1, GetAccuracy(), true, true, false})};
 	}
 	

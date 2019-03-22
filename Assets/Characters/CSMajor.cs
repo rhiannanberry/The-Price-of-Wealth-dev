@@ -15,20 +15,19 @@ public class CSMajor : Character {
 		int seed = rnd.Next(10);
 		TimedMethod[] moves;
 		if (seed > 9 - attacks) {
-			Attacks.SetAudio("Blunt Hit", 10);
-			moves = new TimedMethod[attacks + 3];
+			Attacks.SetAudio("Blunt Hit", 6);
+			moves = new TimedMethod[attacks + 2];
 			moves[0] = new TimedMethod(60, "Log", new object[] {"The " + ToString() + " used recursion"});
-			moves[1] = new TimedMethod(0, "Audio", new object[] {"Skill1"});
-			moves[2] = new TimedMethod(0, "AudioAfter", new object[] {"Recursion", 30});
+			moves[1] = new TimedMethod(0, "Audio", new object[] {"Recursion"});
 			for (int i = 1; i < attacks; i++) {
 				moves[i + 1] = new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 3, GetAccuracy(), true, false, false});
 			}
 			moves[attacks + 1] = new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 3, GetAccuracy(), true, true, false});
 		} else if (seed < 6) {
 			attacks++;
-			Attacks.SetAudio("Metal Hit", 30);
+			Attacks.SetAudio("Metal Hit", 25);
 			moves = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The " + ToString() + " chucked a monitor "}),
-			    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+			    new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 			    new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 6, GetAccuracy(), true, true, false})};
 		} else {
 			GainEvasion(8);
@@ -46,16 +45,15 @@ public class CSMajor : Character {
 	public override TimedMethod[] BasicAttack() {
 		attacks++;
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Metal Hit", 25);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		Attacks.SetAudio("Metal Hit", 30);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2});
-		moves[1] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
-		attackPart.CopyTo(moves, 2);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
+		attackPart.CopyTo(moves, 1);
 		return moves;
 	}
 	

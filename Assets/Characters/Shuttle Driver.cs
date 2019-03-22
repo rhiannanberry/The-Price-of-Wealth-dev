@@ -49,8 +49,7 @@ public class ShuttleDriver : Character {
 			num = 1;
 		}
 		GainPower(num);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}), 
-	    	new TimedMethod(60, "Log", new object[] {ToString() + " complained about money, people, and politics"}),
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " complained about money, people, and politics"}),
 			new TimedMethod(0, "CharLogSprite", new object[] {num.ToString(), Party.enemySlot - 1, "power", false})};
 	}
 	
@@ -66,7 +65,7 @@ public class ShuttleDriver : Character {
 	public TimedMethod[] Attack() {
 		Attacks.SetAudio("Blunt Hit", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " Attacked"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 3, 3, GetAccuracy(), true, true, false})};
 	}
 	

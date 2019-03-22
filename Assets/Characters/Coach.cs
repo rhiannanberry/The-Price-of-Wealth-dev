@@ -24,7 +24,7 @@ public class Coach : Character {
 				c.GainPower(3);
 			}
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Metal Hit"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " gave a pep talk. Team power increased"}),
 			new TimedMethod(6, "CharLogSprite", new object[] {"3", 0, "power", false}),
 			new TimedMethod(6, "CharLogSprite", new object[] {"3", 1, "power", false}),
@@ -35,7 +35,7 @@ public class Coach : Character {
 	public TimedMethod[] Attack() {
 		Attacks.SetAudio("Blunt Hit", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a football"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Missile"}),
+		    new TimedMethod(0, "Audio", new object[] {"Missile"}),
 	    	new TimedMethod(0, "StagnantAttack", new object[] {false, 3, 3, GetAccuracy(), true, true, false})};
 	}
 	

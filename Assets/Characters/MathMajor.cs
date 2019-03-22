@@ -20,18 +20,17 @@ public class MathMajor : Character {
 	
 	public override TimedMethod[] BasicAttack() {
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Fire Hit", 6);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
 		GainAccuracy(1);
-		Attacks.SetAudio("Fire Hit", 6);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6});
-		moves[1] = new TimedMethod(0, "AudioAfter", new object[] {"Laser Shot", 30});
-		moves[2] = new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.playerSlot - 1, "accuracy", true});
-		attackPart.CopyTo(moves, 3);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Laser Shot"});
+		moves[1] = new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.playerSlot - 1, "accuracy", true});
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
@@ -48,8 +47,7 @@ public class MathMajor : Character {
 	
 	public TimedMethod[] Prepare () {
 		factorial = 1;
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill3"}),
-		    new TimedMethod(0, "Audio", new object[] {"Recursion"}), 
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Recursion"}), 
 			new TimedMethod(60, "Log", new object[] {ToString() + " initiated the factorial function"})};
 	}
 	
@@ -58,7 +56,7 @@ public class MathMajor : Character {
 		answer = answer * factorial;
 		factorial++;
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}), new TimedMethod(0, "AudioAfter", new object[] {"Laser Shot", 30}),
+		    new TimedMethod(0, "Audio", new object[] {"Laser Shot"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, answer, answer, GetAccuracy(), true, true, false})};
 	}
 	

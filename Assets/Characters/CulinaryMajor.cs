@@ -36,17 +36,16 @@ public class CulinaryMajor : Character {
 			status.gooped = false;
 		}
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Knife", 20);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		Attacks.SetAudio("Knife", 20);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 4];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4});
-		moves[1] = new TimedMethod(0, "Audio", new object[] {"Knife Throw"});
-		moves[2] = statusPart[0];
-		moves[3] = statusPart[1];
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Knife Throw"});
+		moves[1] = statusPart[0];
+		moves[2] = statusPart[1];
 		attackPart.CopyTo(moves, 4);
 		return moves;
 	}
@@ -54,7 +53,7 @@ public class CulinaryMajor : Character {
 	public TimedMethod[] Attack () {
 		Attacks.SetAudio("Knife", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a cooking knife"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Knife Throw"}),
+		    new TimedMethod(0, "Audio", new object[] {"Knife Throw"}),
 		    new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	
@@ -84,9 +83,9 @@ public class CulinaryMajor : Character {
 				c.Heal(3);
 			}
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}), new TimedMethod(0, "AudioAfter", new object[] {"Eat", 10}),
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " distributed snacks. Party health up"}),
+		    new TimedMethod(0, "AudioAfter", new object[] {"Eat", 10}),
 		    new TimedMethod(0, "AudioAfter", new object[] {"Heal", 30}),
-		    new TimedMethod(60, "Log", new object[] {ToString() + " distributed snacks. Party health up"}),
 			new TimedMethod(6, "CharLogSprite", new object[] {"3", 0, "healing", false}),
 			new TimedMethod(6, "CharLogSprite", new object[] {"3", 1, "healing", false}),
 			new TimedMethod(6, "CharLogSprite", new object[] {"3", 2, "healing", false}),

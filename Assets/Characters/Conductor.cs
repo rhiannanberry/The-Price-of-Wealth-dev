@@ -81,7 +81,7 @@ public class Conductor : Character {
 			new TimedMethod(0, "Audio", new object[] {"Finale"}),
 		    new TimedMethod(0, "StagnantAttack",new object[] {false, dmg, dmg, GetAccuracy(), true, true, false})};
 		} else {
-			Attacks.SetAudio("Slap", 10);
+			Attacks.SetAudio("Slap", 6);
 			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked with the baton"}),
 			new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 		    new TimedMethod(0, "StagnantAttack",new object[] {false, 3, 3, GetAccuracy(), true, true, false})};

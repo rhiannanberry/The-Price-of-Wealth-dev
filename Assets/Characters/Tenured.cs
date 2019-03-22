@@ -32,7 +32,7 @@ public class Tenured : Instructor {
 	public TimedMethod[] Attack() {
 		Attacks.SetAudio("Slap", 6);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}), new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 3, 3, GetAccuracy(), true, true, false})};
 	}
 	
@@ -48,7 +48,7 @@ public class Tenured : Instructor {
 			evadePart = new TimedMethod(0, "CharLogSprite", new object[] {"4", Party.enemySlot - 1, "evasion", false});
 		}
 		GainPower(3); GainGuard(4); GainEvasion(4);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill3"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Whistle"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " gloated about her position"}),
 			new TimedMethod(0, "CharLogSprite", new object[] {"3", Party.enemySlot - 1, "power", false}),
 			new TimedMethod(0, "CharLogSprite", new object[] {"4", Party.enemySlot - 1, "guard", false}), evadePart};
@@ -63,7 +63,7 @@ public class Tenured : Instructor {
 			statPart[1] = new TimedMethod(0, "CharLogSprite", new object[] {"-6", Party.playerSlot - 1, "guard", true});
 		}
 		GainCharge(5);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill3"}), new TimedMethod(0, "Audio", new object[] {"Poison"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Poison"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " called you a failure, worthless, ect"}),
 			new TimedMethod(0, "CharLogSprite", new object[] {"5", Party.enemySlot - 1, "charge", false}), statPart[0], statPart[1]};
 	}
@@ -88,7 +88,7 @@ public class Tenured : Instructor {
 			totalSleep[index + 1] = sleepPart[1];
 			index += 4;
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Blah"}), new TimedMethod(0, "Audio", new object[] {"Filibuster"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Filibuster"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " lectured"}), totalSleep[0], totalSleep[1], totalSleep[2], totalSleep[3],
 			    totalSleep[4], totalSleep[5], totalSleep[6], totalSleep[7], totalSleep[8], totalSleep[9], totalSleep[10], totalSleep[11],
 				totalSleep[12], totalSleep[13], totalSleep[14], totalSleep[15]};

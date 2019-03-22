@@ -32,14 +32,14 @@ public class Cop : Character {
 			stunPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		}
 	    return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " fired a tazer"}),
-            new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Button"}),
+            new TimedMethod(0, "Audio", new object[] {"Button"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 6, 6, GetAccuracy(), true, true, true}), stunPart[0], stunPart[1]};
 	}
 	
 	public TimedMethod[] Shoot() {
 		Attacks.SetAudio("Blunt Hit", 6);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " shot a pistol"}), 
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Gunfire"}),
+		    new TimedMethod(0, "Audio", new object[] {"Gunfire"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 10, 10, GetAccuracy(), true, true, false})};
 	}
 	

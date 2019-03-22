@@ -27,16 +27,15 @@ public class PsychMajor : Character {
 			apathyPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		}
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Slime", 20);
 		if (Party.BagContains(new Metronome())) {
-			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 2, strength + 2, GetAccuracy(), true, true, false);
+			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		Attacks.SetAudio("Slime", 20);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 4];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2});
-		moves[1] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
-		attackPart.CopyTo(moves, 2);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
+		attackPart.CopyTo(moves, 1);
 		moves[moves.Length - 2] = apathyPart[0];
 		moves[moves.Length - 1] = apathyPart[1];
 		return moves;
@@ -45,7 +44,7 @@ public class PsychMajor : Character {
 	public TimedMethod[] Attack() {
 		Attacks.SetAudio("Slime", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a dried brain"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+            new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 		    new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	
@@ -56,7 +55,7 @@ public class PsychMajor : Character {
 		} else {
 			sleepPart = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"And nothing happened"}), new TimedMethod("Null")};
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill1"}), new TimedMethod(0, "Audio", new object[] {"Hypnosis"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Hypnosis"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " let the pendulum sway"}), sleepPart[0], sleepPart[1]};
 	}
 	

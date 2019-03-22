@@ -26,17 +26,16 @@ public class MusicMajor : Character {
 			statPart = new TimedMethod(0, "CharLogSprite", new object[] {"-1", Party.enemySlot - 1, "charge", false});
 		}
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Piano Hit", 10);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		Attacks.SetAudio("Piano Hit", 10);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6});
-		moves[1] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
-		moves[2] = statPart;
-		attackPart.CopyTo(moves, 3);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
+		moves[1] = statPart;
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
@@ -69,7 +68,7 @@ public class MusicMajor : Character {
 	public TimedMethod[] Keyboard() {
 		Attacks.SetAudio("Piano Hit", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " swung a keyboard"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}), new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 6, 6, GetAccuracy(), true, true, false})};
 	}
 	

@@ -7,8 +7,7 @@ public class FootballPlayerQ : FootballPlayer {
 		if (health < maxHP / 2) {
 			return Switch();
 		} else {
-			moves = new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}),
-			    new TimedMethod(60, "Log", new object[] {"The " + ToString() + " is rallying. Team power has increased"}),
+			moves = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The " + ToString() + " is rallying. Team power has increased"}),
 				new TimedMethod(6, "CharLogSprite", new object[] {"1", 0, "power", false}),
 				new TimedMethod(6, "CharLogSprite", new object[] {"1", 1, "power", false}),
 				new TimedMethod(6, "CharLogSprite", new object[] {"1", 2, "power", false}),

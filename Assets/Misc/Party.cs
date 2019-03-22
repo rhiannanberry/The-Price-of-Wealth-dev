@@ -156,7 +156,8 @@ public static class Party {
 		for (int i = 0; i < 4; i++) {
 			if (enemies[i] == null || !enemies[i].GetAlive()) {
 				enemies[i] = c;
-				c.partyIndex = 4 + i;
+				//c.partyIndex = 4 + i;
+				c.partyIndex = i;
 				enemyCount++;
 				if (turn > 0) {
 					c.GetPassive().Initialize(false);

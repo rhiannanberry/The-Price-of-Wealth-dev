@@ -62,12 +62,12 @@ public class CharSprite : MonoBehaviour {
 				gameObject.transform.localPosition.y + System.Math.Max(System.Math.Min(5, moveTo.y - gameObject.transform.localPosition.y), -5),
 				gameObject.transform.localPosition.z + System.Math.Max(System.Math.Min(5, moveTo.z - gameObject.transform.localPosition.z), -5));
 		}
-		if (delay == 20) {
+		if (delay == 10) {
 			charText.text = "";
 		} else if (delay == 0 && backlog.Count > 0) {
 			charText.text = backlog.Dequeue();
 			spritelog.Dequeue();
-			delay = 80;
+			delay = 40;
 		}
 		if (delay > 0) {
 			delay--;

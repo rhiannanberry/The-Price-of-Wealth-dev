@@ -27,17 +27,16 @@ public class CJMajor : Character {
 			    new TimedMethod(0, "CharLogSprite", new object[] {"2", Party.playerSlot - 1, "healing", true})};
 		}
 		TimedMethod[] attackPart;
-		Attacks.SetAudio("Blunt Hit", 0);
+		Attacks.SetAudio("Blunt Hit", 10);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 4];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2});
-		moves[1] = new TimedMethod(0, "AudioAfter", new object[] {"Small Swing", 10});
-	    moves[2] = healPart[0];
-		moves[3] = healPart[1];
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
+		moves[0] = new TimedMethod(0, "AudioAfter", new object[] {"Small Swing", 10});
+	    moves[1] = healPart[0];
+		moves[2] = healPart[1];
 		attackPart.CopyTo(moves, 4);
 		return moves;
 	}
@@ -51,14 +50,14 @@ public class CJMajor : Character {
 			stunPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		}
 	    return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " fired a tazer"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Button"}),
+		    new TimedMethod(0, "Audio", new object[] {"Button"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 6, 6, GetAccuracy(), true, true, true}), stunPart[0], stunPart[1]};
 	}
 	
 	public TimedMethod[] Baton() {
-		Attacks.SetAudio("Blunt Hit", 15);
+		Attacks.SetAudio("Blunt Hit", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked with a baton"}), 
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "AudioAfter", new object[] {"Small Swing", 10}),
+		    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 		    new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	

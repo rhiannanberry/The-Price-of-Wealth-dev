@@ -71,4 +71,8 @@ public class CharSprites : MonoBehaviour {
 			sprite.GetComponent<CharSprite>().freezeHealth = false;
 		}
 	}
+	
+	public void ChangeHP(int damage, int index) {
+		sprites[index].GetComponent<CharSprite>().ChangeHP(damage);
+	}
 }

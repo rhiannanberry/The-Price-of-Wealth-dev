@@ -21,24 +21,23 @@ public class AerospaceEngineer : Character {
 	
 	public override TimedMethod[] BasicAttack() {
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Metal Hit", 10);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
 		TimedMethod ifHit = new TimedMethod("Null");
-		Attacks.SetAudio("Metal Hit", 10);
 		GainCharge(1);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2});
-		moves[1] = new TimedMethod(0, "AudioAfter", new object[] {"Small Swing", 5});
-		moves[2] = new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.playerSlot - 1, "charge", true});
-		attackPart.CopyTo(moves, 3);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
+		moves[0] = new TimedMethod(0, "AudioAfter", new object[] {"Small Swing", 5});
+		moves[1] = new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.playerSlot - 1, "charge", true});
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
 	public TimedMethod[] Drone () {
-		Attacks.SetAudio("Blunt Hit",  3);
+		Attacks.SetAudio("Blunt Hit",  6);
 	    return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " fired the drone"}),
 		    new TimedMethod(0, "Audio", new object[] {"Automatic"}),
 	        new TimedMethod(0, "StagnantAttack", new object[] {false, 3, 3, GetAccuracy(), true, false, false}),
@@ -62,14 +61,12 @@ public class AerospaceEngineer : Character {
 		if (Attacks.EvasionCycle(this, Party.GetPlayer())) {
 		    Party.GetPlayer().GainGuard(-5);
 		    Party.GetPlayer().GainEvasion(-10);
-		    return new TimedMethod[] {new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}),
-			    new TimedMethod(0, "Audio", new object[] {"Fumes"}),
+		    return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Fumes"}),
 				new TimedMethod(0, "CharLogSprite", new object[] {"-5", Party.playerSlot - 1, "guard", true}),
 				new TimedMethod(0, "CharLogSprite", new object[] {"-10", Party.playerSlot - 1, "evasion", true}),
 			    new TimedMethod(60, "Log", new object[] {ToString() + " Sprayed exhaust fumes. Evasion and guard decreased"})};
 		} else {
-			return new TimedMethod[] {new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}),
-			    new TimedMethod(0, "Audio", new object[] {"Fumes"}),
+			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Fumes"}),
 			    new TimedMethod(60, "Log", new object[] {ToString() + " Sprayed exhaust fumes. It missed"})};
 		}
 	}

@@ -34,7 +34,7 @@ public class Status {
 				messages.CopyTo(temp, 0);
 				temp[messages.Length] = new TimedMethod(0, "Audio", new object[] {"Poison Damage"});
 				temp[messages.Length + 1] = new TimedMethod(
-				    0, "CharLog", new object[] {poisoned.ToString() + " poison", self.partyIndex, "poison", self.GetPlayer()});
+				    0, "CharLogSprite", new object[] {poisoned.ToString() + " poison", self.partyIndex, "poison", self.GetPlayer()});
 				messages = temp;
 			if (self.GetHealth() == 0) {
 			    TimedMethod[] dead = Party.CheckDeath();
@@ -96,7 +96,11 @@ public class Status {
 		}
 		if (regeneration > 0) {
 			self.Heal(regeneration);
-			
+			temp = new TimedMethod[messages.Length + 1];
+			messages.CopyTo(temp, 0);
+			temp[messages.Length] = new TimedMethod(
+			   0, "CharaLogSprite", new object[] {regeneration.ToString(), self.partyIndex, "regeneration", self.GetPlayer()});
+			messages = temp;
 		}
 		if (blinded > 0) {
 			blinded--;

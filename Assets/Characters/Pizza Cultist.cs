@@ -52,8 +52,7 @@ public class PizzaCultist : Character {
 		} else {
 			blindPart = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"It missed completely"}), new TimedMethod("Null")};
 		}
-		return new TimedMethod[] {new TimedMethod(0, "AudioAmount", new object[] {"CultistSpell", 2}),
-    		new TimedMethod(0, "AudioAfter", new object[] {"Cheese", 30}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Cheese"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " cast CHEESE SPELL!"}), blindPart[0], blindPart[1]};
 	}
 
@@ -64,8 +63,7 @@ public class PizzaCultist : Character {
 		} else {
 			goopPart = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"It missed completely"}), new TimedMethod("Null")};
 		}
-		return new TimedMethod[] {new TimedMethod(0, "AudioAmount", new object[] {"CultistSpell", 2}),
-    		new TimedMethod(0, "AudioAfter", new object[] {"Cheese", 30}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Cheese"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " cast TOMATO SPELL!"}), goopPart[0], goopPart[1]};
 	}
 	
@@ -77,15 +75,14 @@ public class PizzaCultist : Character {
 		} else {
 			move = new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 2, accuracy, true, true, false});
 		}
-		return new TimedMethod[] {new TimedMethod(0, "AudioAmount", new object[] {"CultistSpell", 2}),
-    		new TimedMethod(0, "AudioAfter", new object[] {"Pepperoni Spell", 60}),
+		return new TimedMethod[] {new TimedMethod(0, "AudioAfter", new object[] {"Pepperoni Spell", 60}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " cast PEPPERONI SPELL!"}), move};
 	}
 	
 	public virtual TimedMethod[] Slicer () {
 		Attacks.SetAudio("Knife", 25);
 	    return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " chucked the pizza slicer"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}), new TimedMethod(0, "Audio", new object[] {"Knife Throw"}),
+		    new TimedMethod(0, "Audio", new object[] {"Knife Throw"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 10, 10, GetAccuracy(), true, true, false})};	
 	}
 	
@@ -97,8 +94,7 @@ public class PizzaCultist : Character {
 	}
 	
 	public TimedMethod[] Despair () {
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CultistOut"}), 
-		    new TimedMethod(60, "Log", new object[] {ToString() + " ran out of pizzas"}),
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " ran out of pizzas"}),
 			new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
 			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}

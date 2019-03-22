@@ -71,14 +71,14 @@ public class Politician : Character {
 			statPart = new TimedMethod(0, "CharLogSprite", new object[] {"10", Party.enemySlot - 1, "evasion", false});
 		}
 		GainGuard(10); GainEvasion(10);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Blah"}), new TimedMethod(60, "Log", new object[] {
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {
 			"The Politician campaigned with the promise of stalling votes"}), new TimedMethod(60, "Log", new object[] {
 		    "It yielded defensive results"}),  new TimedMethod(0, "CharLogSprite", new object[] {"10", Party.enemySlot - 1, "guard", false}), statPart};
 	}
 	
 	public TimedMethod[] CampaignBalance() {
 	    GainPower(1); GainDefense(1);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Blah"}), new TimedMethod(60, "Log", new object[] {
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {
 			"The Politician campaigned with the promise of denying opposition"}), new TimedMethod(60, "Log", new object[] {
 		    "It yielded balanced results"}), new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.enemySlot - 1, "power", false}),
 		    new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.enemySlot - 1, "defense", false})};
@@ -86,7 +86,7 @@ public class Politician : Character {
 	
 	public TimedMethod[] CampaignOffense() {
 	    GainCharge(9); GainAccuracy(2);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Blah"}), new TimedMethod(60, "Log", new object[] {
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {
 			"The Politician campaigned with the promise of destruction"}), new TimedMethod(60, "Log", new object[] {
 		    "It yielded offensive results"}), new TimedMethod(0, "CharLogSprite", new object[] {"9", Party.enemySlot - 1, "charge", false}),
 			new TimedMethod(0, "CharLogSprite", new object[] {"2", Party.enemySlot - 1, "accuracy", false})};
@@ -125,8 +125,7 @@ public class Politician : Character {
 	
 	public TimedMethod[] Attack() {
 		Attacks.SetAudio("Gunfire", 30);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"PoliticianAttack"}), 
-		    new TimedMethod(60, "Log", new object[] {"The Politician delivered the promised destruction"}),
+		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The Politician delivered the promised destruction"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 3, 3, GetAccuracy(), true, false, false}),
 			new TimedMethod(0, "StagnantAttack", new object[] {false, 5, 5, GetAccuracy(), true, false, false}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 7, 7, GetAccuracy(), true, true, false})};

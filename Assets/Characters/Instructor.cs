@@ -30,7 +30,7 @@ public class Instructor : Character {
 				cycle = false;
 				Attacks.SetAudio("Slap", 10);
 				return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " unleashed her wrath"}),
-				    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
+				    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 				    new TimedMethod(0, "StagnantAttack", new object[] {false, 1, 1, GetAccuracy(), true, true, false})};
 			}
 		} else {
@@ -38,7 +38,7 @@ public class Instructor : Character {
 			if (rnd.Next(3) != 0) {
 				Attacks.SetAudio("Slap", 10);
 				return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked"}),
-				    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
+				    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
    				    new TimedMethod(0, "StagnantAttack", new object[] {false, 1, 1, GetAccuracy(), true, true, false})};
 			} else {
 				cycle = true;
@@ -56,7 +56,7 @@ public class Instructor : Character {
 			if (c != null && c.GetAlive() && Attacks.EvasionCycle(this, c)) {
 		        sleepPart = Party.GetPlayer().status.Sleep();
 	    	} else {
-    			sleepPart = new TimedMethod[] {new TimedMethod(0, "CharLog", new object[] {"miss", c.partyIndex, true}), new TimedMethod("Null")};
+    			sleepPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		    }
 			totalSleep[index] = sleepPart[0];
 			totalSleep[index + 1] = sleepPart[1];
@@ -67,7 +67,7 @@ public class Instructor : Character {
 		} else {
 			sleepPart = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"It went over your head"}), new TimedMethod("Null")};
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Blah"}), new TimedMethod(0, "Audio", new object[] {"Filibuster"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Filibuster"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " lectured"}), totalSleep[0], totalSleep[1], totalSleep[2], totalSleep[3],
 			totalSleep[4], totalSleep[5], totalSleep[6], totalSleep[7]};
 	}

@@ -21,15 +21,14 @@ public class PreMed : Character {
 	
 	public override TimedMethod[] BasicAttack() {
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Knife", 6);
 		if (Party.BagContains(new Metronome())) {
-			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 2, strength + 2, GetAccuracy(), true, true, true);
+			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, true);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy(), strength, strength + 5, GetAccuracy(), true, true, true);
 		}
-		Attacks.SetAudio("Knife", 10);
 		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2});
-		moves[1] = new TimedMethod(0, "Audio", new object[] {"Small Swing"});
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Small Swing"});
 		attackPart.CopyTo(moves, 1);
 		return moves;
 	}
@@ -38,15 +37,15 @@ public class PreMed : Character {
 		System.Random rng = new System.Random();
 		int amount = rng.Next(5) + 6;
 		Heal(amount);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill1"}), new TimedMethod(0, "Audio", new object[] {"Heal"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Heal"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " healed themself"}), 
 			new TimedMethod(0, "CharLogSprite", new object[] {amount.ToString(), Party.enemySlot - 1, "healing", false})};
 	}
 	
 	public TimedMethod[] Attack () {
-		Attacks.SetAudio("Knife", 10);
+		Attacks.SetAudio("Knife", 6);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " used a surgical knife"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 	    	new TimedMethod(0, "StagnantAttack", new object[] {false, 4, 4, GetAccuracy(), true, true, true})};
 	}
 	

@@ -21,25 +21,24 @@ public class HistoryMajor : Character {
 	
 	public override TimedMethod[] BasicAttack() {
 		TimedMethod[] attackPart;
+		Attacks.SetAudio("Sword", 10);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
 		GainGuard(1);
-		Attacks.SetAudio("Sword", 10);
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
-		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4});
-		moves[1] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
-		moves[2] = new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.playerSlot - 1, "guard", true});
-		attackPart.CopyTo(moves, 3);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
+		moves[1] = new TimedMethod(0, "CharLogSprite", new object[] {"1", Party.playerSlot - 1, "guard", true});
+		attackPart.CopyTo(moves, 2);
 		return moves;
 	}
 	
 	public TimedMethod[] Sword () {
 		Attacks.SetAudio("Sword", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " swung the actual sword"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}),  new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 		    new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	
@@ -48,7 +47,7 @@ public class HistoryMajor : Character {
 		GainGuard(amount);
 		Attacks.SetAudio("Metal Hit", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " shield bashed"}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}),  new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 1, 3, GetAccuracy(), true, true, false}),
 			new TimedMethod(0, "CharLogSprite", new object[] {amount.ToString(), Party.enemySlot - 1, "guard", false})};
 	}
@@ -60,7 +59,7 @@ public class HistoryMajor : Character {
 				c.GainEvasion(4);
 			}
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}),  new TimedMethod(0, "Audio", new object[] {"Metal Hit"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Metal Hit"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " Implemented tactics. Party's " 
 		    + "evasion and accuracy increased"}),
 			new TimedMethod(0, "CharLogSprite", new object[] {"2", 0, "accuracy", false}),

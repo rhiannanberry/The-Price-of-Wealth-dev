@@ -27,7 +27,7 @@ public class Quarterback : FootballPlayer {
 	public TimedMethod[] Attack () {
 		Attacks.SetAudio("Blunt Hit", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The " + ToString() + " tackled "}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Running"}),
+		    new TimedMethod(0, "Audio", new object[] {"Running"}),
 			new TimedMethod(0, "StagnantAttack", new object[] {false, 5, 5, GetAccuracy(), true, true, false})};
 	}
 	
@@ -43,7 +43,7 @@ public class Quarterback : FootballPlayer {
 		}
 		Attacks.SetAudio("Slap", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The " + ToString() + " committed a foul "}),
-		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}), new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 			new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 2, GetAccuracy(), true, true, false}), statPart, stunPart[0], stunPart[1]};
 	}
 	
@@ -51,7 +51,7 @@ public class Quarterback : FootballPlayer {
 		int amount;
 		if (health > maxHP / 2) {amount = 4;} else {amount = 9;}
 		GainCharge(amount);
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"QuarterbackLaugh"}),
+		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Metal Hit"}),
 		    new TimedMethod(60, "Log", new object[] {"The " + ToString() + " Prepared to charge"}),
 			new TimedMethod(0, "CharLogSprite", new object[] {amount.ToString(), Party.enemySlot - 1, "charge", false})};
 	}

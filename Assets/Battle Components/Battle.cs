@@ -77,6 +77,7 @@ public class Battle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(Party.GetPlayer().partyIndex.ToString());
 		if (delay > 0) {
 			delay--;
 		} else {
@@ -476,7 +477,10 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void NextTurn (bool isEnemy) {
+		sprites.GetComponent<CharSprites>().UnfreezeAll();
 		if (isEnemy) {
+			statusBars.transform.Find("Player Status").GetComponent<StatusBarP>().Check();
+		    statusBars.transform.Find("Enemy Status").GetComponent<StatusBarE>().Check();
 		   	TimedMethod[] statuses;
 			for (int i = 0; i < 4; i++) {
 				if (i == Party.enemySlot - 1) {
@@ -553,6 +557,8 @@ public class Battle : MonoBehaviour {
 		        methodQueue.Enqueue(new TimedMethod(0, "ToggleMenu", new object[] {true}));
 			    methodQueue.Enqueue(new TimedMethod(0, "Log", new object[] {""}));
 			}
+			statusBars.transform.Find("Player Status").GetComponent<StatusBarP>().Check();
+		    statusBars.transform.Find("Enemy Status").GetComponent<StatusBarE>().Check();
 	}
 	
 	public void EndTurn () {
@@ -639,6 +645,14 @@ public class Battle : MonoBehaviour {
 		    sprites.GetComponent<CharSprites>().LogSprite(message, index, sprite);
 		} else {
 			sprites.GetComponent<CharSprites>().LogSprite(message, index + 4, sprite);
+		}
+	}
+	
+	public void ChangeHP(int damage, int index, bool player) {
+		if (player) {
+			sprites.GetComponent<CharSprites>().ChangeHP(damage, index);
+		} else {
+			sprites.GetComponent<CharSprites>().ChangeHP(damage, index + 4);
 		}
 	}
 	
