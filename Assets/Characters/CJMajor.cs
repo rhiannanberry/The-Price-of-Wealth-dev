@@ -20,23 +20,25 @@ public class CJMajor : Character {
 	}
 	
 	public override TimedMethod[] BasicAttack() {
-		TimedMethod healPart = new TimedMethod("Null");
+		TimedMethod[] healPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		if (Attacks.EvasionCheck(Party.GetEnemy(), GetAccuracy())) {
 			Heal(2);
-			healPart = new TimedMethod(0, "AudioAfter", new object[] {"Heal", 15});
+			healPart = new TimedMethod[] {new TimedMethod(0, "AudioAfter", new object[] {"Heal", 15}),
+			    new TimedMethod(0, "CharLogSprite", new object[] {"2", Party.playerSlot - 1, "healing", true})};
 		}
 		TimedMethod[] attackPart;
 		Attacks.SetAudio("Blunt Hit", 0);
 		if (Party.BagContains(new Metronome())) {
-			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 2, strength + 2, GetAccuracy(), true, true, false);
+			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 4];
 		moves[0] = new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2});
 		moves[1] = new TimedMethod(0, "AudioAfter", new object[] {"Small Swing", 10});
-	    moves[2] = healPart;
-		attackPart.CopyTo(moves, 1);
+	    moves[2] = healPart[0];
+		moves[3] = healPart[1];
+		attackPart.CopyTo(moves, 4);
 		return moves;
 	}
 	
@@ -80,7 +82,7 @@ public class CJMajor : Character {
 	
 	public override Item[] Loot () {
 		System.Random rng = new System.Random();
-		int sp = 3 + rng.Next(3);
+		int sp = 2 + rng.Next(3);
 		Party.UseSP(sp * -1);
 		Item[] dropped = drops;
 		drops = new Item[0];

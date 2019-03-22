@@ -196,7 +196,7 @@ public class Character {
 		//TimedMethod[] extra = status.Check(this);
 		if (GetAsleep() || GetStunned() || GetPassing()) {
 			status.passing = false;
-			return new TimedMethod[0];
+			return new TimedMethod[] {new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 		} else { 
 		    return AI();
 		}

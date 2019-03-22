@@ -36,9 +36,11 @@ public class PreMed : Character {
 	
 	public TimedMethod[] Treat() {
 		System.Random rng = new System.Random();
-		Heal(6 + rng.Next(5));
+		int amount = rng.Next(5) + 6;
+		Heal(amount);
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill1"}), new TimedMethod(0, "Audio", new object[] {"Heal"}),
-		    new TimedMethod(60, "Log", new object[] {ToString() + " healed themself"})};
+		    new TimedMethod(60, "Log", new object[] {ToString() + " healed themself"}), 
+			new TimedMethod(0, "CharLogSprite", new object[] {amount.ToString(), Party.enemySlot - 1, "healing", false})};
 	}
 	
 	public TimedMethod[] Attack () {
@@ -49,9 +51,11 @@ public class PreMed : Character {
 	}
 	
 	public TimedMethod[] Steroid() {
-		power += 2; defense -= 1;
+		GainPower(2); GainDefense(-1);
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Poison Damage"}),
-		    new TimedMethod(60, "Log", new object[] {ToString() + " used steroids. Power up and defense down"})};
+		    new TimedMethod(60, "Log", new object[] {ToString() + " used steroids"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"2", Party.enemySlot - 1, "power", false}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"-1", Party.enemySlot - 1, "defense", false})};
 	}
 	
 	public override void CreateDrops() {

@@ -30,13 +30,15 @@ public class ShuttleDriver : Character {
 	public TimedMethod[] Prepare() {
 		fleeing = 1; evasion += 5;
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " retreated inside the shuttle"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
+		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}
 	
 	public TimedMethod[] Rev() {
 		fleeing = 2;
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " revved the engines"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
+		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}
 	
 	public TimedMethod[] Complain() {
@@ -46,16 +48,19 @@ public class ShuttleDriver : Character {
 		} else {
 			num = 1;
 		}
-		power += num;
+		GainPower(num);
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}), 
-	    	new TimedMethod(60, "Log", new object[] {ToString() + " complained about money, people, and politics. Power + " + num.ToString()})};
+	    	new TimedMethod(60, "Log", new object[] {ToString() + " complained about money, people, and politics"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {num.ToString(), Party.enemySlot - 1, "power", false})};
 	}
 	
 	public TimedMethod[] Beer() {
-		health = System.Math.Min(health + 7, maxHP);
-		accuracy -= 2; defense -= 1;
+		Heal(7);
+		GainAccuracy(-2); GainDefense(-1);
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Drink"}), new TimedMethod(60, "Log", new object[] {ToString() 
-		    + " drank a beer. +7hp, defense and accuracy down"}), new TimedMethod("GetEnemy")};
+		    + " drank a beer"}), new TimedMethod(0, "CharLogSprite", new object[] {"7", Party.enemySlot - 1, "healing", false}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"-2", Party.enemySlot - 1, "accuracy", false}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"-1", Party.enemySlot - 1, "defense", false})};
 	}
 	
 	public TimedMethod[] Attack() {
@@ -87,7 +92,7 @@ public class ShuttleDriver : Character {
 	
 	public override Item[] Loot() {
 		System.Random rnd = new System.Random();
-		int sp = 4 + rnd.Next(3);
+		int sp = 2 + rnd.Next(3);
 		Party.UseSP(sp * -1);
 		Item[] dropped = drops;
 		drops = new Item[0];

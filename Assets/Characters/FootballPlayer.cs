@@ -19,7 +19,11 @@ public class FootballPlayer : Character {
 			    new TimedMethod(0, "StagnantAttack", new object[] {false, 5, 5, GetAccuracy(), true, true, false})};
 		} else if (seed < 8) {
 			moves = new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}),
-			    new TimedMethod(60, "Log", new object[] {"The " + ToString() + " is rallying. Team power has increased"})};
+			    new TimedMethod(60, "Log", new object[] {"The " + ToString() + " is rallying. Team power has increased"}),
+				new TimedMethod(6, "CharLogSprite", new object[] {"1", 0, "power", false}),
+				new TimedMethod(6, "CharLogSprite", new object[] {"1", 1, "power", false}),
+				new TimedMethod(6, "CharLogSprite", new object[] {"1", 2, "power", false}),
+				new TimedMethod(6, "CharLogSprite", new object[] {"1", 3, "power", false})};
 			foreach (Character current in Party.enemies) {
 				if (current != null && current.GetAlive()) {
 					current.GainPower(1);
@@ -27,9 +31,9 @@ public class FootballPlayer : Character {
 			}
 		} else {
 			moves = new TimedMethod[] { new TimedMethod(0, "Audio", new object[] {"Metal Hit"}),
-			    new TimedMethod(60, "Log", new object[] {"The " + ToString() + " is guarding. Guard + 5"}),
-			    new TimedMethod("GetEnemy")};
-			SetGuard(GetGuard() + 5);
+			    new TimedMethod(60, "Log", new object[] {"The " + ToString() + " is guarding"}),
+			    new TimedMethod(0, "CharLogSprite", new object[] {"5", 0, "guard", false})};
+			GainGuard(5);
 		}
 		return moves;
 	}
@@ -37,7 +41,7 @@ public class FootballPlayer : Character {
 	public override TimedMethod[] BasicAttack() {
 		TimedMethod[] attackPart;
 		if (Party.BagContains(new Metronome())) {
-			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 4, strength + 4, GetAccuracy(), true, true, false);
+			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 5, strength + 5, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 2, strength + 7, GetAccuracy(), true, true, false);
 		}
@@ -50,7 +54,7 @@ public class FootballPlayer : Character {
 	}
 	
 	public override void CreateDrops() {
-		drops = ItemDrops.FromPool(new Item[] {new Whistle(), new Pizza(), new ProteinBar(), new Milk(), new Pizza(), new ProteinBar(), new Milk()},
+		drops = ItemDrops.FromPool(new Item[] {new Whistle(), new Pizza(), new ProteinBar(), new Football(), new Pizza(), new ProteinBar(), new Milk()},
 		    ItemDrops.Amount(1, 2));
 	}
 	

@@ -1,7 +1,7 @@
 public class Surgeon : Doctor {
 	
 	public Surgeon() {
-		health = 50; maxHP = 50; strength = 4; baseAccuracy = 21; accuracy = 21; dexterity = 3; type = "Surgeon";
+		health = 60; maxHP = 60; strength = 4; baseAccuracy = 21; accuracy = 21; dexterity = 3; type = "Surgeon";
 	    champion = true; recruitable = false;
 	}
 	

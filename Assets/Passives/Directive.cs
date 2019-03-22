@@ -1,11 +1,12 @@
 public class Directive : Passive {
 	
 	bool firstTurn;
-	
+    int previousCount;
+    	
 	public Directive (Character c) {self = c; name = "Directive"; description = "At the start of the round, rotate through your party";}
 	
 	public override TimedMethod[] Initialize(bool player) {
-		firstTurn = true;
+		firstTurn = true; if (player) {previousCount = Party.playerCount;} else {previousCount = Party.enemyCount;}
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {self.ToString() + "'s team is rotating"})};
 	}
 	
@@ -14,6 +15,14 @@ public class Directive : Passive {
 			firstTurn = false;
 			return new TimedMethod[0];
 		}
+		int count;
+		if (player) {count = Party.playerCount;} else {count = Party.enemyCount;}
+		if (previousCount > count) {
+			previousCount = count;
+		    return new TimedMethod[0];
+		}
+		previousCount = count;
+		
 		Character[] team;
 		int slot;
 		if (player) {

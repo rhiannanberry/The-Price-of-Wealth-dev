@@ -33,7 +33,8 @@ public class Representative : Character {
 	public TimedMethod[] Read() {
 		cycle = 2;
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " read the resume, shaking his head"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
+		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}
 	
 	public TimedMethod[] Attack() {

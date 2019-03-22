@@ -22,7 +22,7 @@ public class CEO : Character {
 		//TimedMethod[] extra = status.Check(this);
 		if (GetAsleep() || GetStunned() || GetPassing()) {
 			status.passing = false;
-			return new TimedMethod[0];
+			return new TimedMethod[] {new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 		} else { 
 		    return AI();
 		}
@@ -75,6 +75,7 @@ public class CEO : Character {
 	public TimedMethod[] Monopoly () {
 		monopoly++;
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CEOLaugh"}),
+		    new TimedMethod(0, "CharLog", new object[] {"$$$ 1", Party.enemySlot - 1, false}),
 		    new TimedMethod(60, "Log",new object[] {"The CEO has a monopoly. Items will give him power and defense"})};
 	}
 	
@@ -84,24 +85,24 @@ public class CEO : Character {
 			horiz = false;
 			vert = true;
 			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CEOTaunt"}),
-			    new TimedMethod(0, "AudioAfter", new object[] {"Coin", 30}),
+			    new TimedMethod(0, "AudioAfter", new object[] {"Coin", 10}),
 			    new TimedMethod(60, "Log",new object[] {"The CEO switched to vertical integration. Attack is increasing"})};
 		} else if (vert) {
 			horiz = true;
 			vert = false;
 			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CEOTaunt"}),
-			    new TimedMethod(0, "AudioAfter", new object[] {"Coin", 30}),
+			    new TimedMethod(0, "AudioAfter", new object[] {"Coin", 10}),
 			    new TimedMethod(60, "Log",new object[] {"The CEO switched to horizontal integration. Guard is increasing"})};
 		} else {
 			if (rng.Next(2) == 0) {
 			    horiz = true;
 				return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CEOTaunt"}), 
-				    new TimedMethod(0, "AudioAfter", new object[] {"Coin", 30}), new TimedMethod(60, "Log",new object[] {
+				    new TimedMethod(0, "AudioAfter", new object[] {"Coin", 10}), new TimedMethod(60, "Log",new object[] {
 					"The CEO has horizontal integration. Guard will increase by 5 at the start of his turns"})};
 			} else {
 			    vert = true;
 				return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CEOTaunt"}),
-    				 new TimedMethod(0, "AudioAfter", new object[] {"Coin", 30}), new TimedMethod(60, "Log",new object[] {
+    				 new TimedMethod(0, "AudioAfter", new object[] {"Coin", 10}), new TimedMethod(60, "Log",new object[] {
 					"The CEO has vertical integration. Charge will increase by 5 at the start of his turns"})};
 			}			
 		}
@@ -109,7 +110,7 @@ public class CEO : Character {
 	
 	public TimedMethod[] Attack() {
 		summonCount++;
-		Attacks.SetAudio("Coin", 20);
+		Attacks.SetAudio("Coin", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The CEO attacked"}),
 		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 3, 4}),
 			 new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
@@ -121,6 +122,7 @@ public class CEO : Character {
 		if (monopoly > 0) {
 			monopoly++;
 			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CEOLaugh"}),
+			    new TimedMethod(0, "CharLog", new object[] {"$$$ 1", Party.enemySlot - 1, false}),
 			    new TimedMethod(60, "Log",new object[] {"The power of the monopoly grows"})};
 		} else {
 			return Contraband();
@@ -157,6 +159,7 @@ public class CEO : Character {
 		if (GetGooped()) {
 			status.gooped = false;
 			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Clean"}),
+			    new TimedMethod(0, "CharLogSprite", new object[] {"Cleaned", Party.enemySlot - 1, "goop", false}),
 			    new TimedMethod(60, "Log", new object[] {"The CEO cleaned the goop and hated it"})};
 		}
 		for (int i = 1; i < 4; i++) {
@@ -182,12 +185,12 @@ public class CEO : Character {
 	
 	public override void CreateDrops() {
 		drops = ItemDrops.FromPool(new Item[] {new Smartphone(), new Shuttle(), new Donut(), new Briefcase(), new Coffee(), new Defibrilator(),
-		    new Textbook()}, ItemDrops.Amount(2, 5));
+		    new Textbook(), new  PinkSlip()}, ItemDrops.Amount(2, 5));
 	}
 	
 	public override Item[] Loot () {
 		System.Random rnd = new System.Random();
-		int sp = 10 + rnd.Next(6);
+		int sp = 5 + rnd.Next(6);
 		Party.UseSP(sp * -1);
 		Item[] dropped = drops;
 		drops = new Item[0];

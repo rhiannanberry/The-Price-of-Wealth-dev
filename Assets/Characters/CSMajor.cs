@@ -3,13 +3,13 @@ public class CSMajor : Character {
 	public int attacks;
 	
     public CSMajor() {
-        health = 16; maxHP = 16; strength = 2; power = 0; charge = 0; defense = 0; guard = 0; 
+        health = 17; maxHP = 17; strength = 2; power = 0; charge = 0; defense = 0; guard = 0; 
 		baseAccuracy = 18; accuracy = 18; dexterity = 4; evasion = 0; type = "CS Major"; passive = new WikiHPedia(this);
 		quirk = Quirk.GetQuirk(this); special = new Recursion(); special2 = new Internet(); player = false; champion = false; recruitable = true;
 		attacks = 0; CreateDrops(); attackEffect = "no bonus effect";
 	}
 
-	
+
 	public override TimedMethod[] AI () {
 		System.Random rnd = new System.Random();
 		int seed = rnd.Next(10);
@@ -31,10 +31,14 @@ public class CSMajor : Character {
 			    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 1, 2}), new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 			    new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 6, GetAccuracy(), true, true, false})};
 		} else {
-			evasion += 8;
+			GainEvasion(8);
+			TimedMethod evadePart = new TimedMethod("Null");
+			if (!GetGooped()) {
+				evadePart = new TimedMethod(0, "CharLogSprite", new object[] {"8", Party.enemySlot - 1,  "evasion", false});
+			}
 			moves = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The " + ToString() + " googled you"}),
 			    new TimedMethod(0, "Audio", new object[] {"Wikipedia"}),
-			    new TimedMethod(60, "Log", new object[] {"They now know general information about your major. Also evasion increased"})};
+			    new TimedMethod(60, "Log", new object[] {"They now know general information about your major. Also evasion increased"}), evadePart};
 		}
 		return moves;
 	}
@@ -43,7 +47,7 @@ public class CSMajor : Character {
 		attacks++;
 		TimedMethod[] attackPart;
 		if (Party.BagContains(new Metronome())) {
-			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 2, strength + 2, GetAccuracy(), true, true, false);
+			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}

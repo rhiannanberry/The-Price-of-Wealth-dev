@@ -56,7 +56,7 @@ public class PizzaCultist : Character {
     		new TimedMethod(0, "AudioAfter", new object[] {"Cheese", 30}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " cast CHEESE SPELL!"}), blindPart[0], blindPart[1]};
 	}
-	
+
 	public virtual TimedMethod[] TomatoSpell () {
 		TimedMethod[] goopPart;
 		if (Attacks.EvasionCycle(this, Party.GetPlayer())) {
@@ -83,14 +83,14 @@ public class PizzaCultist : Character {
 	}
 	
 	public virtual TimedMethod[] Slicer () {
-		Attacks.SetAudio("Knife", 30);
+		Attacks.SetAudio("Knife", 25);
 	    return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " chucked the pizza slicer"}),
 		    new TimedMethod(0, "AudioNumbered", new object[] {"Attack", 5, 6}), new TimedMethod(0, "Audio", new object[] {"Knife Throw"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 10, 10, GetAccuracy(), true, true, false})};	
 	}
 	
 	public virtual TimedMethod[] Attack () {
-		Attacks.SetAudio("Blunt Hit", 10);
+		Attacks.SetAudio("Blunt Hit", 6);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " attacked sadly"}),
     		new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 2, 2, GetAccuracy(), true, true, false})};
@@ -99,12 +99,14 @@ public class PizzaCultist : Character {
 	public TimedMethod[] Despair () {
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"CultistOut"}), 
 		    new TimedMethod(60, "Log", new object[] {ToString() + " ran out of pizzas"}),
-			    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
+			new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}
 	
 	public TimedMethod[] Sulk () {
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " wished he had more pizza"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
+		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}
 	
 	public override void CreateDrops() {
@@ -113,7 +115,7 @@ public class PizzaCultist : Character {
 	
 	public override Item[] Loot () {
 		System.Random rnd = new System.Random();
-		int sp = 3 + rnd.Next(3);
+		int sp = 2 + rnd.Next(2);
 		Party.UseSP(sp * -1);
 		Item[] food = new Item[pizzas];
 		while (pizzas > 0) {

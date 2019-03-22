@@ -30,20 +30,23 @@ public class General : Character {
 	}
 	
 	public TimedMethod[] Charge() {
+		int amount;
 		if (phase == 0) {
-		    charge += 3;
+		    amount = 3;
 	    } else {
-			charge += 5;
+			amount = 5;
 		}
+		GainCharge(amount);
 		return new TimedMethod[] {new TimedMethod(0, "AudioAmount", new object[] {"GeneralTaunt", 3}),
-		    new TimedMethod(60, "Log", new object[] {"The General is charging"})};
+		    new TimedMethod(60, "Log", new object[] {"The General is charging"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {amount.ToString(), Party.enemySlot - 1, "charge", false})};
 	}
 	
 	public TimedMethod[] Melee() {
-		Attacks.SetAudio("Blunt Hit", 20);
+		Attacks.SetAudio("Blunt Hit", 10);
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"GeneralAttack"}),
 		    new TimedMethod(60, "Log", new object[] {"The General used the gun as a melee weapon"}),
-		     new TimedMethod(0, "Audio", new object[] {"Blunt Hit"}), new TimedMethod(0, "Attack", new object[] {false})};
+		     new TimedMethod(0, "Audio", new object[] {"Big Swing"}), new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	
 	public TimedMethod[] Automatic() {
@@ -58,14 +61,14 @@ public class General : Character {
 	
 	public TimedMethod[] GrenadeThrow() {
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"GeneralGrenade"}),
-    		new TimedMethod(0, "AudioAfter", new object[] {"Missile", 45}),
+    		new TimedMethod(0, "AudioAfter", new object[] {"Missile", 30}),
 		    new TimedMethod(60, "Log", new object[] {"The General threw a grenade to your team"})};
 	}
 	
 	public TimedMethod[] GrenadeExplosion () {
 		string message;
 		TimedMethod move;
-		Attacks.SetAudio("Blunt Hit", 20);
+		Attacks.SetAudio("Blunt Hit", 6);
 		if (GetAccuracy() > Party.GetPlayer().GetEvasion()) {
 		    move = new TimedMethod(0, "AttackAll", new object[] {false, 12, 12, GetAccuracy(), true});
 			message = "The grenade exploded!";

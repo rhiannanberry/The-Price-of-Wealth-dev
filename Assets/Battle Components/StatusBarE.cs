@@ -19,6 +19,7 @@ public class StatusBarE : MonoBehaviour {
     string defaultText;
 	string specificText;
 	public static bool informed;
+	public bool frozen;
 	// Use this for initialization
 	void Start () {
 		message.text = "";
@@ -29,6 +30,10 @@ public class StatusBarE : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Check();
+	}
+	
+	void Check () {
 		try { 
 		    enemy = Party.GetEnemy();
 		    charName = enemy.type;

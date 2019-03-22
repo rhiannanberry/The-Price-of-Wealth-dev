@@ -37,7 +37,8 @@ public class TeachingAssistant : Character {
 	
 	public TimedMethod[] Laziness () {
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " is procrastinating"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
+		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}
 	
 	public override void CreateDrops () {

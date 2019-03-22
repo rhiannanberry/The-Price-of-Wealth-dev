@@ -38,11 +38,13 @@ public class Expirimentor : Researcher {
 	
 	public TimedMethod[] Attack() {
 		Attacks.SetAudio("Fire Hit", 20);
+		TimedMethod debuffPart = new TimedMethod("Null");
 		if (Attacks.EvasionCheck(Party.GetPlayer(), GetAccuracy())) {
 			Party.GetPlayer().GainCharge(-4);
+			debuffPart = new TimedMethod(0, "CharLogSprite", new object[] {"-4", Party.playerSlot - 1, "charge", true});
 		}
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " swung heated metal"}),
-		    new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
+		    new TimedMethod(0, "Audio", new object[] {"Small Swing"}), debuffPart,
 		    new TimedMethod(0, "StagnantAttack", new object[] {false, 6, 6, GetAccuracy(), true, true, false})};
 	}
 	
@@ -108,7 +110,8 @@ public class Expirimentor : Researcher {
 		if (GetGooped()) {
 			status.gooped = false;
 			return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " escaped the goop"}),
-			    new TimedMethod(0, "Audio", new object[] {"Clean"})};
+			    new TimedMethod(0, "Audio", new object[] {"Clean"}),
+				new TimedMethod(0, "CharLogSprite", new object[] {"Cleaned", Party.enemySlot - 1, "goop", false})};
 		}
 		if (Party.enemyCount > 1) {
 			int former = Party.enemySlot;

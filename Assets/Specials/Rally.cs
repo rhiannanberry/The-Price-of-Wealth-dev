@@ -9,6 +9,10 @@ public class Rally : Special {
 			}
 		}
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Skill2"}), new TimedMethod(0, "AudioAfter", new object[] {"Fire", 20}),
-		    new TimedMethod(60, "Log", new object[] {"All party members gained 1 power"})};
+		    new TimedMethod(0, "Log", new object[] {Party.members[i].ToString() + " rallied"}),
+			new TimedMethod(15, "CharLogSprite", new object[] {"1", 0, "power", true}),
+			new TimedMethod(15, "CharLogSprite", new object[] {"1", 1, "power", true}),
+			new TimedMethod(15, "CharLogSprite", new object[] {"1", 2, "power", true}),
+			new TimedMethod(15, "CharLogSprite", new object[] {"1", 3, "power", true})};
     }		
 } 

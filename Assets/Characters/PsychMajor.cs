@@ -62,7 +62,8 @@ public class PsychMajor : Character {
 	
 	public TimedMethod[] Nothing() {
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " was inhibited by superego"}),
-		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
+		    new TimedMethod(0, "Audio", new object[] {"Skip Turn"}),
+			new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 	}
 	
 	public override void CreateDrops() {
@@ -78,7 +79,7 @@ public class PsychMajor : Character {
 		drops = new Item[0];
 		return dropped;
 	}
-	
+
 	public override string[] CSDescription () {
 		return new string[] {"Psychology Major - Can read minds, make people quit smoking, and trap our brains in an infinite dimension",
 	    	"Or was that psychiatry? Whatever. Just don't get hypnotized"};

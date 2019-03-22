@@ -279,8 +279,9 @@ public class Battle : MonoBehaviour {
 			guardStrength = 5;
 		}
 		lastGuard = Party.turn;
-		player.GainGuard(guardStrength);
-	    string message = player.ToString() + " gained " + guardStrength.ToString() + " guard";
+		Party.GetPlayer().GainGuard(guardStrength);
+		CharLogSprite(guardStrength.ToString(), Party.playerSlot - 1, "guard", true);
+	    string message = player.ToString() + " is guarding";
 		messageLog.SendMessage("SetMessage", message);
 		menu.SetActive(false);
 	    methodQueue.Enqueue(new TimedMethod(30, "EndTurn"));
@@ -289,10 +290,11 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void Dodge () {
-		player.SetEvasion(player.GetEvasion() + 5);
-		string message = player.ToString() + " gained 5 evasion";
+		Party.GetPlayer().GainEvasion(5);
+		string message = player.ToString() + " is dodging";
 		messageLog.SendMessage("SetMessage", message);
 		menu.SetActive(false);
+		CharLogSprite("5", Party.playerSlot - 1, "evasion", true);
 	    methodQueue.Enqueue(new TimedMethod(30, "EndTurn"));
 		defenseMenu.SetActive(false);
 	}
@@ -545,6 +547,7 @@ public class Battle : MonoBehaviour {
 				methodQueue.Enqueue(new TimedMethod(0, "Freed"));
 			}
 			if (Party.GetPlayer().GetPassing()) {
+				CharLogSprite("SKIP", Party.playerSlot - 1, "skip",  true);
 				methodQueue.Enqueue(new TimedMethod("EndTurn"));
 			} else {
 		        methodQueue.Enqueue(new TimedMethod(0, "ToggleMenu", new object[] {true}));
@@ -599,7 +602,10 @@ public class Battle : MonoBehaviour {
 	public void Skip () {
 		if (Party.GetPlayer().GetGooped() && !(Party.GetPlayer().GetAsleep() || Party.GetPlayer().GetStunned())) {
 			Party.GetPlayer().status.gooped = false;
-			methodQueue.Enqueue(new TimedMethod(60, "Log", new object[] {"The goop was cleaned"}));
+			methodQueue.Enqueue(new TimedMethod(0, "CharLogSprite", new object[] {"Cleaned", Party.playerSlot - 1, "goop", true}));
+			//methodQueue.Enqueue(new TimedMethod(60, "Log", new object[] {"The goop was cleaned"}));
+		} else {
+			methodQueue.Enqueue(new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.playerSlot - 1, "skip", true}));
 		}
 		menu.SetActive(false);
 		methodQueue.Enqueue(new TimedMethod(0, "EndTurn"));
@@ -616,8 +622,24 @@ public class Battle : MonoBehaviour {
 	    messageLog.SendMessage("SetMessage", message);	
 	}
 	
-	public void CharLog (string message, int index) {
-		sprites.GetComponent<CharSprites>().Log(message, index);
+	public void CharLog (string message, int index, bool player) {
+		if (player) {
+	    	sprites.GetComponent<CharSprites>().Log(message, index);
+		} else {
+			sprites.GetComponent<CharSprites>().Log(message, index + 4);
+		}
+	}
+	
+	public void CharLogDelay(string message, int index, string sprite, bool player) {
+		methodQueue.Enqueue(new TimedMethod(0, "CharLogSprite", new object[] {message, index, sprite, player}));
+	}
+	
+	public void CharLogSprite(string message, int index, string sprite, bool player) {
+		if (player) {
+		    sprites.GetComponent<CharSprites>().LogSprite(message, index, sprite);
+		} else {
+			sprites.GetComponent<CharSprites>().LogSprite(message, index + 4, sprite);
+		}
 	}
 	
 	public void PartyDeath(Character dead) {
