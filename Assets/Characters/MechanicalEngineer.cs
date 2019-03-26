@@ -22,7 +22,7 @@ public class MechanicalEngineer : Character {
 	public override TimedMethod[] BasicAttack() {
 		TimedMethod guardPart = new TimedMethod("Null");
 		if (Attacks.EvasionCheck(Party.GetEnemy(), GetAccuracy())) {
-			guardPart = new TimedMethod(0, "CharLogSprite", new object[] {-1, Party.enemySlot - 1, "guard", false});
+			guardPart = new TimedMethod(0, "CharLogDelay", new object[] {"-1", Party.enemySlot - 1, "guard", false});
 			Party.GetEnemy().GainGuard(-1);
 		}
 		TimedMethod[] attackPart;
@@ -34,8 +34,8 @@ public class MechanicalEngineer : Character {
 		}
 		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
 		moves[0] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
-		moves[1] = guardPart;
-		attackPart.CopyTo(moves, 2);
+		moves[moves.Length - 1] = guardPart;
+		attackPart.CopyTo(moves, 1);
 		return moves;
 	}
 	

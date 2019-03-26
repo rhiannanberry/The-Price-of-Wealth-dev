@@ -551,7 +551,9 @@ public class Battle : MonoBehaviour {
 				methodQueue.Enqueue(new TimedMethod(0, "Freed"));
 			}
 			if (Party.GetPlayer().GetPassing()) {
+				Party.GetPlayer().status.passing = false;
 				CharLogSprite("SKIP", Party.playerSlot - 1, "skip",  true);
+				Audio("Skip Turn");
 				methodQueue.Enqueue(new TimedMethod("EndTurn"));
 			} else {
 		        methodQueue.Enqueue(new TimedMethod(0, "ToggleMenu", new object[] {true}));
@@ -655,6 +657,9 @@ public class Battle : MonoBehaviour {
 			sprites.GetComponent<CharSprites>().ChangeHP(damage, index + 4);
 		}
 	}
+	public void RefreshStatusP() {
+	    statusBars.transform.Find("Player Status").GetComponent<StatusBarP>().Check();
+	}
 	
 	public void PartyDeath(Character dead) {
 	    string message = dead.ToString() + " was defeated. Your champion was sent out";
@@ -671,6 +676,8 @@ public class Battle : MonoBehaviour {
 	public void Win () {
 		    methodQueue.Clear();
 			Score.victories++;
+			statusBars.transform.Find("Player Status").GetComponent<StatusBarP>().Check();
+		    statusBars.transform.Find("Enemy Status").GetComponent<StatusBarE>().Check();
 			if (Party.fullRecruit != null) {
 				if (Party.playerCount == 4) {
 				    recruitMember.SetActive(true);

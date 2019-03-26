@@ -77,12 +77,12 @@ public class Tenured : Instructor {
 		int index = 0;
 		foreach (Character c in Party.members) {
 			if (c != null && c.GetAlive() && Attacks.EvasionCycle(this, c)) {
-		        sleepPart = Party.GetPlayer().status.Sleep();
+		        sleepPart = c.status.Sleep();
 				Status.NullifyAttack(c); Status.NullifyDefense(c);
 				totalSleep[index + 2] = new TimedMethod(0, "CharLogSprite", new object[] {"atk reset", c.partyIndex, "nullAttack",  true});
 				totalSleep[index + 3] = new TimedMethod(0, "CharLogSprite", new object[] {"def reset", c.partyIndex, "nullDefense",  true});
 	    	} else {
-    			sleepPart = new TimedMethod[] {new TimedMethod(0, "CharLog", new object[] {"miss", c.partyIndex, true}), new TimedMethod("Null")};
+    			sleepPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		    }
 			totalSleep[index] = sleepPart[0];
 			totalSleep[index + 1] = sleepPart[1];

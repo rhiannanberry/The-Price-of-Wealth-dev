@@ -27,7 +27,7 @@ public class PsychMajor : Character {
 			apathyPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		}
 		TimedMethod[] attackPart;
-		Attacks.SetAudio("Slime", 20);
+		Attacks.SetAudio("Cheese", 20);
 		if (Party.BagContains(new Metronome())) {
 			attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 3, strength + 3, GetAccuracy(), true, true, false);
 		} else {
@@ -42,7 +42,7 @@ public class PsychMajor : Character {
 	}
 	
 	public TimedMethod[] Attack() {
-		Attacks.SetAudio("Slime", 20);
+		Attacks.SetAudio("Cheese", 20);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " threw a dried brain"}),
             new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
 		    new TimedMethod(0, "Attack", new object[] {false})};

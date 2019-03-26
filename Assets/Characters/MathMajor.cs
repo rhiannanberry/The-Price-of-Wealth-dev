@@ -39,7 +39,8 @@ public class MathMajor : Character {
 		if (GetAsleep() || GetStunned() || GetPassing()) {
 			factorial = 0;
 			answer = 1;
-			return new TimedMethod[] {new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
+			return new TimedMethod[] {new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false}),
+			    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
 		} else { 
 		    return AI();
 		}

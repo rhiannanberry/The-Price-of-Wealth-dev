@@ -23,7 +23,7 @@ public class MusicMajor : Character {
 		TimedMethod statPart = new TimedMethod("Null");
 		if (Attacks.EvasionCheck(Party.GetEnemy(), GetAccuracy())) {
 			Party.GetEnemy().GainCharge(-1);
-			statPart = new TimedMethod(0, "CharLogSprite", new object[] {"-1", Party.enemySlot - 1, "charge", false});
+			statPart = new TimedMethod(0, "CharLogDelay", new object[] {"-1", Party.enemySlot - 1, "charge", false});
 		}
 		TimedMethod[] attackPart;
 		Attacks.SetAudio("Piano Hit", 10);
@@ -34,8 +34,8 @@ public class MusicMajor : Character {
 		}
 		TimedMethod[] moves = new TimedMethod[attackPart.Length + 2];
 		moves[0] = new TimedMethod(0, "Audio", new object[] {"Big Swing"});
-		moves[1] = statPart;
-		attackPart.CopyTo(moves, 2);
+		moves[moves.Length - 1] = statPart;
+		attackPart.CopyTo(moves, 1);
 		return moves;
 	}
 	

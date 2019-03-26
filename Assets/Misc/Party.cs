@@ -254,7 +254,7 @@ public static class Party {
 					    playerCount++;
 					    //return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"Your teammates used the defibrilator"})};
 				    } else {
-    				    return new TimedMethod[] {new TimedMethod(60, "Lose")};
+    				    return new TimedMethod[] {new TimedMethod(120, "Lose")};
 				    }
 				}
 			}
@@ -284,7 +284,7 @@ public static class Party {
 					playerCount++;
 					return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"Your teammates used the defibrilator"})};
 				} else {
-    				return new TimedMethod[] {new TimedMethod(60, "Lose")};
+    				return new TimedMethod[] {new TimedMethod(120, "Lose")};
 				}
 			} else {
 				//members[playerSlot - 1] = null;

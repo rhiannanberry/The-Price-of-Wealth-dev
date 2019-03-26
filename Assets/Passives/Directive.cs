@@ -11,6 +11,10 @@ public class Directive : Passive {
 	}
 	
 	public override TimedMethod[] Check (bool player) {
+		if ((player && Party.GetPlayer().GetGooped()) || (!player && Party.GetEnemy().GetGooped())) {
+			return new TimedMethod[0];
+		}
+		
 		if (firstTurn) {
 			firstTurn = false;
 			return new TimedMethod[0];

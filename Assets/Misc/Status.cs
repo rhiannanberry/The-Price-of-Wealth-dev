@@ -19,6 +19,7 @@ public class Status {
 	public bool waking;
 	public static int catalyst;
 	public static bool firewall;
+	public static System.Random rng = new System.Random();
 	
 	public Status (Character c) {
 		self = c; asleep = 0; poisoned = 0; stunned = 0; gooped = false; blinded = 0; caffeine = 0; waking = false; regeneration = 0; passing = false;
@@ -46,7 +47,6 @@ public class Status {
 			}
 		}
 		if (apathetic > 0) {
-			System.Random rng = new System.Random();
 			if (rng.Next(10) < 3) {
 				passing = true;
 				apathetic--;
@@ -106,7 +106,7 @@ public class Status {
 			blinded--;
 		}
 		if (asleep > 0) {
-	        int threshold = new System.Random().Next(6) + 1;
+	        int threshold = rng.Next(6) + 1;
 			if (waking || threshold <= asleep) {
 				asleep = 0; waking = false;
 				temp = new TimedMethod[messages.Length + 1];
@@ -214,7 +214,6 @@ public class Status {
 	}
 	
 	public TimedMethod[] Stun (int amount) {
-		System.Random rng = new System.Random();
 		if (!stunImmune && stunned == 0 && rng.Next(2) == 0) {
 			stunned = amount;
 			return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"S Explosion"}),
@@ -276,7 +275,7 @@ public class Status {
 	}
 	
 	public void Coffee () {
-		caffeine = 5; //self.SetPower(self.GetPower() + 5); self.GainAccuracy(5);
+		caffeine = 6; //self.SetPower(self.GetPower() + 5); self.GainAccuracy(5);
 		//return new TimedMethod[] { new TimedMethod(0, "Audio", new object[] {"Tazer"}),
 		//	new TimedMethod(0, "CharLog", new object[] {"Caffeine", self.partyIndex})};
 	}

@@ -46,7 +46,7 @@ public class CulinaryMajor : Character {
 		moves[0] = new TimedMethod(0, "Audio", new object[] {"Knife Throw"});
 		moves[1] = statusPart[0];
 		moves[2] = statusPart[1];
-		attackPart.CopyTo(moves, 4);
+		attackPart.CopyTo(moves, 3);
 		return moves;
 	}
 	

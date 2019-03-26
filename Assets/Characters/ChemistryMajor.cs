@@ -41,9 +41,10 @@ public class ChemistryMajor : Character {
 		} else {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy());
 		}
-		TimedMethod[] moves = new TimedMethod[attackPart.Length + 3];
-		moves[0] = new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20});
-		attackPart.CopyTo(moves, 1);
+		TimedMethod[] moves = new TimedMethod[attackPart.Length + 4];
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Missile"});
+		moves[1] = new TimedMethod(0, "AudioAfter", new object[] {"Glass Break", 20});
+		attackPart.CopyTo(moves, 2);
 		moves[moves.Length - 2] = poisonPart[0];
 		moves[moves.Length - 1] = poisonPart[1];
 		return moves;

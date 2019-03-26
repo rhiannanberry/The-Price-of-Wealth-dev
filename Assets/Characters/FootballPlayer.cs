@@ -19,6 +19,7 @@ public class FootballPlayer : Character {
 			    new TimedMethod(0, "StagnantAttack", new object[] {false, 5, 5, GetAccuracy(), true, true, false})};
 		} else if (seed < 8) {
 			moves = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The " + ToString() + " is rallying. Team power has increased"}),
+			    new TimedMethod(0, "Audio", new object[] {"Whistle"}),
 				new TimedMethod(6, "CharLogSprite", new object[] {"1", 0, "power", false}),
 				new TimedMethod(6, "CharLogSprite", new object[] {"1", 1, "power", false}),
 				new TimedMethod(6, "CharLogSprite", new object[] {"1", 2, "power", false}),
@@ -46,7 +47,7 @@ public class FootballPlayer : Character {
 		    attackPart = Attacks.Attack(this, Party.GetEnemy(), strength + 2, strength + 7, GetAccuracy(), true, true, false);
 		}
 		TimedMethod[] moves = new TimedMethod[attackPart.Length + 1];
-		moves[1] = new TimedMethod(0, "Audio", new object[] {"Running"});
+		moves[0] = new TimedMethod(0, "Audio", new object[] {"Running"});
 		attackPart.CopyTo(moves, 1);
 		return moves;
 	}

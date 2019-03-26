@@ -37,7 +37,7 @@ public class CJMajor : Character {
 		moves[0] = new TimedMethod(0, "AudioAfter", new object[] {"Small Swing", 10});
 	    moves[1] = healPart[0];
 		moves[2] = healPart[1];
-		attackPart.CopyTo(moves, 4);
+		attackPart.CopyTo(moves, 3);
 		return moves;
 	}
 	

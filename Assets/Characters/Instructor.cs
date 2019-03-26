@@ -54,18 +54,13 @@ public class Instructor : Character {
 		TimedMethod[] sleepPart;
 		foreach (Character c in Party.members) {
 			if (c != null && c.GetAlive() && Attacks.EvasionCycle(this, c)) {
-		        sleepPart = Party.GetPlayer().status.Sleep();
+		        sleepPart = c.status.Sleep();
 	    	} else {
     			sleepPart = new TimedMethod[] {new TimedMethod("Null"), new TimedMethod("Null")};
 		    }
 			totalSleep[index] = sleepPart[0];
 			totalSleep[index + 1] = sleepPart[1];
 			index += 2;
-		}
-		if (Attacks.EvasionCycle(this, Party.GetPlayer())) {
-		    sleepPart = Party.GetPlayer().status.Sleep();
-		} else {
-			sleepPart = new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"It went over your head"}), new TimedMethod("Null")};
 		}
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Filibuster"}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " lectured"}), totalSleep[0], totalSleep[1], totalSleep[2], totalSleep[3],

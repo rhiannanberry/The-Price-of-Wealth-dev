@@ -59,7 +59,8 @@ public class Politician : Character {
 				return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {"The promise has been broken! Voter support is 0!"}),
 				    new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
 			}
-			return new TimedMethod[] {new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false})};
+			return new TimedMethod[] {new TimedMethod(0, "CharLogSprite", new object[] {"SKIP", Party.enemySlot - 1, "skip", false}),
+			    new TimedMethod(0, "Audio", new object[] {"Skip Turn"})};
 		} else { 
 		    return AI();
 		}
@@ -99,7 +100,7 @@ public class Politician : Character {
 		TimedMethod[] sleepPart;
 		foreach (Character c in Party.members) {
 			if (c != null && c.GetAlive() && Attacks.EvasionCycle(this, c)) {
-		        sleepPart = Party.GetPlayer().status.Sleep();
+		        sleepPart = c.status.Sleep();
 	    	} else {
     			sleepPart = new TimedMethod[] {new TimedMethod(0, "CharLog", new object[] {"miss", c.partyIndex, true}), new TimedMethod("Null")};
 		    }
