@@ -26,6 +26,10 @@ public class Administrator : Character {
 	}
 	
 	public TimedMethod[] Summon() {
+		if (Party.enemyCount == 4) {
+			return Switch();
+		}
+		
 		System.Random rng = new System.Random();
 		int seed;
 		Character current;
@@ -48,7 +52,7 @@ public class Administrator : Character {
 			Party.AddEnemy(current);
 		}
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Recruit"}),
-    		new TimedMethod(60, "Log", new object[] {ToString() + " called in two underlings"})};
+    		new TimedMethod(60, "Log", new object[] {ToString() + " called in underlings"})};
 	}
 	
 	public TimedMethod[] Switch() {

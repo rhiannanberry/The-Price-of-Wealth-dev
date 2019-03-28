@@ -77,7 +77,6 @@ public class Battle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(Party.GetPlayer().partyIndex.ToString());
 		if (delay > 0) {
 			delay--;
 		} else {
@@ -298,6 +297,7 @@ public class Battle : MonoBehaviour {
 		CharLogSprite("5", Party.playerSlot - 1, "evasion", true);
 	    methodQueue.Enqueue(new TimedMethod(30, "EndTurn"));
 		defenseMenu.SetActive(false);
+		Audio("Big Swing");
 	}
 	
 	public void Run () {
@@ -478,6 +478,10 @@ public class Battle : MonoBehaviour {
 	
 	public void NextTurn (bool isEnemy) {
 		sprites.GetComponent<CharSprites>().UnfreezeAll();
+		if (Party.playerCount == 0 || !Party.members[0].GetAlive()) {
+		    return;
+		}
+		
 		if (isEnemy) {
 			statusBars.transform.Find("Player Status").GetComponent<StatusBarP>().Check();
 		    statusBars.transform.Find("Enemy Status").GetComponent<StatusBarE>().Check();

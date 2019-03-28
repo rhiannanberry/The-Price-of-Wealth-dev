@@ -30,7 +30,7 @@ public class Conductor : Character {
 				c.GainCharge(5);
 			}
 		}
-		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"ConductorCount"}),
+		return new TimedMethod[] {
 		    new TimedMethod(0, "Audio", new object[] {"Button"}), new TimedMethod(0, "AudioAfter", new object[] {"Button", 15}),
 		    new TimedMethod(0, "AudioAfter", new object[] {"Button", 15}), new TimedMethod(0, "AudioAfter", new object[] {"Button", 15}),
 		    new TimedMethod(60, "Log", new object[] {ToString() + " initiated the performance. All charge up"}),

@@ -47,7 +47,8 @@ public class MusicMajor : Character {
 		    	for (int i = 0; i < 4; i++) {
 			    	if (Party.members[i] != null && Party.members[i].GetAlive() && i != Party.playerSlot - 1) {
 				    	if (steps == 0) {
-					    	return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() 
+					    	return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Big Swing"}),
+							    new TimedMethod(60, "Log", new object[] {ToString() 
 						        + " played a trumpet"}), new TimedMethod(60, "SwitchTo", new object[] {i + 1}),
 								new TimedMethod(0, "CharLogSprite", new object[] {"atk reset", Party.playerSlot - 1, "nullAttack", true})};
     					} else {

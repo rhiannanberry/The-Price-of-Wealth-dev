@@ -62,7 +62,7 @@ public class MechanicalEngineer : Character {
 	public TimedMethod[] Wrench() {
 		Attacks.SetAudio("Metal Hit", 10);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " swung a wrench"}),
-    		new TimedMethod(0, "Audio", new object[] {"Big Swing"}), new TimedMethod(60, "Attack", new object[] {false})};
+    		new TimedMethod(0, "Audio", new object[] {"Big Swing"}), new TimedMethod(0, "Attack", new object[] {false})};
 	}
 	
 	public TimedMethod[] Oil() {

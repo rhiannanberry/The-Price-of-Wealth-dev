@@ -37,7 +37,7 @@ public class Criminal : Character {
 	}
 	
 	public TimedMethod[] Attack () {
-		Attacks.SetAudio("knife", 6);
+		Attacks.SetAudio("Knife", 6);
 		return new TimedMethod[] {new TimedMethod(60, "Log", new object[] {ToString() + " used a knife"}),
 		   new TimedMethod(0, "Audio", new object[] {"Small Swing"}),
 	    	new TimedMethod(0, "StagnantAttack", new object[] {false, 6, 8, GetAccuracy(), true, true, false})};

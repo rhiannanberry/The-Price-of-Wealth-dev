@@ -15,6 +15,7 @@ public class Filibuster : Special {
 			}
 			index += 2;
 		}
+		index = 8;
 		foreach (Character c in Party.enemies) {
 			if (c != null && c.GetAlive()) {
 				c.status.Sleep();
@@ -26,6 +27,7 @@ public class Filibuster : Special {
 		}
 		return new TimedMethod[] {new TimedMethod(0, "Audio", new object[] {"Filibuster"}),
 		    new TimedMethod(60, "Log", new object[] {Party.members[i].ToString() + " wouldn't stop talking"}),
-			totalSleep[0], totalSleep[1], totalSleep[2], totalSleep[3], totalSleep[4], totalSleep[5], totalSleep[6], totalSleep[7]};
+			totalSleep[0], totalSleep[1], totalSleep[2], totalSleep[3], totalSleep[4], totalSleep[5], totalSleep[6], totalSleep[7],
+			totalSleep[8], totalSleep[9], totalSleep[10], totalSleep[11], totalSleep[12], totalSleep[13], totalSleep[14], totalSleep[15]};
 	}
 }

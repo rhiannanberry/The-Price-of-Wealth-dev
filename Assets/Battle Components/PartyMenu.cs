@@ -143,6 +143,7 @@ public class PartyMenu : MonoBehaviour {
 	
 	public void Replace () {
 		Party.members[active - 1] = null;
+		Party.playerCount--;
 		Party.AddPlayer(Party.fullRecruit);
 		Party.latestRecruit = Party.fullRecruit;
 		Party.fullRecruit = null;
@@ -150,6 +151,7 @@ public class PartyMenu : MonoBehaviour {
 	
 	public void Kick () {
 		Party.members[active - 1] = null;
+		Party.playerCount--;
 	}
 	
 	public void Special () {
