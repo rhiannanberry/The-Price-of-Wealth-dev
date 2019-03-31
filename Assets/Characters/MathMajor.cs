@@ -80,7 +80,8 @@ public class MathMajor : Character {
 	}
 	
 	public override string[] CSDescription () {
-		return new string[] {"Math Major - knowledge of functions lets them scale their attack power excessively", 
-		"In addition, their team will gain accuracy as the fight goes on. Take them all out quickly"};
+		return new string[] {"Math Major - Likes math way too much",
+            "Knowledge of functions lets them scale their attack power excessively", 
+		    "In addition, their team will gain accuracy as the fight goes on. Take them all out quickly"};
 	}
 }

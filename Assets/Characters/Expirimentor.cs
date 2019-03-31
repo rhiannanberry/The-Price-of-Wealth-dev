@@ -139,6 +139,6 @@ public class Expirimentor : Researcher {
 	
 	public override string[] CSDescription () {
 		return new string[] {"Expirimentor - illegally offers extra credit in exchange for test subjects",
-		    "If we have a way to beat him first, we might be able to recruit one of the others"};
+		    "Will also expiriment on unwilling specimens"};
 	}
 }

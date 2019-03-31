@@ -100,7 +100,7 @@ public class Administrator : Character {
 	}
 	
 	public override string[] CSDescription () {
-		return new string[] {"Administrator - Get ready to deal with backup that gets powered up by him",
-		    "The moment after we defeat their employees is when the administrator is the most powerful"};
+		return new string[] {"Administrator - Get ready to deal with powered up backup",
+		    "The moment after we defeat the employees is when the administrator is the most powerful"};
 	}
 }

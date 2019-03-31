@@ -85,6 +85,9 @@ public class PartyMenu : MonoBehaviour {
 		    enem4.interactable = false;	
 		}
 		SetActive(Party.GetActive());
+		if (replacing) {
+			swap.SetActive(false);
+		}
 	}
 	
 	void OnDisable() {SetActive(1);}
@@ -111,6 +114,9 @@ public class PartyMenu : MonoBehaviour {
 		    kick.interactable = false;
 		} else {
 			kick.interactable = true;
+		}
+		if (replacing) {
+			swap.interactable = true;
 		}
 		if (item == null && currentSpecial == null) {
 		    if ((i == Party.playerSlot && !replacing) || i >= 5 || Party.GetPlayer().GetGooped()) {

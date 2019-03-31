@@ -93,8 +93,8 @@ public class EnglishMajor : Character {
 	}
 	
 	public override string[] CSDescription () {
-		return new string[] {"English Major - Tristan can't think of anything witty to say about this right now",
-	    	"Here is some text that should be patched out later"};
+		return new string[] {"English Major - Think words strong. Swings big book",
+	    	"Can remove attack debuffs with a fallacious arguement and debuff you with a dead language"};
 	}
 		
 }

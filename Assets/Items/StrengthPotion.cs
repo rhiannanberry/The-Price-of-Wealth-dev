@@ -1,7 +1,7 @@
 public class StrengthPotion : Item {
 	
 	public StrengthPotion() {
-    	name = "Strength Potion"; description = "+1 Strength. Wouldn't it be great if Tristan remembered anything from Chem to name this right?";
+    	name = "Sulfur"; description = "+1 Strength. Explosive people are stronger";
 	    selects = true; price = 11; usableOut = true;
 	}
 	

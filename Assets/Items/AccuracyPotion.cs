@@ -1,7 +1,7 @@
 public class AccuracyPotion : Item {
 	
 	public AccuracyPotion() {
-    	name = "Accuracy Potion"; description = "+1 Accuracy. Wouldn't it be great if Tristan remembered anything from Chem to name this right?";
+    	name = "Iodine"; description = "+1 Accuracy. Salty people are more focused";
 	    selects = true; price = 11; usableOut = true;
 	}
 	

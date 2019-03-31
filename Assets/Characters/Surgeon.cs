@@ -68,7 +68,7 @@ public class Surgeon : Doctor {
 	}
 	
 	public override string[] CSDescription () {
-		return new string[] {"Surgeon - Currently the easiest area boss by far",
-		    "Please submit ideas to make it more difficult"};
+		return new string[] {"Surgeon - Refuses to perform surgery unless conditions are permissive",
+		    "That means don't acquire a certain combination of conditions"};
 	}
 }

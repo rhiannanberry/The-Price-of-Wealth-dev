@@ -75,7 +75,7 @@ public class Doctor : Character {
 	}
 	
 	public override string[] CSDescription () {
-		return new string[] {"Doctor - Always go for the healer, right?",
-		    "They can put us to sleep as well to buy them more time for healing"};
+		return new string[] {"Doctor - Always go for the healer first, right?",
+            "Can and will drug you to buy them more time for healing"};
 	}
 }

@@ -1,7 +1,7 @@
 public class DexPotion : Item {
 	
 	public DexPotion() {
-    	name = "Dex Potion"; description = "+1 Dexterity. Wouldn't it be great if Tristan remembered anything from Chem to name this right?";
+    	name = "Phosphorous"; description = "+1 Dexterity. On-fire people are faster";
 	    selects = true; price = 11; usableOut = true;
 	}
 	
