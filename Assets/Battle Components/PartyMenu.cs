@@ -86,7 +86,7 @@ public class PartyMenu : MonoBehaviour {
 		}
 		SetActive(Party.GetActive());
 		if (replacing) {
-			swap.SetActive(false);
+			swap.interactable = false;
 		}
 	}
 	
