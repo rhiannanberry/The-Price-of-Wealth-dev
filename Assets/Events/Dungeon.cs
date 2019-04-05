@@ -500,13 +500,14 @@ public class Dungeon : MonoBehaviour {
 				Party.AddPlayer(c);
 			    replaceMember.SetActive(true);
 				eventSpace.SetActive(false);
+				nextMenu.SetActive(false);
 		        //menu.SetActive(false);
 	    		//largeMenuHides.SetActive(false);
 			    replaceMember.transform.Find("Member 1").gameObject.GetComponent<Button>().interactable = false;
 				return;
 			}
 		}
-		Resolve();
+		//Resolve();
 	}
 	
 	public void OpenSpecial (Special special) {

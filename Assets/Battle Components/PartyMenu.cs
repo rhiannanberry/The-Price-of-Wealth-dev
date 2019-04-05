@@ -85,6 +85,9 @@ public class PartyMenu : MonoBehaviour {
 		    enem4.interactable = false;	
 		}
 		SetActive(Party.GetActive());
+		if (replacing) {
+			swap.interactable = false;
+		}
 	}
 	
 	void OnDisable() {SetActive(1);}
@@ -111,6 +114,9 @@ public class PartyMenu : MonoBehaviour {
 		    kick.interactable = false;
 		} else {
 			kick.interactable = true;
+		}
+		if (replacing) {
+			swap.interactable = true;
 		}
 		if (item == null && currentSpecial == null) {
 		    if ((i == Party.playerSlot && !replacing) || i >= 5 || Party.GetPlayer().GetGooped()) {
@@ -142,14 +148,16 @@ public class PartyMenu : MonoBehaviour {
 	}
 	
 	public void Replace () {
-		Party.fullRecruit.SetPlayer(true);
-		Party.members[active - 1] = Party.fullRecruit;
+		Party.members[active - 1] = null;
+		Party.playerCount--;
+		Party.AddPlayer(Party.fullRecruit);
 		Party.latestRecruit = Party.fullRecruit;
 		Party.fullRecruit = null;
 	}
 	
 	public void Kick () {
 		Party.members[active - 1] = null;
+		Party.playerCount--;
 	}
 	
 	public void Special () {
