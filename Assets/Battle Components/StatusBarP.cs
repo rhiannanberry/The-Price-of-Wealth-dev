@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StatusBarP : MonoBehaviour {
 
-	public Text message;
+	public TextMeshProUGUI message;
 	string charName;
 	string health;
 	string sp;

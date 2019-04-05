@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AreaButton : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	private Toggle toggle;
+ 
+	private void Start()
+	{
+		toggle = GetComponent<Toggle>();
+		toggle.onValueChanged.AddListener(OnToggleValueChanged);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	private void OnToggleValueChanged(bool isOn)
+	{
+		ColorBlock cb = toggle.colors;
+		if (isOn)
+		{
+			cb.normalColor = Color.gray;
+			cb.highlightedColor = Color.gray;
+		}
+		else
+		{
+			cb.normalColor = Color.white;
+			cb.highlightedColor = Color.white;
+		}
+		toggle.colors = cb;
 	}
 	
 	public void Enter (string location) {

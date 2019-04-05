@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class MessageLog : MonoBehaviour {
 	
-	public Text message;
+	public TextMeshProUGUI message;
 	public LinkedList<string> previous;
 
 	// Use this for initialization

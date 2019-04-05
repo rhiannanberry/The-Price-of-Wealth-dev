@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StatusBarE : MonoBehaviour {
 	
-	public Text message;
+	public TextMeshProUGUI message;
 	Character enemy;
 	string charName;
 	string offense;

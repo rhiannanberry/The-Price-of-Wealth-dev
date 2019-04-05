@@ -10,10 +10,15 @@ public class Map : MonoBehaviour {
 	public static string selectedLocation;
 	public static string currentPosition;
 	public HelpMenu help;
+
+
+	public Toggle tower, diningHall, researchLab, stadium, artCenter, healthBuilding, lectureHalls;
+
 	// Use this for initialization
 	void Start () {
 		if (Areas.location == "overworld") {
 			map.SetActive(true);
+			
 			spotlight.SetActive(false);
 		} else {
 			map.SetActive(false);
@@ -29,10 +34,39 @@ public class Map : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (!GetComponent<ToggleGroup>().AnyTogglesOn()) {
+			SetSelected(currentPosition);
+		}
 	}
 	
 	public void Select (string location) {
 		selectedLocation = location;
+	}
+
+	public void SetSelected(string loc) {
+		switch(loc) {
+			case "tower":
+				tower.isOn = true;
+				break;
+			case "dining":
+				diningHall.isOn = true;
+				break;
+			case "research":
+				researchLab.isOn = true;
+				break;
+			case "sports":
+				stadium.isOn = true;
+				break;
+			case "art":
+				artCenter.isOn = true;
+				break;
+			case "health":
+				healthBuilding.isOn = true;
+				break;
+			case "lecture":
+				lectureHalls.isOn = true;
+				break;
+
+		}
 	}
 }
