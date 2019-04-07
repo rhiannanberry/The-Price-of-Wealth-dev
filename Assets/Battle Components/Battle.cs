@@ -7,7 +7,7 @@ using System.Reflection;
 using UnityEngine.SceneManagement;
 
 public class Battle : MonoBehaviour {
-	
+
 	Character player;
 	Character enemy;
 	public GameObject menu;
@@ -35,6 +35,11 @@ public class Battle : MonoBehaviour {
 	int lastGuard;
 	int guardStrength;
 	// Use this for initialization
+
+	private void Awake() {
+		BattleStatic.AttachStatic(this);
+	}
+
 	void Start () {
 		//Debug.Log(Party.playerCount.ToString());
 		//menu = gameObject.transform.Find("MenuSpace").gameObject;
@@ -51,6 +56,7 @@ public class Battle : MonoBehaviour {
 		//sprites = gameObject.transform.Find("Character Sprites").gameObject;
 		//nameMenu = gameObject.transform.Find("Name Menu").gameObject;
 		//statusBars = gameObject.transform.Find("Status Bars").gameObject;
+
 		Party.latestRecruit = null;
 		delay = 0;
 		methodQueue = new Queue<TimedMethod>();
@@ -428,7 +434,7 @@ public class Battle : MonoBehaviour {
 	
 	public void Cancel (string menu) {
 	    this.menu.SetActive(true);
-		gameObject.transform.Find(menu).gameObject.SetActive(false);
+		gameObject.transform.RecursiveFind(menu).gameObject.SetActive(false);
 		largeMenuHides.SetActive(true);
 		messageLog.SendMessage("SetMessage", "");
 	}
@@ -452,10 +458,10 @@ public class Battle : MonoBehaviour {
 		    GetPlayer();
 		    methodQueue.Enqueue(new TimedMethod(60, "Log", new object[] {"Switched to " + player.ToString()}));
 		//methodQueue.Enqueue(new TimedMethod(60,"EndTurn"));
-		    menu.transform.Find("Attack Button").gameObject.GetComponent<Button>().interactable = true;
-		//menu.transform.Find("Special Button").gameObject.GetComponent<Button>().interactable = true;
-		    menu.transform.Find("Item Button").gameObject.GetComponent<Button>().interactable = true;
-		    menu.transform.Find("Defense Button").gameObject.GetComponent<Button>().interactable = true;
+		    menu.transform.RecursiveFind("Attack Button").gameObject.GetComponent<Button>().interactable = true;
+		//menu.transform.RecursiveFind("Special Button").gameObject.GetComponent<Button>().interactable = true;
+		    menu.transform.RecursiveFind("Item Button").gameObject.GetComponent<Button>().interactable = true;
+		    menu.transform.RecursiveFind("Defense Button").gameObject.GetComponent<Button>().interactable = true;
 			Audio("Running");
 		}
 		partyMenu.SetActive(false);
@@ -581,19 +587,20 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void Incapacitated () {
-		menu.transform.Find("Attack Button").gameObject.GetComponent<Button>().interactable = false;
-		//menu.transform.Find("Special Button").gameObject.GetComponent<Button>().interactable = false;
-		menu.transform.Find("Item Button").gameObject.GetComponent<Button>().interactable = false;
-		menu.transform.Find("Defense Button").gameObject.GetComponent<Button>().interactable = false;
-		menu.transform.Find("Recruit Button").gameObject.GetComponent<Button>().interactable = false;
+		menu.transform.RecursiveFind("Attack Button").gameObject.GetComponent<Button>().interactable = false;
+		//menu.transform.RecursiveFind("Special Button").gameObject.GetComponent<Button>().interactable = false;
+		menu.transform.RecursiveFind("Item Button").gameObject.GetComponent<Button>().interactable = false;
+		menu.transform.RecursiveFind("Defense Button").gameObject.GetComponent<Button>().interactable = false;
+		menu.transform.RecursiveFind("Recruit Button").gameObject.GetComponent<Button>().interactable = false;
 	}
 	
 	public void Awaken () {
-		menu.transform.Find("Attack Button").gameObject.GetComponent<Button>().interactable = true;
-		//menu.transform.Find("Special Button").gameObject.GetComponent<Button>().interactable = true;
-		menu.transform.Find("Item Button").gameObject.GetComponent<Button>().interactable = true;
-		menu.transform.Find("Defense Button").gameObject.GetComponent<Button>().interactable = true;
-		menu.transform.Find("Recruit Button").gameObject.GetComponent<Button>().interactable = true;
+		menu.transform.RecursiveFind("Attack Button").gameObject.GetComponent<Button>().interactable = true;
+		//menu.transform.RecursiveFind("Special Button").gameObject.GetComponent<Button>().interactable = true;
+		
+		menu.transform.RecursiveFind("Item Button").gameObject.GetComponent<Button>().interactable = true;
+		menu.transform.RecursiveFind("Defense Button").gameObject.GetComponent<Button>().interactable = true;
+		menu.transform.RecursiveFind("Recruit Button").gameObject.GetComponent<Button>().interactable = true;
 	
 	}
     

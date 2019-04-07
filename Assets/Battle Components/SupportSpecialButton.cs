@@ -2,13 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public class SupportSpecialButton : MonoBehaviour {
+public class SupportSpecialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	public Special special;
 	public int index;
+
+	private TextMeshProUGUI label;
+	private Button button;
+
+	private void Awake() {
+		label = gameObject.GetComponentInChildren<TextMeshProUGUI>();
+		button = GetComponent<Button>();
+	}
 	
 	// Use this for initialization
-	void Start () {}
+	void Start () {
+		button.onClick.AddListener(OnClick);
+	}
 	
 	// Update is called once per frame
 	void Update () {}	
@@ -16,32 +28,39 @@ public class SupportSpecialButton : MonoBehaviour {
 	void OnEnable () {
 		if (Party.members[index] != null) {
 		    Special current = Party.members[index].GetSupportSpecial();
-		    gameObject.GetComponentInChildren<Text>().text = current.GetName();
+		    label.text = current.GetName();
 	    	special = current;
     		if (Party.GetSP() < current.GetCost() || !Party.members[index].GetAlive() || Party.members[index].status.stunned > 0 
 			    || Party.members[index].status.asleep > 0 || Party.members[index].status.possessed > 0) {
-			    gameObject.GetComponent<Button>().interactable = false;
+			    button.interactable = false;
 		    } else {
-	    		gameObject.GetComponent<Button>().interactable = true;
+	    		button.interactable = true;
     		}
 		} else {
-			gameObject.GetComponent<Button>().interactable = false;
-			gameObject.GetComponentInChildren<Text>().text = "Slot empty";
+			button.interactable = false;
+			label.text = "Slot empty";
 		}
 	}
 	
 	public void OnClick () {
-		gameObject.transform.parent.parent.GetComponent<Battle>().SupportSpecial(special, index);
+		BattleStatic.instance.SupportSpecial(special, index);
+	}
+
+	public void OnPointerEnter(PointerEventData e) {
+		Description();
+	}
+
+	public void OnPointerExit(PointerEventData e) {
+		Hide();
 	}
 	
 	public void Description () {
 		if (special != null) {
-		    gameObject.transform.parent.Find("Description").gameObject.GetComponent<Text>().text =
+			SpecialStatic.description.GetComponent<TextMeshProUGUI>().text =
     			Party.members[index].ToString() + " - " + special.ToString();
 		}
 	}
-	
 	public void Hide () {
-		gameObject.transform.parent.Find("Description").gameObject.GetComponent<Text>().text = "";
+		SpecialStatic.description.GetComponent<TextMeshProUGUI>().text = "";
 	}
 }

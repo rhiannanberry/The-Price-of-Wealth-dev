@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PartyMenu : MonoBehaviour {
     public Button char1;
@@ -25,6 +26,7 @@ public class PartyMenu : MonoBehaviour {
 	public bool replacing;
 	public Dungeon dungeon;
 	
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -37,49 +39,49 @@ public class PartyMenu : MonoBehaviour {
 	
 	void OnEnable () {
 		if (Party.GetCharacter(0) != null) {
-	        char1.GetComponentInChildren<Text>().text = Party.GetCharacter(0).GetName();
+	        char1.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(0).GetName();
 			char1.interactable = true;
 		} else {
 		    char1.interactable = false;	
 		}
 		if (Party.GetCharacter(1) != null) {
-	        char2.GetComponentInChildren<Text>().text = Party.GetCharacter(1).GetName();
+	        char2.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(1).GetName();
 			char2.interactable = true;
 		} else {
 		    char2.interactable = false;	
 		}
 		if (Party.GetCharacter(2) != null) {
-	        char3.GetComponentInChildren<Text>().text = Party.GetCharacter(2).GetName();
+	        char3.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(2).GetName();
 			char3.interactable = true;
 		} else {
 		    char3.interactable = false;	
 		}
 		if (Party.GetCharacter(3) != null) {
-	        char4.GetComponentInChildren<Text>().text = Party.GetCharacter(3).GetName();
+	        char4.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(3).GetName();
 			char4.interactable = true;
 		} else {
 		    char4.interactable = false;	
 		}
 		if (Party.GetEnemy(0) != null) {
-	        enem1.GetComponentInChildren<Text>().text = Party.GetEnemy(0).type;
+	        enem1.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(0).type;
 			enem1.interactable = true;
 		} else {
 		    enem1.interactable = false;	
 		}
 		if (Party.GetEnemy(1) != null) {
-	        enem2.GetComponentInChildren<Text>().text = Party.GetEnemy(1).type;
+	        enem2.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(1).type;
 			enem2.interactable = true;
 		} else {
 		    enem2.interactable = false;	
 		}
 		if (Party.GetEnemy(2) != null) {
-	        enem3.GetComponentInChildren<Text>().text = Party.GetEnemy(2).type;
+	        enem3.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(2).type;
 			enem3.interactable = true;
 		} else {
 		    enem3.interactable = false;	
 		}
 		if (Party.GetEnemy(3) != null) {
-	        enem4.GetComponentInChildren<Text>().text = Party.GetEnemy(3).type;
+	        enem4.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(3).type;
 			enem4.interactable = true;
 		} else {
 		    enem4.interactable = false;	
@@ -178,8 +180,8 @@ public class PartyMenu : MonoBehaviour {
 		} else {
 			StandardS.gameObject.SetActive(true);
 			SupportS.gameObject.SetActive(true);
-			StandardS.GetComponentInChildren<Text>().text = Party.members[active - 1].GetSpecial().GetName();
-			SupportS.GetComponentInChildren<Text>().text = Party.members[active - 1].GetSupportSpecial().GetName();
+			StandardS.GetComponentInChildren<TextMeshProUGUI>().text = Party.members[active - 1].GetSpecial().GetName();
+			SupportS.GetComponentInChildren<TextMeshProUGUI>().text = Party.members[active - 1].GetSupportSpecial().GetName();
 		}
 	}
 	
