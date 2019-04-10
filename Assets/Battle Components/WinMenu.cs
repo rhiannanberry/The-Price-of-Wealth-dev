@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class WinMenu : MonoBehaviour {
@@ -10,7 +11,10 @@ public class WinMenu : MonoBehaviour {
 	Item[] loot;
 	public GameObject toggle;
 	public GameObject finish;
+	public GameObject itemButtonPrefab;
 	public Queue<int> indexes = new Queue<int>();
+	public GameObject lootContainer;
+	public GameObject bagContainer;
 	int selected;
 	
 	// Use this for initialization
@@ -30,6 +34,13 @@ public class WinMenu : MonoBehaviour {
 				indexes.Enqueue(i);
 			    Instantiate(toggle, gameObject.transform);
 				selected++;
+				GameObject o = Instantiate(itemButtonPrefab, bagContainer.transform);
+				ItemLootButton oi = o.GetComponent<ItemLootButton>();
+				oi.lootContainer = lootContainer.transform;
+				oi.bagContainer = bagContainer.transform;
+				oi.inBag = true;
+				oi.item = items[i];
+				o.GetComponentInChildren<TextMeshProUGUI>().text = items[i].GetName();
 			}
 			i++;
 		}
@@ -39,6 +50,15 @@ public class WinMenu : MonoBehaviour {
 				indexes.Enqueue(i);
 			    Instantiate(toggle, gameObject.transform);
 				selected++;
+
+				GameObject o = Instantiate(itemButtonPrefab, lootContainer.transform);
+				ItemLootButton oi = o.GetComponent<ItemLootButton>();
+				oi.lootContainer = lootContainer.transform;
+				oi.bagContainer = bagContainer.transform;
+				oi.inBag = false;
+				oi.item = loot[i - 10];
+				o.GetComponentInChildren<TextMeshProUGUI>().text = loot[i - 10].GetName();
+
 		    }
 			i++;
 		}
