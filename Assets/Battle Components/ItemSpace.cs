@@ -8,13 +8,14 @@ public class ItemSpace : MonoBehaviour {
 	public GameObject button;
 	public int index;
 	public Queue<int> indexes = new Queue<int>();
+	public Transform container;
 	public GameObject cancelButton;
 	public GameObject description;
 	// Use this for initialization
 	void Start () {}
 	
 	public void OnEnable () {
-	    foreach (Transform child in transform) {
+	    foreach (Transform child in container) {
 		    if (child.gameObject != cancelButton && child.gameObject != description) {
 			    Destroy(child.gameObject);
 		    }
@@ -23,15 +24,12 @@ public class ItemSpace : MonoBehaviour {
 	    while (index < 10) {
 	    	if (Party.GetItem(index) != null) {
 		    	indexes.Enqueue(index);
-			    Instantiate(button, gameObject.transform);
+			    Instantiate(button, container);
 		    }
 			index++;
 		}
 	}		
 	
-	void OnDisable () {
-		ItemButton.y = ItemButton.startingY;
-	}
 	// Update is called once per frame
 	void Update () {
 		

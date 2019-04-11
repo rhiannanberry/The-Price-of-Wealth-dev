@@ -5,14 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 
 public class PartyMenu : MonoBehaviour {
-    public Button char1;
-	public Button char2;
-	public Button char3;
-	public Button char4;
-	public Button enem1;
-	public Button enem2;
-	public Button enem3;
-	public Button enem4;
+	public Transform membersButtonGroup;
+	public Transform enemiesButtonGroup;
+
 	public Text status;
 	public Button swap;
 	public Button cancel;
@@ -25,6 +20,15 @@ public class PartyMenu : MonoBehaviour {
 	public Special currentSpecial;
 	public bool replacing;
 	public Dungeon dungeon;
+
+	[HideInInspector]
+	Button[] chars;
+	Button[] enemies;
+
+	void Awake() {
+		chars = membersButtonGroup.GetComponentsInChildren<Button>();
+		enemies = enemiesButtonGroup.GetComponentsInChildren<Button>();
+	}
 	
 	
 	// Use this for initialization
@@ -38,55 +42,33 @@ public class PartyMenu : MonoBehaviour {
 	}
 	
 	void OnEnable () {
-		if (Party.GetCharacter(0) != null) {
-	        char1.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(0).GetName();
-			char1.interactable = true;
-		} else {
-		    char1.interactable = false;	
-		}
-		if (Party.GetCharacter(1) != null) {
-	        char2.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(1).GetName();
-			char2.interactable = true;
-		} else {
-		    char2.interactable = false;	
-		}
-		if (Party.GetCharacter(2) != null) {
-	        char3.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(2).GetName();
-			char3.interactable = true;
-		} else {
-		    char3.interactable = false;	
-		}
-		if (Party.GetCharacter(3) != null) {
-	        char4.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(3).GetName();
-			char4.interactable = true;
-		} else {
-		    char4.interactable = false;	
-		}
-		if (Party.GetEnemy(0) != null) {
-	        enem1.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(0).type;
-			enem1.interactable = true;
-		} else {
-		    enem1.interactable = false;	
-		}
-		if (Party.GetEnemy(1) != null) {
-	        enem2.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(1).type;
-			enem2.interactable = true;
-		} else {
-		    enem2.interactable = false;	
-		}
-		if (Party.GetEnemy(2) != null) {
-	        enem3.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(2).type;
-			enem3.interactable = true;
-		} else {
-		    enem3.interactable = false;	
-		}
-		if (Party.GetEnemy(3) != null) {
-	        enem4.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(3).type;
-			enem4.interactable = true;
-		} else {
-		    enem4.interactable = false;	
-		}
 		SetActive(Party.GetActive());
+
+		for (int i = 0; i < 4; i++) {
+			Button c = chars[i];
+			Debug.Log(Party.GetActive());
+			if(Party.GetCharacter(i) != null) {
+				c.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(i).GetName();
+				c.interactable = true;
+				if (i == Party.GetActive() - 1) {
+					c.Select();
+					c.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Bold;
+				} else {
+					c.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Normal;
+				}
+			} else {
+				c.interactable = false;
+			}
+
+			Button b = enemies[i];
+			if (Party.GetEnemy(i) != null) {
+				b.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(i).type;
+				b.interactable = true;
+			} else {
+				b.interactable = false;	
+			}
+		}
+		
 		if (replacing) {
 			swap.interactable = false;
 		}
@@ -100,6 +82,19 @@ public class PartyMenu : MonoBehaviour {
 	
 	public void SetActive(int i) {
 		active = i;
+
+		for (int j = 0; j < 4; j++) {
+			Button c = chars[j];
+			Button b = enemies[j];
+			c.GetComponent<Outline>().enabled = false;
+			b.GetComponent<Outline>().enabled = false;	
+		}
+		if (i <=4 ) {
+			chars[i-1].GetComponent<Outline>().enabled = true;
+		} else {
+			enemies[i-5].GetComponent<Outline>().enabled = true;
+		}
+
 		if (i < 5) {
 		    status.text = Party.GetCharacter(i - 1).StatusText();
 		} else {
@@ -120,6 +115,8 @@ public class PartyMenu : MonoBehaviour {
 		if (replacing) {
 			swap.interactable = true;
 		}
+
+		//Swapping menu
 		if (item == null && currentSpecial == null) {
 		    if ((i == Party.playerSlot && !replacing) || i >= 5 || Party.GetPlayer().GetGooped()) {
 	    		swap.interactable = false;

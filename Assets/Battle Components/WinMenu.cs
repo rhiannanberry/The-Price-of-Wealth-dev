@@ -26,14 +26,12 @@ public class WinMenu : MonoBehaviour {
 		selected = 0;
 		items = Party.GetItems();
 		loot = Party.GetLoot();
-		ItemToggle.Left();
-		ItemToggle.switched = false;
+
 		int i = 0;
 		while (i < 10) {
 			if (items[i] != null) {
 				indexes.Enqueue(i);
-			    Instantiate(toggle, gameObject.transform);
-				selected++;
+			    
 				GameObject o = Instantiate(itemButtonPrefab, bagContainer.transform);
 				ItemLootButton oi = o.GetComponent<ItemLootButton>();
 				oi.lootContainer = lootContainer.transform;
@@ -44,12 +42,10 @@ public class WinMenu : MonoBehaviour {
 			}
 			i++;
 		}
-		ItemToggle.Right();
+
 		while (i < 20) {
 		    if (loot[i - 10] != null) {
 				indexes.Enqueue(i);
-			    Instantiate(toggle, gameObject.transform);
-				selected++;
 
 				GameObject o = Instantiate(itemButtonPrefab, lootContainer.transform);
 				ItemLootButton oi = o.GetComponent<ItemLootButton>();
@@ -67,11 +63,6 @@ public class WinMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (selected > 10) {
-			finish.GetComponent<Button>().enabled = false;
-		} else {
-			finish.GetComponent<Button>().enabled = true;
-		}
 	}
 	
 	public void ChangeNum(int i) {selected += i;}
@@ -79,16 +70,12 @@ public class WinMenu : MonoBehaviour {
 	public void Finish () {
 		Item[] newItems = new Item[10];
 		int index = 0;
-		foreach (Transform child in transform) {
-		    if (child.tag.Equals("Temp")) {
-			    if (child.gameObject.GetComponent<Toggle>().isOn) {
-				    newItems[index] = child.gameObject.GetComponent<ItemToggle>().item;
-				    index++;
-			    }
-		    }
+		foreach (Transform child in bagContainer.transform) {
+			newItems[index] = child.GetComponent<ItemLootButton>().item;
+			index++;
 		}
 		Party.SetItems(newItems);
-		gameObject.transform.parent.Find("Message Log").gameObject.GetComponent<MessageLog>().SetMessage("");
+		//gameObject.transform.parent.Find("Message Log").gameObject.GetComponent<MessageLog>().SetMessage("");
 		//Party.PostBattle();
 		//SceneManager.LoadScene(Party.area);
 	}
@@ -96,13 +83,9 @@ public class WinMenu : MonoBehaviour {
 	public void Confirm () {
 		Item[] newItems = new Item[10];
 		int index = 0;
-		foreach (Transform child in transform) {
-		    if (child.tag.Equals("Temp")) {
-			    if (child.gameObject.GetComponent<Toggle>().isOn) {
-				    newItems[index] = child.gameObject.GetComponent<ItemToggle>().item;
-				    index++;
-			    }
-		    }
+		foreach (Transform child in bagContainer.transform) {
+			newItems[index] = child.GetComponent<ItemLootButton>().item;
+			index++;
 		}
 		Party.SetItems(newItems);
 		Party.ClearLoot();

@@ -2,37 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public class ItemButton : MonoBehaviour {
+public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	
 	public Item item;
 	public int index;
-	public Vector3 pos;
-	public static int startingY = 50;
-	public static int y = 50;
-	public static int stepY = 25;
 	public static bool inBattle;
 	public GameObject messageLog;
 	
 	public ItemButton(Item item) {this.item = item;}
+
+	private TextMeshProUGUI label;
+	private Button button;
 	
-	// Use this for initialization
+	void Awake() {
+		label = gameObject.GetComponentInChildren<TextMeshProUGUI>();
+		button = GetComponent<Button>();
+	}
+
 	void Start () {
-		index = gameObject.transform.parent.gameObject.GetComponent<ItemSpace>().indexes.Dequeue();
+		index = ItemStatic.instance.indexes.Dequeue();
 		item = Party.GetItem(index);
-		gameObject.GetComponentInChildren<Text>().text = item.GetName();
-		pos = new Vector3(0, y, 0);
-		gameObject.transform.localPosition = pos;
-		y = y - stepY;
+		label.text = item.GetName();
+		
 		try {
 		    messageLog = gameObject.transform.parent.parent.Find("Message Log").gameObject;
 		} catch {
 			messageLog = null;
 		}
 		if (!inBattle & !item.usableOut) {
-			gameObject.GetComponent<Button>().interactable = false;
+			button.interactable = false;
 		} else {
-			gameObject.GetComponent<Button>().interactable = true;
+			button.interactable = true;
 		}		
 	}
 	
@@ -40,30 +43,36 @@ public class ItemButton : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void OnPointerEnter(PointerEventData e) {
+		Description();
+	}
+
+	public void OnPointerExit(PointerEventData e) {
+		Hide();
+	}
 	
 	public void Consume () {
-	    y = y + stepY;
         Destroy(gameObject);		
 	}
 	
 	public void Clicked () {
 		Party.UseItem(index);
 		try {
-	        gameObject.transform.parent.parent.gameObject.GetComponent<Battle>().UseItem(item);
+	        BattleStatic.instance.UseItem(item);
 	    } catch {
 			gameObject.transform.parent.parent.gameObject.GetComponent<Dungeon>().UseItem(item);
 		}
 	}
 	
 	void OnDestroy () {
-		y = startingY;
 	}
 	
 	public void Description () {
-		gameObject.transform.parent.GetComponent<ItemSpace>().description.GetComponent<Text>().text = item.GetDescription();
+		ItemStatic.description.text = item.GetDescription();
 	}
 	
     public void Hide () {
-		gameObject.transform.parent.GetComponent<ItemSpace>().description.GetComponent<Text>().text = "";
+		ItemStatic.description.text = "";
 	}
 }

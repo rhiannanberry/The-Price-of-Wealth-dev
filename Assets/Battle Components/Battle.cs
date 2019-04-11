@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Reflection;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Battle : MonoBehaviour {
 
@@ -605,13 +606,13 @@ public class Battle : MonoBehaviour {
 	}
     
 	public void Stuck () {
-		partyMenu.transform.Find("Switch").gameObject.GetComponent<Button>().interactable = false;
+		partyMenu.transform.RecursiveFind("Switch").gameObject.GetComponent<Button>().interactable = false;
 		defenseMenu.transform.Find("Dodge Button").gameObject.GetComponent<Button>().interactable = false;
 		defenseMenu.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = false;
 	}
 	
 	public void Freed () {
-		partyMenu.transform.Find("Switch").gameObject.GetComponent<Button>().interactable = true;
+		partyMenu.transform.RecursiveFind("Switch").gameObject.GetComponent<Button>().interactable = true;
 		defenseMenu.transform.Find("Dodge Button").gameObject.GetComponent<Button>().interactable = true;
 		//if (Party.area == "Overworld") {
 		defenseMenu.transform.Find("Run Button").gameObject.GetComponent<Button>().interactable = true;
@@ -711,7 +712,7 @@ public class Battle : MonoBehaviour {
 	
 	public void NameRecruit () {
 		if (Party.latestRecruit != null) {
-			nameMenu.transform.Find("Name").gameObject.GetComponent<InputField>().text = Party.latestRecruit.GetName();
+			nameMenu.GetComponentInChildren<TMP_InputField>().text = Party.latestRecruit.GetName();
 			nameMenu.SetActive(true);
 			winMenu.SetActive(false);
 		} else {
@@ -720,7 +721,7 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void ConfirmName () {
-		Party.latestRecruit.SetName(nameMenu.transform.Find("Name").gameObject.GetComponent<InputField>().text);
+		Party.latestRecruit.SetName(nameMenu.GetComponentInChildren<TMP_InputField>().text);
 	}
 	
 	public void BattleEnd () {

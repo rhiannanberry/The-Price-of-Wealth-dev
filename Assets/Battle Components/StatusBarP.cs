@@ -32,6 +32,7 @@ public class StatusBarP : MonoBehaviour {
 	public void Check () {
 		try {
 		    player = Party.GetPlayer();
+			transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player.GetName();
 		    charName = player.GetName() + " (" + player.type + ")";
 	     	health = "HP: " + player.GetHealth().ToString() + "/" + player.GetMaxHP().ToString();
 			sp = ", SP: " + Party.GetSP().ToString() + "/40";
