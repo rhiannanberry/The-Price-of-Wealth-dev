@@ -15,6 +15,9 @@ public class WinMenu : MonoBehaviour {
 	public Queue<int> indexes = new Queue<int>();
 	public GameObject lootContainer;
 	public GameObject bagContainer;
+
+	[HideInInspector]
+	public TextMeshProUGUI descriptor;
 	int selected;
 	
 	// Use this for initialization
@@ -26,6 +29,7 @@ public class WinMenu : MonoBehaviour {
 		selected = 0;
 		items = Party.GetItems();
 		loot = Party.GetLoot();
+		descriptor = transform.Find("Descriptor").gameObject.GetComponent<TextMeshProUGUI>();
 
 		int i = 0;
 		while (i < 10) {
@@ -38,6 +42,7 @@ public class WinMenu : MonoBehaviour {
 				oi.bagContainer = bagContainer.transform;
 				oi.inBag = true;
 				oi.item = items[i];
+				oi.descriptor = descriptor;
 				o.GetComponentInChildren<TextMeshProUGUI>().text = items[i].GetName();
 			}
 			i++;
@@ -53,6 +58,7 @@ public class WinMenu : MonoBehaviour {
 				oi.bagContainer = bagContainer.transform;
 				oi.inBag = false;
 				oi.item = loot[i - 10];
+				oi.descriptor = descriptor;
 				o.GetComponentInChildren<TextMeshProUGUI>().text = loot[i - 10].GetName();
 
 		    }

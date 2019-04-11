@@ -12,7 +12,7 @@ public class Map : MonoBehaviour {
 	public HelpMenu help;
 
 
-	public Toggle tower, diningHall, researchLab, stadium, artCenter, healthBuilding, lectureHalls;
+	public Button tower, diningHall, researchLab, stadium, artCenter, healthBuilding, lectureHalls;
 
 	// Use this for initialization
 	void Start () {
@@ -30,41 +30,39 @@ public class Map : MonoBehaviour {
 			help.Open();
 		}
 		map.transform.Find("Current Location").gameObject.GetComponent<Text>().text = "Current location: " + currentPosition;
+		DeactivateCurrentLocation(currentPosition);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!GetComponent<ToggleGroup>().AnyTogglesOn()) {
-			SetSelected(currentPosition);
-		}
 	}
 	
 	public void Select (string location) {
 		selectedLocation = location;
 	}
 
-	public void SetSelected(string loc) {
+	public void DeactivateCurrentLocation(string loc) {
 		switch(loc) {
 			case "tower":
-				tower.isOn = true;
+				tower.interactable = false;
 				break;
 			case "dining":
-				diningHall.isOn = true;
+				diningHall.interactable = false;
 				break;
 			case "research":
-				researchLab.isOn = true;
+				researchLab.interactable = false;
 				break;
 			case "sports":
-				stadium.isOn = true;
+				stadium.interactable = false;
 				break;
 			case "art":
-				artCenter.isOn = true;
+				artCenter.interactable = false;
 				break;
 			case "health":
-				healthBuilding.isOn = true;
+				healthBuilding.interactable = false;
 				break;
 			case "lecture":
-				lectureHalls.isOn = true;
+				lectureHalls.interactable = false;
 				break;
 
 		}

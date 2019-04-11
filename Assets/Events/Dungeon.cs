@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 public class Dungeon : MonoBehaviour {
 
@@ -370,13 +370,13 @@ public class Dungeon : MonoBehaviour {
 	
 	public void OpenName () {
 		Party.latestRecruit = partyMenu.GetComponent<PartyMenu>().GetActive();
-		nameMenu.transform.Find("Name").gameObject.GetComponent<InputField>().text = Party.latestRecruit.GetName();
+		nameMenu.GetComponentInChildren<TMP_InputField>().text = Party.latestRecruit.GetName();
 		nameMenu.SetActive(true);
 		partyMenu.SetActive(false);
 	}
 	
 	public void Name () {
-		Party.latestRecruit.SetName(nameMenu.transform.Find("Name").gameObject.GetComponent<InputField>().text);
+		Party.latestRecruit.SetName(nameMenu.GetComponentInChildren<TMP_InputField>().text);
 		Party.latestRecruit = null;
 		nextMenu.SetActive(true);
 		nameMenu.SetActive(false);

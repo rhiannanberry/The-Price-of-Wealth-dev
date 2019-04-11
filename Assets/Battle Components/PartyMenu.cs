@@ -13,6 +13,8 @@ public class PartyMenu : MonoBehaviour {
 	public Button cancel;
 	public Button special;
 	public Button kick;
+
+	public Transform specialMenu;
 	public Button StandardS;
 	public Button SupportS;
 	public int active;
@@ -27,7 +29,8 @@ public class PartyMenu : MonoBehaviour {
 
 	void Awake() {
 		chars = membersButtonGroup.GetComponentsInChildren<Button>();
-		enemies = enemiesButtonGroup.GetComponentsInChildren<Button>();
+		if (enemiesButtonGroup != null)
+			enemies = enemiesButtonGroup.GetComponentsInChildren<Button>();
 	}
 	
 	
@@ -59,13 +62,15 @@ public class PartyMenu : MonoBehaviour {
 			} else {
 				c.interactable = false;
 			}
-
-			Button b = enemies[i];
-			if (Party.GetEnemy(i) != null) {
-				b.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(i).type;
-				b.interactable = true;
-			} else {
-				b.interactable = false;	
+			if (enemiesButtonGroup != null) 
+			{
+				Button b = enemies[i];
+				if (Party.GetEnemy(i) != null) {
+					b.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(i).type;
+					b.interactable = true;
+				} else {
+					b.interactable = false;	
+				}
 			}
 		}
 		
@@ -85,9 +90,12 @@ public class PartyMenu : MonoBehaviour {
 
 		for (int j = 0; j < 4; j++) {
 			Button c = chars[j];
-			Button b = enemies[j];
+			
 			c.GetComponent<Outline>().enabled = false;
-			b.GetComponent<Outline>().enabled = false;	
+			if (enemiesButtonGroup != null) {
+				Button b = enemies[j];
+				b.GetComponent<Outline>().enabled = false;
+			}
 		}
 		if (i <=4 ) {
 			chars[i-1].GetComponent<Outline>().enabled = true;
@@ -175,6 +183,7 @@ public class PartyMenu : MonoBehaviour {
 			Party.members[active - 1].GetSupportSpecial().UseOutOfCombat();
 			CloseParty();
 		} else {
+			specialMenu.gameObject.SetActive(true);
 			StandardS.gameObject.SetActive(true);
 			SupportS.gameObject.SetActive(true);
 			StandardS.GetComponentInChildren<TextMeshProUGUI>().text = Party.members[active - 1].GetSpecial().GetName();
@@ -184,15 +193,17 @@ public class PartyMenu : MonoBehaviour {
 	
 	public void StandardSpecial () {
 		Party.members[active - 1].GetSpecial().UseOutOfCombat();
-		StandardS.gameObject.SetActive(false);
-		SupportS.gameObject.SetActive(false);
+		specialMenu.gameObject.SetActive(false);
+		//StandardS.gameObject.SetActive(false);
+		//SupportS.gameObject.SetActive(false);
 		CloseParty();
 	}
 	
 	public void SupportSpecial() {
 		Party.members[active - 1].GetSupportSpecial().UseOutOfCombat();
-		StandardS.gameObject.SetActive(false);
-		SupportS.gameObject.SetActive(false);
+		specialMenu.gameObject.SetActive(false);
+		//StandardS.gameObject.SetActive(false);
+		//SupportS.gameObject.SetActive(false);
 		CloseParty();
 	}
 	
@@ -202,5 +213,9 @@ public class PartyMenu : MonoBehaviour {
 	
 	public void CloseParty() {
 		gameObject.transform.parent.gameObject.GetComponent<Dungeon>().CloseParty();
+	}
+	
+	public void CloseSpecialMenu() {
+		specialMenu.gameObject.SetActive(false);
 	}
 }

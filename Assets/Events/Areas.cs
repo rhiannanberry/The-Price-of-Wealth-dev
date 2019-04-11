@@ -152,30 +152,29 @@ public static class Areas {
 	}
 	
 	public static string IndexToWord(int i) {
-	string loc = "";
 		switch (i) {
-			case 0:
-			    return "tower";
-			    break;
-			case 1:
-			    return "dining";
-				break;
-			case 2:
-			    return "research";
-				break;
-			case 3:
-			    return "sports";
-				break;
-			case 4:
-			    return "art";
-				break;
-			case 5:
-			    return "health";
-				break;
-		    case 6:
-			    return "lecture";
-				break;
+			case 0: return "tower";
+			case 1: return "dining";
+			case 2: return "research";
+			case 3: return "sports";
+			case 4: return "art";
+			case 5: return "health";
+		    case 6: return "lecture";
 		}
         return "Wrong answer";		
+	}
+
+	public static string GetLocationFormatted(string loc) {
+		loc = (loc == null) ? location : loc;
+		switch(loc) {
+			case "tower"	: return "Tower";
+			case "dining"	: return "Dining Hall";
+			case "research"	: return "Research Lab";
+			case "sports"	: return "Stadium";
+			case "art"		: return "Art Center";
+			case "health"	: return "Health Building";
+		    case "lecture"	: return "Lecture Halls";
+		}
+		return "BAD";
 	}
 }
