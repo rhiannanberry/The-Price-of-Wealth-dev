@@ -14,6 +14,8 @@ public class Dungeon : MonoBehaviour {
 	public GameObject eventSpace;
 	public EventSpace e;
 	public GameObject nextMenu;
+	public GameObject next;
+	public GameObject exit;
 	public GameObject partyMenu;
 	public GameObject itemMenu;
 	public GameObject bagMenu;
@@ -36,8 +38,21 @@ public class Dungeon : MonoBehaviour {
 	public Queue<TimedMethod> effects3;
 	public Queue<TimedMethod> effects4;
 	
+	public static bool inDungeon;
+	public static bool inOverworld;
+	public static Dungeon instance;
 	// Use this for initialization
 	void Start () {
+		instance = this;
+
+		if (SceneManager.GetActiveScene().name == "Dungeon") {
+			inDungeon = true;
+			inOverworld = false;
+		} else {
+			inDungeon = false;
+			inOverworld = true;
+		}
+
 		if (fled && Party.area != "overworld") {
 			fled = false;
 			EscapeEnemies();
@@ -103,7 +118,7 @@ public class Dungeon : MonoBehaviour {
 			foreach (TimedMethod t in current.options1) {
 			    effects1.Enqueue(t);
 			}
-			e.option1.GetComponentInChildren<Text>().text = current.optionText1;
+			e.option1.GetComponentInChildren<TextMeshProUGUI>().text = current.optionText1;
 			e.option1.gameObject.SetActive(true);
 		} else {
 			e.option1.gameObject.SetActive(false);
@@ -113,7 +128,7 @@ public class Dungeon : MonoBehaviour {
 			foreach (TimedMethod t in current.options2) {
 			    effects2.Enqueue(t);
 			}
-			e.option2.GetComponentInChildren<Text>().text = current.optionText2;
+			e.option2.GetComponentInChildren<TextMeshProUGUI>().text = current.optionText2;
 			e.option2.gameObject.SetActive(true);
 		} else {
 			e.option2.gameObject.SetActive(false);
@@ -123,7 +138,7 @@ public class Dungeon : MonoBehaviour {
 			foreach (TimedMethod t in current.options3) {
 			    effects3.Enqueue(t);
 			}
-			e.option3.GetComponentInChildren<Text>().text = current.optionText3;
+			e.option3.GetComponentInChildren<TextMeshProUGUI>().text = current.optionText3;
 			e.option3.gameObject.SetActive(true);
 		} else {
 			e.option3.gameObject.SetActive(false);
@@ -133,7 +148,7 @@ public class Dungeon : MonoBehaviour {
 			foreach (TimedMethod t in current.options4) {
 			    effects4.Enqueue(t);
 			}
-			e.option4.GetComponentInChildren<Text>().text = current.optionText4;
+			e.option4.GetComponentInChildren<TextMeshProUGUI>().text = current.optionText4;
 			e.option4.gameObject.SetActive(true);
 		} else {
 			e.option4.gameObject.SetActive(false);
@@ -141,8 +156,8 @@ public class Dungeon : MonoBehaviour {
 		
 		//nextMenu.SetActive(false);
 		try {
-		nextMenu.transform.Find("Next").gameObject.GetComponent<Button>().interactable = false;
-		nextMenu.transform.Find("Exit").gameObject.GetComponent<Button>().interactable = false;
+		next.GetComponent<Button>().interactable = false;
+		next.GetComponent<Button>().interactable = false;
 		} catch {};
 		dungeonMaps.SetActive(false);
 		isEvent = true;
@@ -151,8 +166,8 @@ public class Dungeon : MonoBehaviour {
 	
 	public void Resolve () {
 		//nextMenu.SetActive(true);
-		nextMenu.transform.Find("Next").gameObject.GetComponent<Button>().interactable = true;
-		nextMenu.transform.Find("Exit").gameObject.GetComponent<Button>().interactable = true;
+		next.GetComponent<Button>().interactable = true;
+		next.GetComponent<Button>().interactable = true;
 		dungeonMaps.SetActive(true);
 		isEvent = false;
 		eventSpace.SetActive(false);
@@ -163,8 +178,8 @@ public class Dungeon : MonoBehaviour {
 	}
 	
 	public void Escape () {
-		nextMenu.transform.Find("Next").gameObject.GetComponent<Button>().interactable = true;
-		nextMenu.transform.Find("Exit").gameObject.GetComponent<Button>().interactable = true;
+		next.GetComponent<Button>().interactable = true;
+		next.GetComponent<Button>().interactable = true;
 		dungeonMaps.SetActive(true);
 		isEvent = false;
 		eventSpace.SetActive(false);
@@ -177,8 +192,8 @@ public class Dungeon : MonoBehaviour {
 	}
 	
 	public void EscapeEnemies () {
-		nextMenu.transform.Find("Next").gameObject.GetComponent<Button>().interactable = true;
-		nextMenu.transform.Find("Exit").gameObject.GetComponent<Button>().interactable = true;
+		next.GetComponent<Button>().interactable = true;
+		next.GetComponent<Button>().interactable = true;
 		dungeonMaps.SetActive(true);
 		isEvent = false;
 		eventSpace.SetActive(false);

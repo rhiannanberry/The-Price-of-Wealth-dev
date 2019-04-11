@@ -65,7 +65,7 @@ public static class Areas {
 		defeatedP = false;
 		defeatedC = false;
 		defeatedG = false;
-		ItemButton.inBattle = false;
+		Battle.inBattle = false;
 		Dungeon.fled = false;
 		tutorialPlayed = false;
 		location = Map.currentPosition;

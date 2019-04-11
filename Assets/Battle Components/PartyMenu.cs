@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PartyMenu : MonoBehaviour {
 	public Transform membersButtonGroup;
 	public Transform enemiesButtonGroup;
 
-	public Text status;
+	public TextMeshProUGUI status;
 	public Button swap;
 	public Button cancel;
 	public Button special;
@@ -23,14 +24,13 @@ public class PartyMenu : MonoBehaviour {
 	public bool replacing;
 	public Dungeon dungeon;
 
-	[HideInInspector]
-	Button[] chars;
-	Button[] enemies;
+	public Button char1, char2, char3, char4;
+	public Button enem1, enem2, enem3, enem4;
+
+
 
 	void Awake() {
-		chars = membersButtonGroup.GetComponentsInChildren<Button>();
-		if (enemiesButtonGroup != null)
-			enemies = enemiesButtonGroup.GetComponentsInChildren<Button>();
+		
 	}
 	
 	
@@ -48,8 +48,7 @@ public class PartyMenu : MonoBehaviour {
 		SetActive(Party.GetActive());
 
 		for (int i = 0; i < 4; i++) {
-			Button c = chars[i];
-			Debug.Log(Party.GetActive());
+			Button c = Member(i);
 			if(Party.GetCharacter(i) != null) {
 				c.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetCharacter(i).GetName();
 				c.interactable = true;
@@ -62,16 +61,15 @@ public class PartyMenu : MonoBehaviour {
 			} else {
 				c.interactable = false;
 			}
-			if (enemiesButtonGroup != null) 
-			{
-				Button b = enemies[i];
-				if (Party.GetEnemy(i) != null) {
-					b.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(i).type;
-					b.interactable = true;
-				} else {
-					b.interactable = false;	
-				}
+			
+			Button b = Enemy(i);
+			if (Party.GetEnemy(i) != null) {
+				b.GetComponentInChildren<TextMeshProUGUI>().text = Party.GetEnemy(i).type;
+				b.interactable = true;
+			} else {
+				b.interactable = false;	
 			}
+			
 		}
 		
 		if (replacing) {
@@ -88,19 +86,21 @@ public class PartyMenu : MonoBehaviour {
 	public void SetActive(int i) {
 		active = i;
 
+		
+
 		for (int j = 0; j < 4; j++) {
-			Button c = chars[j];
 			
+			Button c = Member(j);
 			c.GetComponent<Outline>().enabled = false;
-			if (enemiesButtonGroup != null) {
-				Button b = enemies[j];
-				b.GetComponent<Outline>().enabled = false;
-			}
+			
+			Button b = Enemy(j);
+			b.GetComponent<Outline>().enabled = false;
 		}
+
 		if (i <=4 ) {
-			chars[i-1].GetComponent<Outline>().enabled = true;
+			Member(i-1).GetComponent<Outline>().enabled = true;
 		} else {
-			enemies[i-5].GetComponent<Outline>().enabled = true;
+			Enemy(i - 5).GetComponent<Outline>().enabled = true;
 		}
 
 		if (i < 5) {
@@ -160,7 +160,27 @@ public class PartyMenu : MonoBehaviour {
 		Party.AddPlayer(Party.fullRecruit);
 		Party.latestRecruit = Party.fullRecruit;
 		Party.fullRecruit = null;
+
+		if (Battle.inBattle) {
+			Battle.instance.Cancel(transform.name);
+			Battle.instance.Win();
+		} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+			Dungeon.instance.CloseParty();
+			Dungeon.instance.CloseRecruit();
+			Dungeon.instance.Resolve();
+		}
 	}
+
+	public void Reject() {
+		if (Battle.inBattle) {
+			Battle.instance.Cancel(transform.name);
+			Battle.instance.Win();
+		} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+			Dungeon.instance.CloseParty();
+			Dungeon.instance.Resolve();
+		}
+	}
+
 	
 	public void Kick () {
 		Party.members[active - 1] = null;
@@ -217,5 +237,56 @@ public class PartyMenu : MonoBehaviour {
 	
 	public void CloseSpecialMenu() {
 		specialMenu.gameObject.SetActive(false);
+	}
+
+	public void Cancel() {
+		if (Battle.inBattle) {
+			Battle.instance.Cancel(transform.name);
+		} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+			
+		}
+	}
+
+	public void Switch() {
+		if (Battle.inBattle){
+			Battle.instance.Switch();
+			Battle.instance.EndTurn();
+		}
+	}
+
+	public void ConfirmItemUse() {
+		if (Battle.inBattle){
+			Battle.instance.ConfirmItemUse();
+		} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+			Dungeon.instance.ConfirmItemUse();	
+		}
+	}
+
+	public void CancelItemUse() {
+		if (Battle.inBattle){
+			Battle.instance.CancelItemUse();
+		}else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+			Dungeon.instance.CancelItemUse();	
+		}
+	}
+
+	private Button Member(int i) {
+		switch(i) {
+			case 0: return char1;
+			case 1: return char2;
+			case 2: return char3;
+			case 3: return char4;
+		}
+		return char4;
+	}
+
+	private Button Enemy(int i) {
+		switch(i) {
+			case 0: return enem1;
+			case 1: return enem2;
+			case 2: return enem3;
+			case 3: return enem4;
+		}
+		return enem4;
 	}
 }

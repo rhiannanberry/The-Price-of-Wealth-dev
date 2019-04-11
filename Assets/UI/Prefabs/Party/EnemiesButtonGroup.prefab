@@ -238,6 +238,16 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 4100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e5f645c09f13d40a9128d290614b148, type: 3}
 --- !u!224 &162220207557799603 stripped
@@ -372,6 +382,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 4100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e5f645c09f13d40a9128d290614b148, type: 3}
@@ -517,6 +537,16 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 4100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e5f645c09f13d40a9128d290614b148, type: 3}
 --- !u!224 &1171037727512510317 stripped
@@ -651,6 +681,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 4100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100529136434757554, guid: 9e5f645c09f13d40a9128d290614b148,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e5f645c09f13d40a9128d290614b148, type: 3}

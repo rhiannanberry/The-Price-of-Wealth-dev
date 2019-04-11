@@ -81,6 +81,10 @@ public class WinMenu : MonoBehaviour {
 			index++;
 		}
 		Party.SetItems(newItems);
+
+		if (Battle.inBattle) {
+			Battle.instance.NameRecruit();
+		}
 		//gameObject.transform.parent.Find("Message Log").gameObject.GetComponent<MessageLog>().SetMessage("");
 		//Party.PostBattle();
 		//SceneManager.LoadScene(Party.area);

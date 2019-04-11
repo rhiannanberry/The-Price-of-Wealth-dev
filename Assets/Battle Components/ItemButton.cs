@@ -9,7 +9,6 @@ public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	
 	public Item item;
 	public int index;
-	public static bool inBattle;
 	public GameObject messageLog;
 	
 	public ItemButton(Item item) {this.item = item;}
@@ -23,7 +22,12 @@ public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	}
 
 	void Start () {
-		index = ItemStatic.instance.indexes.Dequeue();
+		if (Battle.inBattle) {
+	      index = ItemStatic.instance.indexes.Dequeue();
+		} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+				index = Dungeon.instance.bagMenu.GetComponent<ItemSpace>().indexes.Dequeue();
+		}
+		
 		item = Party.GetItem(index);
 		label.text = item.GetName();
 		
@@ -32,7 +36,7 @@ public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 		} catch {
 			messageLog = null;
 		}
-		if (!inBattle & !item.usableOut) {
+		if (!Battle.inBattle & !item.usableOut) {
 			button.interactable = false;
 		} else {
 			button.interactable = true;
@@ -59,7 +63,11 @@ public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	public void Clicked () {
 		Party.UseItem(index);
 		try {
+			if (Battle.inBattle) {
 	        BattleStatic.instance.UseItem(item);
+			} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+					Dungeon.instance.UseItem(item);
+			}
 	    } catch {
 			gameObject.transform.parent.parent.gameObject.GetComponent<Dungeon>().UseItem(item);
 		}
@@ -69,10 +77,18 @@ public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	}
 	
 	public void Description () {
-		ItemStatic.description.text = item.GetDescription();
+		if (Battle.inBattle) {
+			ItemStatic.description.text = item.GetDescription();
+		} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+			Dungeon.instance.bagMenu.transform.RecursiveFind("Description").gameObject.GetComponent<TextMeshProUGUI>().text = item.GetDescription();
+		}
 	}
 	
     public void Hide () {
-		ItemStatic.description.text = "";
+		if (Battle.inBattle) {
+			ItemStatic.description.text = "";
+		} else if (Dungeon.inDungeon || Dungeon.inOverworld) {
+			Dungeon.instance.bagMenu.transform.RecursiveFind("Description").gameObject.GetComponent<TextMeshProUGUI>().text = "";
+		}
 	}
 }

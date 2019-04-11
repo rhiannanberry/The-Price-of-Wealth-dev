@@ -6894,7 +6894,7 @@ PrefabInstance:
     - target: {fileID: 2189852631295889878, guid: 03138218c05308990a7ffc558a5e7731,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -65.8
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2189852631295889878, guid: 03138218c05308990a7ffc558a5e7731,
         type: 3}
@@ -6934,7 +6934,7 @@ PrefabInstance:
     - target: {fileID: 2189852631295889878, guid: 03138218c05308990a7ffc558a5e7731,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2189852631295889878, guid: 03138218c05308990a7ffc558a5e7731,
         type: 3}
@@ -6951,5 +6951,35 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1145347817}
+    - target: {fileID: 3405492930416470200, guid: 03138218c05308990a7ffc558a5e7731,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1145347817}
+    - target: {fileID: 3405492930416470200, guid: 03138218c05308990a7ffc558a5e7731,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 3405492930416470200, guid: 03138218c05308990a7ffc558a5e7731,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1145347817}
+    - target: {fileID: 3405492930416470200, guid: 03138218c05308990a7ffc558a5e7731,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CreateGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3405492930416470200, guid: 03138218c05308990a7ffc558a5e7731,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101121348009226410, guid: 03138218c05308990a7ffc558a5e7731,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03138218c05308990a7ffc558a5e7731, type: 3}

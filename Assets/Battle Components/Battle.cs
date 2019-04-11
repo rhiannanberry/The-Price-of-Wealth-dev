@@ -9,6 +9,7 @@ using TMPro;
 
 public class Battle : MonoBehaviour {
 
+	public static Battle instance;
 	Character player;
 	Character enemy;
 	public GameObject menu;
@@ -28,6 +29,7 @@ public class Battle : MonoBehaviour {
 	public GameObject largeMenuHides;
 	public int delay;
 	public Queue<TimedMethod> methodQueue;
+	public static bool inBattle;
 	Type t;
 	MethodInfo method;
 	bool running;
@@ -38,6 +40,7 @@ public class Battle : MonoBehaviour {
 	// Use this for initialization
 
 	private void Awake() {
+		Battle.instance = this;
 		BattleStatic.AttachStatic(this);
 	}
 
@@ -67,7 +70,9 @@ public class Battle : MonoBehaviour {
 		lastGuard = -1;
 		guardStrength = 5;
 		audio.GetComponent<GameAudio>().InitiateMusic();
-		ItemButton.inBattle = true;
+		Dungeon.inDungeon = false;
+		Dungeon.inOverworld = false;
+		inBattle = true;
 		//itemSpace.GetComponent<ItemSpace>().Check();
 		//itemSpace.SetActive(false);
 		//if (Party.area == "Overworld") {
@@ -725,7 +730,7 @@ public class Battle : MonoBehaviour {
 	}
 	
 	public void BattleEnd () {
-		ItemButton.inBattle = false;
+		inBattle = false;
 		Dungeon.fled = false;
 		Party.PostBattle();
 		SceneManager.LoadScene(Party.area);
@@ -744,7 +749,7 @@ public class Battle : MonoBehaviour {
 				Dungeon.leftEnemies[i] = Party.enemies[i];
 			}
 		}
-		ItemButton.inBattle = false;
+		inBattle = false;
 		Party.PostBattle();
 		SceneManager.LoadScene(Party.area);
 	}

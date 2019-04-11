@@ -28,7 +28,7 @@ public class AreaSpotlight : MonoBehaviour {
 	
 	public void SetLocation(string location) {
 		this.location = location;
-		currentName.text = location;
+		currentName.text = Areas.GetLocationFormatted(location);
 		if (Areas.cleared[location]) {
 			shop.gameObject.SetActive(true);
 			investigate.gameObject.SetActive(true);

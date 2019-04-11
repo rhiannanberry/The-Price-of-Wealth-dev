@@ -30,8 +30,11 @@ public class ItemSpace : MonoBehaviour {
 		}
 	}		
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public void Cancel() {
+		if (Battle.inBattle) {
+			Battle.instance.Cancel(transform.name);
+		} else if (Dungeon.inOverworld || Dungeon.inDungeon) {
+			Dungeon.instance.CloseBag();
+		}
 	}
 }
